@@ -1,28 +1,12 @@
-/* Reset des marges et paddings par défaut */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html, body {
-    height: 100%;
-}
 /* Base Styling */
 body {
-    display: flex;
     font-family: 'Open Sans', sans-serif;
-    flex-direction: column;
-    min-height: 100vh; /* 100% de la hauteur de la vue */
     background: linear-gradient(135deg, #0f2027, #291f41, #1d1f58);
     color: #ffffff;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     transition: background-color 0.3s ease;
-}
-/* Le contenu principal doit prendre tout l'espace disponible */
-.content {
-    flex: 1;
 }
 
 a {
@@ -211,6 +195,27 @@ main {
     margin: auto;
     max-width: calc(33% - 40px);
 }
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .images {
+        flex-direction: column; /* Stack images in a column */
+    }
+
+    .images .image-link {
+        max-width: 100%; /* Make sure images take full width */
+        margin-bottom: 20px; /* Add some space between images */
+    }
+
+    /* Adjust download link section for mobile */
+    .download-section h2 {
+        margin-bottom: 20px;
+    }
+
+    .download-link {
+        display: inline-block;
+        margin-top: 10px;
+    }
+}
 
 /* Download Section */
 .download-section {
@@ -232,6 +237,8 @@ main {
     font-weight: bold;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block; /* Ensure the link doesn't overlap */
+    margin-top: 10px; /* Add margin on top to avoid overlap */
 }
 
 .download-link:hover {
@@ -292,7 +299,6 @@ footer {
     padding: 30px 20px;
     margin-top: 50px;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: auto;
 }
 
 .footer-links {
