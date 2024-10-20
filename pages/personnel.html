@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes projets</title>
+    <link rel="stylesheet" href="../style/personnel.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="../style/mainstyle.css"> <!-- Inclure ton fichier CSS ici -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+</head>
+
+<body>
+    <header>
+        <a href="../index.html" class="logo-container">
+            <img src="../photo/logo vecteur blanc.svg" alt="logo" class="logo" />
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="Educatif.html">Educatif</a></li>
+                <li><a href="Professionnel.html">Professionnel</a></li>
+                <li><a href="personnel.html">Personnel</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Cartes de projets -->
+        <div class="projects">
+            <div class="project-card" data-project="1">
+                <img src="../photo/photoprojet/bouton micro onde v10.png" alt="Projet 1" class="project-image">
+                <div class="project-info">
+                    <h2>Bouton de micro-onde</h2>
+                    <p>Le projet vise à recréer les boutons cassés d'un micro-ondes grâce à l'impression 3D. Un modèle précis a été conçu pour assurer compatibilité et durabilité. Cette solution est économique et adaptée aux besoins du client.</p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <div class="project-card" data-project="2">
+                <img src="../photo/projet perso/reacteur ARK/starkheart2enbien.jpg" alt="Projet 2" class="project-image">
+                <div class="project-info">
+                    <h2>Reacteur ARK</h2>
+                    <p>le projet vise à ameliorer un model trouver sur internet pour mieux l'integrer dans mon environement domotique</p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <div class="project-card" data-project="3">
+                <img src="../photo/photoprojet/pied de bureau v0 v1.png" alt="Projet 3" class="project-image">
+                <div class="project-info">
+                    <h2>Pied de meuble</h2>
+                    <p>Ce projet a pour but de mettre deux meubles a la même hauteur</p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <div class="project-card" data-project="4">
+                <img src="../photo/photoprojet/robot.jpg" alt="Projet 4" class="project-image">
+                <div class="project-info">
+                    <h2>Robot suiveur de ligne</h2>
+                    <p>Ce projet avait pour but de fabriquer un robot suiveur de ligne pour ensuite le faire participer a un concours </p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <div class="project-card" data-project="5">
+                <img src="../photo/photoprojet/CASIER CAVALIER.png" alt="Projet 5" class="project-image">
+                <div class="project-info">
+                    <h2>Casier camping car</h2>
+                    <p>Un client m'as demander de concevoir et imprimer un casier pour son camping car</p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <div class="project-card" data-project="6">
+                <img src="../photo/photoprojet/box domotique.jpg" alt="Projet 6" class="project-image">
+                <div class="project-info">
+                    <h2>Box domotique </h2>
+                    <p>je vous montre comment et pourquoi j'ai fabriquer ma propre box domotique</p>
+                </div>
+                <button class="open-modal">Voir plus</button>
+            </div>
+            <!-- Ajouter d'autres cartes de projets ici -->
+        </div>
+
+        <!-- Fenêtre modale -->
+        <div id="projectModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-info" id="modalBody">
+                    <!-- Les informations du projet seront injectées ici -->
+                </div>
+            </div>
+        </div>
+
+        <script src="../prog/projet.js"></script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Les pages de Robin. Tous droits réservés.</p>
+        <ul class="footer-links">
+            <a href="index.html" class="logo-container">
+                <img src="../photo/logo vecteur violet électrique.svg" alt="logo" class="logo"/>
+            </a>
+        </ul>
+    </footer>
+
+
+</body>
