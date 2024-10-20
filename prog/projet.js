@@ -113,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <img src="../../photo/projet perso/reacteur ARK/lumiere arck v1.png" alt="Projet Ironman" class="project-image">
             <img src="../../photo/projet perso/reacteur ARK/lumiere arck v2.png" alt="Projet Ironman" class="project-image">
             <img src="../../photo/projet perso/reacteur ARK/lumiere arck tout.png" alt="Projet Ironman" class="project-image">
-            <img src="">
             <img src="../../photo/projet perso/reacteur ARK/lumiere arck assamblage.png" alt="Projet Ironman" class="project-image">       
         </div>
         <p>Une fois la lampe imprimée, j'ai décidé de simplifier le contrôle des LED en flashant l'ESP avec WLED. Cela me permet de le connecter facilement au réseau et de l'intégrer à mon instance Home Assistant (HA).</p>
