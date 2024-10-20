@@ -1,0 +1,254 @@
+/* Styles pour les cartes de projet */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+
+}
+
+.project-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  text-align: center;
+  box-shadow: 0px 0px 7px 0 #fff, 10px 10px 30px 0 #1d0dca17;
+  /* Utilisation de Flexbox pour positionner les éléments */
+  display: flex;
+  flex-direction: column;
+  /* Disposer les éléments verticalement */
+  justify-content: flex-end;
+  /* Pousser le contenu vers le bas */
+  height: 100%;
+  /* Assurer que la carte prenne toute la hauteur disponible */
+  position: relative;
+  /* Relatif pour permettre au bouton de s'ancrer */
+
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 1.5rem;
+  padding-bottom: 60px;
+  /* Laisser suffisamment de place pour le bouton */
+  flex-grow: 1;
+  /* Laisser cette section prendre l'espace restant */
+}
+
+.project-info h2 {
+  font-size: 1.8rem;
+  color: #272351;
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.project-card button {
+  background-color: #272351;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  /* Positionner le bouton au bas de la carte */
+  margin-top: auto;
+  /* Assure que le bouton reste en bas */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  /* Fixer au bas de la carte */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Centrer le bouton */
+}
+
+.project-card button:hover {
+  background-color: #34495e;
+}
+
+.btn:hover {
+  background-color: #34495e;
+}
+
+/* Style de la fenêtre modale */
+.modal {
+  overflow: scroll;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: black; 
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80vw;
+}
+.modal-content h1 {
+  margin: 0;
+}
+
+.modal-content p {
+  margin: 5px 0;
+  color: #E8FEFF;
+}
+
+.modal-content section {
+  padding: 20px;
+  margin: 20px auto;
+  background-color: black;
+  border-radius: 8px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+  color: #9B93FF;
+}
+
+.modal-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal-content ul li {
+  background-color: #000000;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.modal-content .photo-context {
+  display: flex; /* Utilise Flexbox pour aligner les images côte à côte */
+  justify-content: center; /* Centre les images horizontalement */
+  gap: 20px; /* Espace entre les images */
+  padding: 20px;
+}
+
+.modal-content .photo-context img {
+  width: 100%; /* Les images occuperont toute la largeur de leur conteneur */
+  max-width: 300px; /* Taille maximale de chaque image */
+  height: auto; /* Conserve les proportions de l'image */
+  border-radius: 8px; /* Coins arrondis (facultatif) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+}
+
+@media (max-width: 768px) {
+  .modal-content .photo-context {
+      flex-direction: column; /* Empile les images en colonne sur petits écrans */
+      align-items: center;
+  }
+
+  .modal-content .photo-context img {
+      max-width: 100%; /* Les images occuperont toute la largeur sur petits écrans */
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-content .container-solution {
+  display: flex; /* Utilise Flexbox pour aligner les images côte à côte */
+  justify-content: center; /* Centre les images horizontalement */
+  gap: 20px; /* Espace entre les images */
+  padding: 20px;
+}
+
+.modal-content .container-solution img {
+  width: 100%; /* Les images occuperont toute la largeur de leur conteneur */
+  max-width: 500px; /* Taille maximale de chaque image */
+  height: auto; /* Conserve les proportions de l'image */
+  border-radius: 8px; /* Coins arrondis (facultatif) */
+}
+
+@media (max-width: 768px) {
+  .modal-content .container-solution {
+      flex-direction: column; /* Empile les images en colonne sur petits écrans */
+      align-items: center;
+  }
+
+  .modal-content .container-solution img {
+      max-width: 100%; /* Les images occuperont toute la largeur sur petits écrans */
+  }
+}
+
+.modal-content .photo-process {
+  display: flex; /* Utilise Flexbox pour aligner les images côte à côte */
+  justify-content: center; /* Centre les images horizontalement */
+  gap: 20px; /* Espace entre les images */
+  padding: 20px;
+}
+
+.modal-content .photo-process img {
+  width: 100%; /* Les images occuperont toute la largeur de leur conteneur */
+  max-width: 200px; /* Taille maximale de chaque image */
+  height: auto; /* Conserve les proportions de l'image */
+  object-fit: contain;     /* Maintient les proportions mais ajoute des marges si nécessaire */
+  border-radius: 8px; /* Coins arrondis (facultatif) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+}
+
+@media (max-width: 768px) {
+  .modal-content .photo-process {
+      flex-direction: column; /* Empile les images en colonne sur petits écrans */
+      align-items: center;
+  }
+
+  .modal-content .photo-process img {
+      max-width: 100%; /* Les images occuperont toute la largeur sur petits écrans */
+  }
+}
+
+.modal-content .solution img {
+  height: auto; /* Conserve les proportions de l'image */
+  object-fit: contain;     /* Maintient les proportions mais ajoute des marges si nécessaire */
+  border-radius: 8px; /* Coins arrondis (facultatif) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+}
+
+.modal-content .photo-process {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13vw, 1fr));
+
+}
+.modal-content .process img{
+  width: 100%; /* Les images occuperont toute la largeur de leur conteneur */
+  max-width: 400px; /* Taille maximale de chaque image */
+  height: auto; /* Conserve les proportions de l'image */
+  object-fit: contain;     /* Maintient les proportions mais ajoute des marges si nécessaire */
+  border-radius: 8px; /* Coins arrondis (facultatif) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+}

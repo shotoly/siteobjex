@@ -1,0 +1,97 @@
+/* Contact Form */
+.contact-form {
+    width: 80vw;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.contact-form h2 {
+    margin-top: 0;
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #555;
+}
+
+/* Contact Info */
+.contact-info {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 80vw;
+    text-align: left;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+/* Social Media */
+.social-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre le logo horizontalement */
+    align-items: center; /* Centre le logo verticalement */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 80vw;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.social-media img {
+    width: 50px;
+    height: auto;
+    margin: 10px;
+}
+
+/* Google Maps */
+.map {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 80vw;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+
