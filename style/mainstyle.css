@@ -1,53 +1,50 @@
-/* Générique : Réinitialisation des marges, paddings et styles par défaut */
+/* generique */
 * {
+    margin:0;
+    padding:0;
+    outline:none;
+    list-style:none;
+    text-decoration:none;
+    box-sizing:border-box;
+    color:#FFF;
+    background: transparent;
+    border:none;
+  }
+  
+  html, body {
+    font-family: 'Dongle', sans-serif;
     margin: 0;
     padding: 0;
-    outline: none;
-    list-style: none;
-    text-decoration: none;
-    box-sizing: border-box;
-    color: #FFF;
-    background: transparent;
-    border: none;
-}
-
-/* Structure générale du corps */
-html, body {
-    font-family: 'Dongle', sans-serif;
     height: 100%;
     width: 100%;
     scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-}
-
-/* Styles de base pour le corps */
-body {
+  }
+  
+  body {
     overflow-x: hidden;
-    background-color: #0A0C10;
+    background: #FFF;
     font-family: 'Montserrat', sans-serif;
     color: #ffffff;
     line-height: 1.6;
     transition: background-color 0.3s ease;
+    background-color: #0A0C10;
 }
 
-/* Titres principaux */
-h1 {
+  h1 {
     font-size: 3rem;
     margin-bottom: 16px;
-}
-
-/* Texte de paragraphe */
-p {
+  }
+  
+  p {
     line-height: 1.6;
-}
-
-h1, h2, h3 {
+  }
+  
+  h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-}
+  }
+  
 
-/* Logo */
 .logo-container {
     display: flex;
     align-items: center;
@@ -56,45 +53,47 @@ h1, h2, h3 {
 .logo {
     height: 45px;
     margin-right: 20px;
-    animation: rotateLogoEvery10Seconds 10s linear infinite; /* Animation de rotation */
+    animation: rotateLogo 1s ease-in-out infinite; /* DurÃ©e de 2 secondes */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-play-state: paused; /* L'animation est en pause par dÃ©faut */
+    animation: rotateLogoEvery10Seconds 10s linear infinite; /* Rotation toutes les 10 secondes */
 }
 
-/* En-tête */
+
+/* Header */
 header {
-    padding: 10px 20px;  /* Ajusté pour un meilleur alignement */
+    padding: 10px 20px;  /* AjustÃ© pour un meilleur alignement */
     color: white;
     top: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Espacement entre logo et menu */
+    justify-content: space-between; /* Pour espacer le logo et le menu */
 }
 
-/* Menu de navigation */
 nav ul {
+    list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
 }
-
 nav ul.menu > li {
-    margin: 0 15px;
     position: relative;
+    margin: 0 15px;
 }
-
 nav ul.menu > li > a {
+    display: block;
     padding: 15px 20px;
     color: #ffffff;
     font-weight: 600;
     transition: color 0.3s ease, transform 0.3s ease;
 }
-
 nav ul.menu > li > a:hover {
     color: #d07fffce;
     transform: scale(1.05);
 }
-
-/* Sous-menu */
 nav ul.submenu {
     display: none;
     position: absolute;
@@ -106,11 +105,11 @@ nav ul.submenu {
 }
 
 nav ul.submenu li a {
+    display: none;
     padding: 10px 20px;
     color: #fff;
     transition: background-color 0.3s ease;
 }
-
 nav ul.submenu li a:hover {
     background-color: #555;
 }
@@ -118,20 +117,21 @@ nav ul.submenu li a:hover {
 nav ul.menu > li:hover > ul.submenu {
     display: block;
 }
-
-/* Section principale */
+/* Main Section */
 main {
     text-align: center;
 }
-
-/* Liens dans le pied de page */
 .footer-links a {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-/* Pied de page */
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
@@ -146,47 +146,4 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-/* --- Rendre le design responsive --- */
-
-/* Pour tablettes */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul.menu {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .logo {
-        height: 40px;
-    }
-}
-
-/* Pour mobiles */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    nav ul.menu {
-        flex-direction: column;
-    }
-
-    .logo {
-        height: 35px;
-        margin-right: 0;
-    }
-
-    footer {
-        padding: 10px;
-    }
 }
