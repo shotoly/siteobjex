@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../style/mainstyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../photo/logo vecteur violet électrique.png" />
+    <link rel="stylesheet" href="../style/menu.css"> <!-- Inclure ton fichier CSS ici -->
+    <script src="../prog/menu.js" defer></script>
 </head>
 <body>
     <header>
@@ -15,7 +17,10 @@
             <img src="../photo/logo vecteur blanc.svg" alt="logo" class="logo"/>
         </a>
         <nav>
-            <ul class="menu">
+            <button class="hamburger" id="hamburger">
+                &#9776;
+            </button>
+            <ul class="menu" id="menu">
                 <li><a href="Educatif.html">Éducatif</a></li>
                 <li><a href="Professionnel.html">Professionnel</a></li>
                 <li><a href="personnel.html">Personnel</a></li>
