@@ -14,7 +14,7 @@
   margin-bottom: 20px;
   
   z-index: 10;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   user-select: none;
@@ -227,6 +227,7 @@
   font-size: 1rem;
   color: #7f8c8d;
   margin-bottom: 20px;
+  text-align: justify;
 }
 .project-info .btn {
   /* Positionner le bouton au bas de la carte */

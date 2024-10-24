@@ -49,6 +49,7 @@
   font-size: 1rem;
   color: #7f8c8d;
   margin-bottom: 20px;
+  text-align: justify;
 }
 
 .project-card button {
@@ -117,41 +118,3 @@
   cursor: pointer;
 }
 
-/* --- Images dans la modale --- */
-
-.modal-content .photo-context,
-.modal-content .container-solution,
-.modal-content .photo-process {
-  display: flex; /* Alignement côte à côte des images */
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.modal-content img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive : empiler les images sur petits écrans */
-@media (max-width: 768px) {
-  .modal-content .photo-context,
-  .modal-content .container-solution,
-  .modal-content .photo-process {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-.modal-content .process img {
-  max-width: 400px; /* Plus grand pour certaines images */
-}
-
-/* --- Grid pour la galerie d'images --- */
-.modal-content .photo-process {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13vw, 1fr)); /* Galerie responsive */
-}

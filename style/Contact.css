@@ -1,14 +1,15 @@
 /* Contact Form */
 .contact-form {
-    width: 80vw;
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur pour les grands écrans */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     margin: 20px auto;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    text-align: left;
-    color: #ffffff;
     border-radius: 10px;
+    color: #ffffff;
+    text-align: left;
 }
 
 .contact-form h2 {
@@ -23,12 +24,13 @@
 
 .contact-form input,
 .contact-form textarea {
-    width: calc(100% - 20px);
+    width: 100%; /* S'assure que les champs prennent toute la largeur */
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
 }
 
 .contact-form button {
@@ -50,12 +52,13 @@
 .contact-info {
     margin: 20px auto;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
     background-color: rgba(255, 255, 255, 0.1);
-    width: 80vw;
-    text-align: left;
-    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
+    color: #ffffff;
+    text-align: left;
 }
 
 .contact-info p {
@@ -66,15 +69,16 @@
 .social-media {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre le logo horizontalement */
-    align-items: center; /* Centre le logo verticalement */
+    justify-content: center;
+    align-items: center;
     margin: 20px auto;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
     background-color: rgba(255, 255, 255, 0.1);
-    width: 80vw;
-    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
+    text-align: center;
 }
 
 .social-media img {
@@ -87,11 +91,17 @@
 .map {
     margin: 20px auto;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
     background-color: rgba(255, 255, 255, 0.1);
-    width: 80vw;
-    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
+    text-align: center;
 }
 
-
+/* Media Queries (Optimisation pour les petits écrans) */
+@media (max-width: 768px) {
+    .contact-form, .contact-info, .social-media, .map {
+        width: 90vw; /* Ajuste la largeur pour les petits écrans */
+    }
+}
