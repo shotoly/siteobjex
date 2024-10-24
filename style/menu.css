@@ -11,7 +11,6 @@
 
 /* Pour les petits écrans */
 @media (max-width: 768px) {
-
     nav ul.menu {
         z-index: 5;
         display: flex;
@@ -20,15 +19,16 @@
         background-color: #ffffff;
         position: absolute;
         top: 50px;
-        right: -100vw; /* Menu complètement hors de l'écran */
-        padding-left: 50px;
-        padding-top: 20px;
-        padding:10px;
-        padding-bottom: 20px;
+        right: 0;
+        padding: 10px;
+        padding-right: 0px;
+        opacity: 0; /* Invisible initialement */
+        visibility: hidden;
+        transform: translateX(0); /* Menu reste dans l'écran */
+        transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
         border-radius: 20px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
-        transition: right 0.5s ease; /* Transition lissée pour l'apparition/disparition */
     }
 
     nav ul.menu li a {
@@ -40,7 +40,17 @@
         display: block;
     }
 
+    /* Menu actif (visible après clic) */
     nav ul.menu.active {
-        right: 0; /* Fait apparaître le menu par la droite */
+        opacity: 1; /* Rendre visible */
+        visibility: visible; /* S'assurer que le menu est affiché */
+        transform: translateX(0); /* Menu reste à sa position */
+    }
+
+    /* Disparition avec transition */
+    nav ul.menu.hidden {
+        opacity: 0; /* Rendre invisible */
+        visibility: hidden;
+        transform: translateX(100%); /* Disparaît en glissant à droite */
     }
 }
