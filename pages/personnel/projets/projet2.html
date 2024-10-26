@@ -1,61 +1,84 @@
 <body>
+    <div class="projet2">
+        <h1>Réacteur ARC - Ironman</h1>
+        <p>Projet de fabrication d'une réplique du réacteur ARC d'Ironman</p>
+        <p>Date : 14 août 2024</p>
 
-    <h1>Réacteur ARC - Ironman</h1>
-    <p>Projet de fabrication d'une réplique du réacteur ARC d'Ironman</p>
-    <p>Date : 14 août 2024</p>
-
-    <section class="context">
-        <h2>Contexte</h2>
-        <p>J'ai découvert sur MakerWorld un projet fascinant de fabrication d'une réplique du réacteur ARC d'Ironman, ce qui m'a inspiré à réaliser ma propre version.</p>
-        <p>Source du projet : <a href="https://makerworld.com/fr/models/467861#profileId-386697">ARC Reactor MK1 LED Lamp Kit</a></p>
-        <div class="photo-context">
-            <!-- Ajouter des images du projet ici -->
-            <img src="../../photo/projet perso/reacteur ARK/image coeur de base sans modif.jpg" alt="Projet Ironman" class="project-image">
-        </div>
-    </section>
-
-    <section class="solution">
-        <h2>Solution Proposée</h2>
-        <p>Passionné par la domotique et les objets connectés, j'ai décidé de rendre mon réacteur interactif. Pour cela, j'ai prévu de remplacer l’éclairage central en intégrant un module ESP8266 et des LED WS2812B pour moderniser et connecter l'appareil.</p>
-        <img src="../../photo/projet perso/reacteur ARK/LEDLampRéacteur.webp" alt="Projet Ironman" class="project-image">
-        <div class="container-solution">
-            <div class="card1">
-                <p>Matériau utilisé : PLA</p>
-                <p>Imprimante : Bambu Lab A1</p>
+        <section class="proj2context">
+            <h2>Contexte</h2>
+            <p>J'ai découvert sur MakerWorld un projet fascinant de fabrication d'une réplique du réacteur ARC
+                d'Ironman, ce qui m'a inspiré à réaliser ma propre version.</p>
+            <p>Source du projet : <a href="https://makerworld.com/fr/models/467861#profileId-386697">ARC Reactor MK1 LED
+                    Lamp Kit</a></p>
+            <div class="proj2photo-context">
+                <!-- Ajouter des images du projet ici -->
+                <img src="../../photo/projet perso/reacteur ARK/image coeur de base sans modif.jpg" alt="Projet Ironman"
+                    class="proj2project-image">
             </div>
-            <div class="card2">
-                <img src="../../photo/projet perso/reacteur ARK/image.png" alt="Projet Ironman" class="project-image">
-            </div>  
-        </div>
-    </section>
+        </section>
 
-    <section class="process">
-        <h2>Processus de Conception</h2>
-        <p>J'ai commencé par prendre les mesures de l'ancien réacteur, puis j'ai modélisé et imprimé les nouvelles pièces en PLA avec l'imprimante 3D.</p>
-        <div class="photo-process">
-            <img src="../../photo/projet perso/reacteur ARK/lumiere arck v1.png" alt="Projet Ironman" class="project-image">
-            <img src="../../photo/projet perso/reacteur ARK/lumiere arck v2.png" alt="Projet Ironman" class="project-image">
-            <img src="../../photo/projet perso/reacteur ARK/lumiere arck tout.png" alt="Projet Ironman" class="project-image">
-            <img src="../../photo/projet perso/reacteur ARK/lumiere arck assamblage.png" alt="Projet Ironman" class="project-image">       
+        <section class="proj2solution">
+            <h2>Solution Proposée</h2>
+            <p>Passionné par la domotique et les objets connectés, j'ai décidé de rendre mon réacteur interactif. Pour
+                cela, j'ai prévu de remplacer l’éclairage central en intégrant un module ESP8266 et des LED WS2812B pour
+                moderniser et connecter l'appareil.</p>
+            <img src="../../photo/projet perso/reacteur ARK/LEDLampRéacteur.webp" alt="Projet Ironman"
+                class="proj2project-image">
+            <div class="proj2container-solution">
+                <div class="proj2card1">
+                    <p>Matériau utilisé : PLA</p>
+                    <p>Imprimante: Bambu Lab A1</p>
+                </div>
+                <div class="proj2card2">
+                    <img src="../../photo/projet perso/reacteur ARK/image.png" alt="Projet Ironman"
+                        class="proj2project-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="proj2process">
+            <h2>Processus de Conception</h2>
+            <p>J'ai commencé par prendre les mesures de l'ancien réacteur, puis j'ai modélisé et imprimé les nouvelles
+                pièces en PLA avec l'imprimante 3D.</p>
+            <div class="proj2photo-process">
+                <img src="../../photo/projet perso/reacteur ARK/lumiere arck v1.png" alt="Projet Ironman"
+                    class="proj2project-image">
+                <img src="../../photo/projet perso/reacteur ARK/lumiere arck v2.png" alt="Projet Ironman"
+                    class="proj2project-image">
+                <img src="../../photo/projet perso/reacteur ARK/lumiere arck tout.png" alt="Projet Ironman"
+                    class="proj2project-image">
+                <img src="../../photo/projet perso/reacteur ARK/lumiere arck assamblage.png" alt="Projet Ironman"
+                    class="proj2project-image">
+            </div>
+            <p>Une fois la lampe imprimée, j'ai décidé de simplifier le contrôle des LED en flashant l'ESP avec WLED.
+                Cela me permet de le connecter facilement au réseau et de l'intégrer à mon instance Home Assistant (HA).
+            </p>
+            <p>il ne reste plus qu'à imprimer et monter cette nouvelle version du réacteur ARK</p>
+            <img src="../../photo/projet perso/reacteur ARK/vue_éxplosé.png" alt="Projet Ironman" class="proj2project-image">
+            <p>les parties imprimées censées représenter du cuivre seront remplacées par de vrais fils de cuivre
+                enroulés autour de l'impression</p>
+            <img src="../../photo/projet perso/reacteur ARK/plateau_composant.png" alt="Projet Ironman"
+                class="proj2project-image">
+            <img src="../../photo/projet perso/reacteur ARK/starkheart2enbien.jpg" alt="Projet Ironman"
+                class="proj2project-image">
+        </section>
+        <div class="proj2model_fab"> <iframe title="LED Lamp" frameborder="0" allowfullscreen mozallowfullscreen="true"
+                webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                execution-while-out-of-viewport execution-while-not-rendered web-share
+                src="https://sketchfab.com/models/09e00ff52c8849268b1b06e56e7cc920/embed"> </iframe>
         </div>
-        <p>Une fois la lampe imprimée, j'ai décidé de simplifier le contrôle des LED en flashant l'ESP avec WLED. Cela me permet de le connecter facilement au réseau et de l'intégrer à mon instance Home Assistant (HA).</p>
-        <p>il ne reste plus qu'à imprimer et monter cette nouvelle version du réacteur ARK</p>
-        <img src="../../photo/projet perso/reacteur ARK/vue_éxplosé.png" alt="Projet Ironman" class="project-image"> 
-        <p>les parties imprimées censées représenter du cuivre seront remplacées par de vrais fils de cuivre enroulés autour de l'impression</p>
-              <img src="../../photo/projet perso/reacteur ARK/plateau_composant.png" alt="Projet Ironman" class="project-image"> 
-          <img src="../../photo/projet perso/reacteur ARK/starkheart2enbien.jpg" alt="Projet Ironman" class="project-image"> 
-</section>
-<div class="model_fab"> <iframe title="LED Lamp" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/09e00ff52c8849268b1b06e56e7cc920/embed"> </iframe>
-        </div>
-    <section class="conclusion">
-        <h2>Conclusion</h2>
-        <p>l'objet coutera un total d'environ 6€ à produire au lieux de 16€ en utlisant la lampe officiel</p>
-        <ul>
-            <li>Filament : 90g - 2.50€</li>
-            <li>Composant ESP8266 + 15 LED : 3.50€</li>
-        </ul>
-        <p>Montant total TTC : 6€</p>
-    </section>
+        <section class="proj2conclusion">
+            <h2>Conclusion</h2>
+            <p>l'objet coutera un total d'environ 6€ à produire au lieux de 16€ en utlisant la lampe officiel</p>
+            <ul>
+                <li>Filament : 90g - 2.50€</li>
+                <li>Composant ESP8266 + 15 LED : 3.50€</li>
+            </ul>
+            <p>Montant total TTC : 6€</p>
+        </section>
+    </div>
+
 
 </body>
+
 </html>

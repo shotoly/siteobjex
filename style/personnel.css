@@ -79,7 +79,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  background-color: rgba(0, 0, 0, 0.158); /* Fond semi-transparent */
 }
 
 .modal-content {
@@ -87,7 +87,7 @@
   margin: 15% auto;
   padding: 20px;
   border-radius: 10px;
-  width: 80vw;
+  max-width: 90vw;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

@@ -1,46 +1,139 @@
-/* --- Images dans la modale --- */
+/* Images du projet1 */
+.projet1 img {
+  max-width: 30vw;
+  display: block;
+  margin: auto;
+  object-fit: contain;
+  /* Ajuste l’image sans déformation */
 
-.modal-content .photo-context,
-.modal-content .container-solution,
-.modal-content .photo-process {
+}
+
+/* Contexte */
+.proj1context,
+.proj1solution,
+.proj1process {
   display: flex;
-  /* Alignement côte à côte des images */
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  text-align: justify;
-
 }
 
-.modal-content img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Image du contexte */
+.proj1project-image {
+  padding: 20px;
 }
 
-/* Responsive : empiler les images sur petits écrans */
+/* Solution proposée */
+.proj1container-solution {
+  padding: 30px;
+  display: flex;
+  flex-wrap: row;
+}
+
+.proj1card2 img {
+  max-width: 75vw;
+}
+
+/* Processus de conception */
+.proj1photo-process,
+.proj1photo-process2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.proj1photo-process img,
+.proj1photo-process2 img {
+  padding: 5px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: 40vh;
+}
+
+.proj1photo-process2 img {
+  height: 30vh;
+}
+
+.proj1model_fab iframe {
+  width: 40vw;
+  height: 30vh;
+}
+
 @media (max-width: 768px) {
 
-  .modal-content .photo-context,
-  .modal-content .container-solution,
-  .modal-content .photo-process {
-    flex-direction: column;
-    align-items: center;
-    text-align: justify;
+  .projet1 img {
+    max-width: 60vw;
+  }
 
+  .proj1card2 img {
+    max-width: 50vw;
+  }
+
+  .proj1photo-process2 img{
+   max-width: 35vw; 
+   padding: 0px;
+   padding-top: 0px;
+  }
+  .proj1model_fab iframe {
+    width: 70vw;
+    height: 30vh;
   }
 }
 
-.modal-content .process img {
-  max-width: 400px;
-  /* Plus grand pour certaines images */
+            /*projet2*/
+.projet2{
+  display: block;
+  align-items: center;
+
 }
 
-/* --- Grid pour la galerie d'images --- */
-.modal-content .photo-process {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13vw, 1fr));
-  /* Galerie responsive */
+.projet2 img {
+  max-width: 40vw;
+  object-fit: contain;
+  margin: 20px;
+}
+
+/* Solution proposée */
+.proj2solution{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.proj2container-solution {
+  padding: 30px;
+  display: flex;
+  flex-wrap: row;
+  align-items: center;
+}
+
+.proj2card2 img {
+  max-width: 75vw;
+}
+
+.proj2process{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.proj2model_fab iframe {
+  width: 60vw;
+  height: 50vh;
+}
+
+@media (max-width: 768px) {
+
+  .projet2 img {
+    max-width: 60vw;
+    margin: 10px;
+  }
+
+  .proj2card2 img {
+    max-width: 50vw;
+  }
+  .proj2model_fab iframe {
+    width: 70vw;
+    height: 30vh;
+  }
+  
 }
