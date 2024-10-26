@@ -78,3 +78,13 @@
     background-color: white;
   }
   
+  @media (max-width: 768px) {
+
+    .imagenotice {
+        padding-top: 0px;
+        width: 100%;
+        height: auto;
+    }
+    
+    
+  }
