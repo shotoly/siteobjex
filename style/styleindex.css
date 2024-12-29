@@ -101,6 +101,7 @@
   transform: translate(-50%, -50%);
   user-select: none;
   width: 100vw;  /* 100% de la largeur de la fenÃªtre */
+  height: auto;
   border-radius: 8px;
   overflow: hidden;
 
@@ -173,8 +174,7 @@
   background-color: white;
 }
 
-
-/* Styles pour les cartes de projet */
+/* images projets */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -182,86 +182,47 @@
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
-  
 }
 
 .project-card {
-  background-color: white;
-  border-radius: 8px;
+  background-color: #1d1d1d; /* Couleur de fond sombre */
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
   text-align: center;
-  box-shadow: 0px 0px 7px 0 #fff,10px 10px 30px 0 #1d0dca17;
-  /* Utilisation de Flexbox pour positionner les éléments */
-  display: flex;
-  flex-direction: column; /* Disposer les éléments verticalement */
-  justify-content: flex-end; /* Pousser le contenu vers le bas */
-  height: 100%; /* Assurer que la carte prenne toute la hauteur disponible */
-  position: relative; /* Relatif pour permettre au bouton de s'ancrer */
-  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3), 0px 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative; /* Relatif pour permettre au badge de s'ancrer */
+  padding: 10px; /* Ajout d'espace autour du contenu interne */
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
+  transform: scale(1.05); /* Effet de zoom au survol */
 }
 
 .project-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+  width: calc(100% - 20px); /* Réduction pour inclure un espace égal autour */
+  height: auto;
+  display: block; /* Assure qu'il n'y a pas d'espace blanc */
+  border-radius: 5px; /* Ajout d'un espace autour de l'image */
+  margin: 10px auto; /* Espace égal en haut, en bas et centré horizontalement */
 }
 
-.project-info {
-  padding: 1.5rem;
-  padding-bottom: 60px; /* Laisser suffisamment de place pour le bouton */
-  flex-grow: 1; /* Laisser cette section prendre l'espace restant */
-}
 
-.project-info h2 {
-  font-size: 1.8rem;
-  color: #272351;
-  margin-bottom: 10px;
-}
-
-.project-info p {
-  font-size: 1rem;
-  color: #7f8c8d;
-  margin-bottom: 20px;
-  text-align: justify;
-}
-.project-info .btn {
-  /* Positionner le bouton au bas de la carte */
-  margin-top: auto; /* Assure que le bouton reste en bas */
-  background-color: #272351;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+.badge {
   position: absolute;
-  bottom: 20px; /* Fixer au bas de la carte */
-  left: 50%;
-  transform: translateX(-50%); /* Centrer le bouton */
-}
-
-.btn {
-  background-color: #272351;
-  color: white;
-  padding: 10px 20px;
+  top: 10px;
+  left: 10px;
+  background-color: #9B93FF;
+  color: #E8FEFF;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 5px 10px;
   border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
-.btn:hover {
-  background-color: #34495e;
-}
-
-
 
 /* Images */
-
 .image {
   width: auto;
   height: 100px;
@@ -269,12 +230,14 @@
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 5px;
+  display: block; /* Ajout pour résoudre l'espace blanc */
 }
-.icone{
+
+.icone {
   width: 50px;
   height: auto;
 }
-.icone:hover{
+
+.icone:hover {
   transform: translateY(2px);
 }
-

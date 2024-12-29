@@ -1,200 +1,121 @@
+ h1 {
+  margin: 30px;
+  color: #9B93FF;
+}
 
-.projet1 p , .projet2 p  , .projet3 p{
+
+
+ h3 {
+  margin: 20px;
+}
+
+ h2 {
+  margin: 20px;
+  color: #9B93FF;
+
+}
+
+main,
+.projet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  align-items: center;
+
+}
+
+.paragraphe {
   text-align: justify;
+  width: 30vw;
 }
-.projet1 h2 , .projet2 h2  , .projet3 h2{
-margin: 20px;
-}
-/* Images du projet1 */
-.projet1 img {
-  max-width: 30vw;
-  display: block;
-  margin: auto;
-  object-fit: contain;
-  /* Ajuste l’image sans déformation */
+
+img , .image-paysage {
+  height: 20vw;
+  width: auto;
+  margin: 20px;
 
 }
 
-/* Contexte */
-.proj1context,
-.proj1solution,
-.proj1process {
+.image-paysage{
+width: 60vh;
+height: auto;
+}
+
+.collone {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-}
-
-/* Image du contexte */
-.proj1project-image {
-  padding: 20px;
-}
-
-/* Solution proposée */
-.proj1container-solution {
-  padding: 30px;
-  display: flex;
-  flex-wrap: row;
-}
-
-.proj1card2 img {
-  max-width: 75vw;
-}
-
-/* Processus de conception */
-.proj1photo-process,
-.proj1photo-process2 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.proj1photo-process img,
-.proj1photo-process2 img {
-  padding: 5px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  height: 40vh;
-}
-
-.proj1photo-process2 img {
-  height: 30vh;
-}
-
-.proj1model_fab iframe {
   width: 40vw;
-  height: 30vh;
 }
 
-@media (max-width: 768px) {
-
-  .projet1 img {
-    max-width: 60vw;
-  }
-
-  .proj1card2 img {
-    max-width: 50vw;
-  }
-
-  .proj1photo-process2 img {
-    max-width: 35vw;
-    padding: 0px;
-    padding-top: 0px;
-  }
-
-  .proj1model_fab iframe {
-    width: 70vw;
-    height: 30vh;
-  }
-}
-
-/*projet2*/
-.projet2 {
-  display: block;
-  align-items: center;
-
-}
-
-.projet2 img {
-  max-width: 40vw;
-  object-fit: contain;
-  margin: 20px;
-}
-
-/* Solution proposée */
-.proj2solution {
+.collone_reverse {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
+  width: 40vw;
 }
 
-.proj2container-solution {
-  padding: 30px;
-  display: flex;
-  flex-wrap: row;
-  align-items: center;
-}
-
-.proj2card2 img {
-  max-width: 75vw;
-}
-
-.proj2process {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.proj2model_fab iframe {
-  width: 60vw;
-  height: 50vh;
-}
-
-@media (max-width: 768px) {
-
-  .projet2 img {
-    max-width: 60vw;
-    margin: 10px;
-  }
-
-  .proj2card2 img {
-    max-width: 50vw;
-  }
-
-  .proj2model_fab iframe {
-    width: 70vw;
-    height: 30vh;
-  }
-
-}
-
-/*projet3*/
-.projet3 {
-  display: block;
-  align-items: center;
-
-}
-
-.projet3 img {
-  max-width: 60vw;
-  object-fit: contain;
-  margin: 20px;
-}
-.proj3photo-context{
+.ligne , .ligne2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-.proj3contextcard1,.proj3contextcard2{
-  display: flex;
-  flex-direction: column;
   align-items: center;
+}
+
+
+.ligne_reverse ,.ligne_reverse2{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.code-container{
+
+  width: 50vw;
+  height: fit-content;
   margin: 20px;
 }
 
-.proj3contextcard1 img ,.proj3contextcard2 img{
-  max-width: 25vw;
- 
-}
-.proj3process{
-  display: flex;
-  flex-direction: column;
-}
 
-.proj3photo-process{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
-.proj3photo-process img{
-  max-height: 20vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
-}
+@media (max-width: 768px) {
 
-.proj3model_fab iframe {
-  width: 40vw;
-  height: 35vh;
+  h1 {
+    margin: 5px;
+  }
+  
+  img {
+    height: 50vw;
+  
+  }
+  .ligne2 , .ligne_reverse2{   
+    flex-direction: column-reverse;
+  }
+  
+  .paragraphe, .collone{
+    width: 70vw;
+  }
+
+  .code-container{
+    width: 90vw;
+  }
+
+  iframe{
+    width: 40vw;
+    height: auto;
+  }
+
+  .image-paysage{
+    width: 80vw;
+    height: auto;
+  }
+  
 }
