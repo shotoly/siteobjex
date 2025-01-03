@@ -102,7 +102,6 @@
   user-select: none;
   width: 100vw;  /* 100% de la largeur de la fenÃªtre */
   height: auto;
-  border-radius: 8px;
   overflow: hidden;
 
 
@@ -240,4 +239,35 @@
 
 .icone:hover {
   transform: translateY(2px);
+}
+
+
+@media (max-width: 768px) {
+
+  .menu li {
+    display: block; /* Empile les éléments verticalement */
+    padding: 0; /* Réduit l'espace interne */
+    margin: 0; /* Supprime l'espace entre les éléments */
+  }
+
+  .menu li a {
+    font-size: 2.5vw; /* Ajustez la taille selon vos besoins */
+    padding: 0px 0px; /* Ajuste l'espacement autour du texte */
+    text-align: center; /* Centre le texte si nécessaire */
+  }
+
+  nav ul.menu {
+    padding: 0;
+    margin: 0;
+  }
+
+  .cardnav {
+    position: absolute;
+    left: 50%;
+  }
+  
+  .logo-container img {
+    display: none;
+}
+
 }
