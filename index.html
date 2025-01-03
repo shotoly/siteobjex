@@ -1,57 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <title>🏠 Accueil</title>
-    <link rel="stylesheet" href="style/styleindex.css">
-    <link rel="stylesheet" href="style/mainstyle.css">
-    <link rel="stylesheet" href="style/gradiant.css">
-    <script src="prog/suivie.js" defer></script>
-    <script src="../../prog/randomcard.js" defer></script>
-    <!-- Ajout du nouveau fichier CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="photo/logo vecteur violet électrique.png" />
+  <meta charset="UTF-8">
+  <title>🏠 Accueil</title>
+  <link rel="stylesheet" href="style/styleindex.css">
+  <link rel="stylesheet" href="style/mainstyle.css">
+  <link rel="stylesheet" href="style/gradiant.css">
+  <script src="prog/suivie.js" defer></script>
+  <script src="../../prog/randomcard.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="style/footer.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="shortcut icon" href="photo/logo_vecteur_violet_électrique.svg" />
 </head>
+
 <body>
   <div class="cardnav">
     <header>
       <a href="index.html" class="logo-container">
-          <img src="photo/logo vecteur blanc.svg" alt="logo" class="logo"/>
+        <img src="photo/logo_vecteur_blanc.svg" alt="logo" class="logo" />
       </a>
       <nav>
-          <ul class="menu">
-            <li><a href="pages/Educatif.html">Educatif</a></li>
-            <li><a href="pages/Professionnel.html">Professionnel</a></li>
-            <li><a href="pages/personnel/personnel.html">Personnel</a></li>
-            <li><a href="pages/Contact.html">Contact</a></li>
-          </ul>
+        <ul class="menu">
+          <li><a href="pages/Educatif.html">Educatif</a></li>
+          <li><a href="pages/Professionnel.html">Professionnel</a></li>
+          <li><a href="pages/personnel/personnel.html">Personnel</a></li>
+          <li><a href="pages/Contact.html">Contact</a></li>
+        </ul>
       </nav>
-  </header>
+    </header>
   </div>
 
-  
+
 
   <main>
-    <div class = "groupecard">
+    <div class="groupecard">
       <div class="card">
-        <svg 
-            viewBox="0 0 100% 100%"
-            xmlns='http://www.w3.org/2000/svg'
-            class="noise"
-            >
+        <svg viewBox="0 0 100% 100%" xmlns='http://www.w3.org/2000/svg' class="noise">
           <filter id='noiseFilter'>
-            <feTurbulence 
-                          type='fractalNoise' 
-                          baseFrequency='0.85' 
-                          numOctaves='6' 
-                          stitchTiles='stitch' />
+            <feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch' />
           </filter>
-    
-          <rect
-                width='100%'
-                height='100%'
-                preserveAspectRatio="xMidYMid meet"
-                filter='url(#noiseFilter)' />
+
+          <rect width='100%' height='100%' preserveAspectRatio="xMidYMid meet" filter='url(#noiseFilter)' />
         </svg>
         <div class="Bienvenue">
           <h1>MON PORTFOLIO</h1>
@@ -65,34 +61,24 @@
       </div>
       <div class="cardfleche">
         <a href="#projects">
-          <img src="photo/icone/angle-vers-le-bas.svg" alt="logo" class="icone"/>
+          <img src="photo/icone/angle-vers-le-bas.svg" alt="logo" class="icone" />
         </a>
       </div>
-      
+
       <div class="gradient-bg">
-        <svg 
-            viewBox="0 0 100vw 100vw"
-            xmlns='http://www.w3.org/2000/svg'
-            class="noiseBg"
-            >
+        <svg viewBox="0 0 100vw 100vw" xmlns='http://www.w3.org/2000/svg' class="noiseBg">
           <filter id='noiseFilterBg'>
-            <feTurbulence 
-                          type='fractalNoise'
-                          baseFrequency='0.6'
-                          stitchTiles='stitch' />
+            <feTurbulence type='fractalNoise' baseFrequency='0.6' stitchTiles='stitch' />
           </filter>
-    
-          <rect
-                width='100%'
-                height='100%'
-                preserveAspectRatio="xMidYMid meet"
-                filter='url(#noiseFilterBg)' />
+
+          <rect width='100%' height='100%' preserveAspectRatio="xMidYMid meet" filter='url(#noiseFilterBg)' />
         </svg>
         <svg xmlns="http://www.w3.org/2000/svg" class="svgBlur">
           <defs>
             <filter id="goo">
               <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                result="goo" />
               <feBlend in="SourceGraphic" in2="goo" />
             </filter>
           </defs>
@@ -107,32 +93,32 @@
         </div>
       </div>
     </div>
-    
+
     <section class="projects" id="projects">
       <!-- Projet 1 -->
       <a href="pages/personnel/projets/projet1.html" class="btn">
         <div class="project-card">
           <span class="badge">Hors Cours</span>
-          <img src="photo/photoprojet/bouton micro onde v10.png" alt="Projet 1" class="project-image">
+          <img src="photo/photoprojet/bouton_micro_onde.png" alt="Projet 1" class="project-image">
         </div>
       </a>
-    
+
       <!-- Projet 2 -->
       <a href="pages/personnel/projets/projet3.html" class="btn">
         <div class="project-card">
           <span class="badge">Hors Cours</span>
-          <img src="photo/photoprojet/pied de bureau v0 v1.png" alt="Projet 2" class="project-image">
+          <img src="photo/photoprojet/pied_de_bureau.png" alt="Projet 2" class="project-image">
         </div>
       </a>
-    
+
       <!-- Projet 3 -->
       <a href="pages/concevoir/Concevoir.html#11a6e0b4-a0c3-80fa-a772-ed5cba8fa476" class="btn">
         <div class="project-card">
           <span class="badge">Cours</span>
-          <img src="photo/photoprojet/robot analogique.png" alt="Projet 3" class="project-image">
+          <img src="photo/photoprojet/robot_analogique.png" alt="Projet 3" class="project-image">
         </div>
       </a>
-    
+
       <!-- Projet 4 -->
       <a href="pages/personnel/projets/projet4.html" class="btn">
         <div class="project-card">
@@ -140,15 +126,15 @@
           <img src="photo/photoprojet/robot.jpg" alt="Projet 4" class="project-image">
         </div>
       </a>
-    
+
       <!-- Projet 5 -->
       <a href="pages/concevoir/Concevoir.html#11a6e0b4-a0c3-8079-81da-e2bf5bbee60c" class="btn">
         <div class="project-card">
           <span class="badge">Cours</span>
-          <img src="photo/photoprojet/carte cote composant avec fil.jpg" alt="Projet 5" class="project-image">
+          <img src="photo/photoprojet/carte_cote_composant_avec_fil.jpg" alt="Projet 5" class="project-image">
         </div>
       </a>
-    
+
       <!-- Projet 6 -->
       <a href="pages/personnel/projets/projet2.html" class="btn">
         <div class="project-card">
@@ -157,16 +143,61 @@
         </div>
       </a>
     </section>
-    
-  
+
+
   </main>
-  <footer>
-    <p>&copy; 2024 Les pages de Robin. Tous droits réservés.</p>
-    <ul class="footer-links">
-        <a href="index.html" class="logo-container">
-            <img src="../photo/logo vecteur violet électrique.svg" alt="logo" class="logo"/>
-        </a>
-    </ul>
-</footer>
-  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About Me</h6>
+          <p style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je suis passionné
+            par la
+            conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente mes projets
+            académiques et personnels, illustrant mes compétences en électronique, automatisme et impression 3D</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="pages/Educatif.html">Mes cours</a></li>
+            <li><a href="pages/personnel/personnel.html">Mes projets personnels</a></li>
+            <li><a href="fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+            <li><a href="fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="pages/personnel/personnel.html">About Me</a></li>
+            <li><a href="pages/Contact.html">Contact Me</a></li>
+            <li><a href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+            <a href="#">Objex3D</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="map" href="https://maps.app.goo.gl/1hW8uRM92qECqcfW9" target="_blank"><i class="fa fa-map-o"></i></a></li>
+            <li><a class="instagram" href="https://www.instagram.com/objex.3d/profilecard/?igsh=dXczbXB1MGtrZTJr" target="_blank"><i
+                  class="fa fa-instagram"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
