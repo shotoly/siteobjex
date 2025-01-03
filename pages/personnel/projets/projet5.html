@@ -4,667 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon robot suiveur de ligne</title>
+    <title>Camping car</title>
     <link rel="stylesheet" href="../style-projet/projet.css"> <!-- Inclure ton fichier CSS ici -->
     <link rel="stylesheet" href="../style-projet/projet4.css"> <!-- Inclure ton fichier CSS ici -->
     <link rel="stylesheet" href="../../../style/mainstyle.css"> <!-- Inclure ton fichier CSS ici -->
     <link rel="stylesheet" href="../../../style/menu.css"> <!-- Inclure ton fichier CSS ici -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../../../photo/logo vecteur violet électrique.png" />
-    <script src="../prog/menu.js" defer></script>
+    <link rel="shortcut icon" href="../../../photo/icone/robot.svg" />
+    <script src="../../../prog/menu.js" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../style/footer.css">
+
 
 </head>
 
 
 <body>
     <header>
-        <a href="../index.html" class="logo-container">
-            <img src="../../../photo/logo vecteur blanc.svg" alt="logo" class="logo" />
+        <a href="../../../index.html" class="logo-container">
+            <img src="../../../photo/logo_vecteur_blanc.svg" alt="logo" class="logo" />
         </a>
         <nav>
             <button class="hamburger" id="hamburger">
                 &#9776;
             </button>
             <ul class="menu" id="menu">
-                <li><a href="../../index.html">Accueil</a></li>
-                <li><a href="Educatif.html">Éducatif</a></li>
-                <li><a href="Professionnel.html">Professionnel</a></li>
-                <li><a href="personnel/personnel.html">Personnel</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="../../../index.html">Accueil</a></li>
+                <li><a href="../../Educatif.html">Éducatif</a></li>
+                <li><a href="../../Professionnel.html">Professionnel</a></li>
+                <li><a href="../personnel.html">Personnel</a></li>
+                <li><a href="../../Contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Robot suiveur de ligne</h1>
-        <p>En route pour le concours Robot</p>
-        <p>Date : janvier 2024</p>
-        <div class="projet">
-
-            <section class="collone">
-                <h2>Contexte</h2>
-                <div class="paragraphe">
-                    <p>Dans le cadre de l'IUT, j’ai participé à un concours de robotique.
-                        L'objectif était de fabriquer un robot capable de suivre une ligne au sol et de réaliser
-                        différents
-                        défis pour accumuler des points.
-                        L’équipe avec le plus de points remporterait le concours.</p>
-                    <p>Pour préparer le robot, il fallait qu'il suive une ligne, identifie les intersections et
-                        reconnaisse
-                        divers marqueurs sur la piste.
-                        Il devait également détecter les obstacles à l'aide d'un capteur ultrason et s’arrêter grâce à
-                        un
-                        interrupteur de fin de course.</p>
-
-                    <p>Les défis incluaient par exemple :</p>
-
-                </div>
-
-                <img src="../../../photo/projet perso/projet_robot/challenge.png" alt="exemple de challenge"
-                    class="proj4project-image">
-                <div class="proj4contextinfo">
-
-                    <p>Pour ce challenge, nous avons mis en place une machine à états.</p>
-                    <p> Voici un exemple :</p>
-                    <ul>
-                        <li><strong>État 0 :</strong> Activer le suivi, compter 4 intersections et passer à l'état
-                            suivant.
-                        </li>
-                        <li><strong>État 1 :</strong>Si une signalisation est détectée à droite, le robot s’arrête.</li>
-                        <li>Fin défit réussi</li>
-                    </ul>
-                    <p>on devra aussi ajouter un voyant lumineux pour indiquer la détection des intersections,
-                        facilitant
-                        ainsi
-                        le débogage du robot.
-                    </p>
-                </div>
-
-                <div class="collone">
-                    <h3>Diffèrent élément à disposition :</h3>
-
-                    <h3>Arduino Mega :</h3>
-
-                    <div class="ligne">
-                        <div class="paragraphe">
-                            <p>Cette carte servira de cerveau au robot, permettant la collecte et le traitement des
-                                informations.
-                                Elle comprend 54 broches d'entrée/sortie, dont certaines offrent un accès aux Timers,
-                                ainsi
-                                que 16 entrées analogiques et 4 UART pour les communications série.
-                                Elle dispose également d'un port USB pour la programmation et d'une prise d'alimentation
-                                (7-12V).
-                                Son horloge tourne à 16 MHz, et elle est équipée de 256 Ko de mémoire flash.
-                                Plus de détails sont disponibles
-                                [ici](https://store.arduino.cc/products/arduino-mega-2560-rev3).</p>
-                        </div>
-                        <div class="proj4Arduinophotocard1">
-                            <img src="../../../photo/projet perso/projet_robot/arduino_mega.png" alt="Arduino Mega"
-                                class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>Module Grove :</h3>
-                    <div class="ligne_reverse">
-
-                        <div class="paragraphe">
-                            <p>Ce module Grove se branche directement sur l’Arduino et facilite les connexions des
-                                capteurs
-                                en les rendant plus stables.
-                                Il utilise des connecteurs standardisés à 4 broches (signal 1, signal 2, VCC et GND),
-                                permettant de relier des capteurs aux broches numériques de 0 à 21 et aux broches
-                                analogiques de 0 à 15.
-                                Il comprend également des connecteurs à 3 broches pour les servomoteurs.
-                                Plus de détails sont disponibles
-                                [ici](https://www.seeedstudio.com/Grove-Mega-Shield-v1-2.html).
-                            </p>
-                        </div>
-                        <div class="proj4Arduinophotocard2">
-                            <img src="../../../photo/projet perso/projet_robot/shield_arduino.png"
-                                alt="shield module Grove" class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>Carte moteur :</h3>
-                    <div class="ligne">
-
-                        <div class="paragraphe">
-                            <p>Cette carte permet de contrôler la vitesse et la direction de deux moteurs à courant
-                                continu
-                                à l’aide de deux ponts en H (4 quadrants). La vitesse est régulée par deux signaux PWM à
-                                rapport cyclique variable sur les ports 3 et 11, tandis que la direction est gérée via
-                                les
-                                entrées 12 et 13. Elle peut fournir un courant de 2A par moteur. De plus, elle permet de
-                                connecter son alimentation au port Vin de l’Arduino. Il n'existe pas de bibliothèque
-                                dédiée
-                                pour cette carte.
-                            </p>
-                        </div>
-                        <div class="proj4Arduinophotocard3">
-                            <img src="../../../photo/projet perso/projet_robot/carte_moteur.png" alt="Carte moteur"
-                                class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>Capteurs infra-rouges QTRC-8RC :</h3>
-                    <div class="collone">
-
-
-                        <div class="proj4Arduinophotocard4">
-                            <img src="../../../photo/projet perso/projet_robot/QTR_sensor.png" alt="module infra-rouges"
-                                class="proj4project-imageQTRsensor">
-                        </div>
-                        <div class="paragraphe">
-                            <p>Ce module, équipé de capteurs infrarouges numériques, sera utilisé pour lire la piste.
-                                Pour
-                                effectuer une mesure, il est nécessaire d’émettre une impulsion de 10 μs, ce qui permet
-                                de
-                                charger un condensateur. Ensuite, on configure le microcontrôleur en mode entrée pour
-                                mesurer la décharge de ce condensateur. Plus le fond est sombre, plus la décharge sera
-                                longue. Par exemple, la courbe jaune représente la sortie d'un capteur infrarouge sur un
-                                fond noir, tandis que la courbe bleue illustre l'interprétation par le microcontrôleur.
-
-                                Site : [Pololu](https://www.pololu.com/product/961)</p>
-                        </div>
-
-                    </div>
-                    <h3>Motoréducteur avec encodeur :</h3>
-                    <div class="ligne">
-
-
-                        <div class="paragraphe">
-                            <p>Tension: 3 à 6 Vcc - Rapport de réduction : 50:1 - Vitesse à vide : 300 rpm - Couple 0.40
-                                Kg
-                                - Courant en charge 150 mA Max - Motoréducteur miniature avec encodeur magnétique et
-                                pignons
-                                en métal</p>
-                        </div>
-                        <div class="proj4Arduinophotocard5">
-                            <img src="../../../photo/projet perso/projet_robot/moteur_encodeur.png"
-                                alt="moteur avec encodeur" class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>Capteur ultrasons :</h3>
-                    <div class="ligne_reverse">
-
-                        <div class="paragraphe">
-                            <p>Ce capteur nous permet de connaître la distance d’un objet
-
-                                Site :</p>
-                        </div>
-                        <div class="proj4Arduinophotocard6">
-                            <img src="../../../photo/projet perso/projet_robot/capteur_US.png" alt="capteur ultrason"
-                                class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>Interrupteur de contact :</h3>
-                    <div class="ligne">
-
-                        <div class="paragraphe">
-                            <p>Grâce à cet interrupteur normalement ouvert, nous pouvons savoir si le robot touche la
-                                barre
-                                en bois.</p>
-                        </div>
-                        <div class="proj4Arduinophotocard7">
-                            <img src="../../../photo/projet perso/projet_robot/Interrupteur_de_contact.png"
-                                alt="Interrupteur à contact" class="proj4project-image">
-                        </div>
-                    </div>
-                    <h3>LED RGB :</h3>
-                    <div class="ligne_reverse">
-
-                        <div class="paragraphe">
-                            <p>Cette LED nous permet de visualiser dans quel état se trouve le robot.
-                                Site :
-                                https://wiki.seeedstudio.com/Grove-Chainable_RGB_LED/</p>
-                        </div>
-                        <div class="proj4Arduinophotocard8">
-                            <img src="../../../photo/projet perso/projet_robot/LED.png" alt="Carte LED"
-                                class="proj4project-image">
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-
-        </section>
-        <h2>Processus de Conception</h2>
-        <section class="collone">
-
-
-            <p>La première étape consiste à analyser chaque composant fourni par notre professeur</p>
-            <br>
-            <div class="collone">
-                <div class="paragraphe">
-
-                    <p>Nous commençons par s’approprier le module QTR-8RC Reflectance Sensor Array, un capteur
-                        infrarouge
-                        dédié à la détection de piste. Voici le lien pour accéder aux informations détaillées : QTR-8RC
-                        Reflectance Sensor Array.
-                    </p>
-                </div>
-                <br>
-                <div class="proj4Arduinophotocard4">
-                    <img src="../../../photo/projet perso/projet_robot/QTR_sensor.png" alt="module infra-rouges"
-                        class="proj4project-imageQTRsensor">
-                </div>
-                <br>
-                <p>Le code de test des yeux correspond à ça :</p>
-
-                <pre><code class="language-c"><div class="code">
-    <span style="color: #D1595B;">#include</span> <span style="color: #AEAF27;">&lt;QTRSensors.h&gt;</span>
-    QTRSensors qtr;
-    <span style="color: #D1595B;">const</span> uint8_t SensorCount <span style="color: #F5B83D;">=</span><span style="color: #D1595B;"> 8</span>;
-    uint16_t sensorValues[SensorCount];
-    
-    <span style="color: #D1595B;">void</span> setup()
-    {
-        <span style="color: #998066;">// Configure the sensors</span>
-        qtr.setTypeRC();
-        qtr.setSensorPins((<span style="color: #D1595B;">const</span> uint8_t[]){<span style="color: #D1595B;">31</span>, <span style="color: #D1595B;">33</span>, <span style="color: #D1595B;">35</span>, <span style="color: #D1595B;">37</span>, <span style="color: #D1595B;">39</span>, <span style="color: #D1595B;">41</span>, <span style="color: #D1595B;">43</span>, <span style="color: #D1595B;">45</span>}, SensorCount);
-        qtr.setEmitterPin(<span style="color: #D1595B;">2</span>);
-        delay(500);
-    
-        pinMode(LED_BUILTIN, OUTPUT);
-        digitalWrite(LED_BUILTIN, HIGH); <span style="color: #998066;">// turn on Arduino's LED to indicate calibration
-    
-        // 2.5 ms RC read timeout (default) * 10 reads per calibrate() call
-        // = ~25 ms per calibrate() call.
-        // Call calibrate() 400 times to make calibration take about 10 seconds.</span>
-        <span style="color: #D1595B;">for</span> (uint16_t i <span style="color: #F5B83D;">=</span><span style="color: #D1595B;"> 0</span>; i <span style="color: #F5B83D;">< </span><span style="color: #D1595B;">400</span>; i<span style="color: #F5B83D;">++</span>)
-        {
-            qtr.calibrate();
-        }
-        digitalWrite(LED_BUILTIN, LOW); <span style="color: #998066;">// turn off Arduino's LED to indicate end of calibration
-    
-        // Print the calibration minimum values measured when emitters were on</span>
-        Serial.begin(<span style="color: #D1595B;">9600</span>);
-        <span style="color: #D1595B;">for</span> (uint8_t i  <span style="color: #F5B83D;">=</span><span style="color: #D1595B;"> 0</span>; i <span style="color: #D1595B;"><</span> SensorCount; i<span style="color: #F5B83D;">++</span>)
-        {
-            Serial.print(qtr.calibrationOn.minimum[i]);
-            Serial.print(<span style="color: #AEAF27;">' '</span>);
-        }
-        Serial.println();
-    
-        <span style="color: #998066;">// Print the calibration maximum values measured when emitters were on</span>
-        <span style="color: #D1595B;">for</span> (uint8_t i  <span style="color: #F5B83D;">=</span><span style="color: #D1595B;"> 0</span>; i <span style="color: #D1595B;"><</span> SensorCount; i<span style="color: #F5B83D;">++</span>)
-        {
-            Serial.print(qtr.calibrationOn.maximum[i]);
-            Serial.print(<span style="color: #AEAF27;">' '</span>);
-        }
-        Serial.println();
-        Serial.println();
-        delay(<span style="color: #D1595B;">1000</span>);
-    }
-    
-    <span style="color: #D1595B;">void</span> loop()
-    {
-        <span style="color: #998066;">// Read calibrated sensor values and obtain a measure of the line position
-        // from 0 to 5000 (for a white line, use readLineWhite() instead)</span>
-        uint16_t position <span style="color: #F5B83D;">=</span> qtr.readLineBlack(sensorValues);
-    
-        <span style="color: #998066;">// Print the sensor values as numbers from 0 to 1000, where 0 means maximum
-        // reflectance and 1000 means minimum reflectance, followed by the line position</span>
-        <span style="color: #D1595B;">for</span> (uint8_t i  <span style="color: #F5B83D;">=</span><span style="color: #D1595B;"> 0</span>; i <span style="color: #D1595B;"><</span> SensorCount; i<span style="color: #F5B83D;">++</span>)
-        {
-            Serial.print(sensorValues[i]);
-            Serial.print(<span style="color: #AEAF27;">'\t'</span>);
-        }
-        Serial.println(position);
-        delay(<span style="color: #D1595B;">250</span>);                  
-    }
-    
-            </code></pre>
-            </div>
-            <br>
-            <img src="../../../photo/projet perso/projet_robot/vue_infrarouge.svg"
-                alt="positiond des marqueurs vue capteur">
-            </div>
-            <h3>Carte moteur :</h3>
-            <div class="collone">
-                <img src="../../../photo/projet perso/projet_robot/shema_carte_moteur.png" alt="shema carte moteur">
-                <div class="paragraphe">
-                    <br>
-                    <p>Après quelques tests avec la carte, nous avons élaboré ce code de test pour les moteurs et le
-                        contrôleur de moteurs.</p>
-                    <br>
-                </div>
-                <div class="code">
-                    <pre><code class="language-c">
-    <span style="color: #998066;">// Déclaration des pins pour les moteurs</span>
-    <span style="color: #D1595B;">const</span> <span style="color: #D1595B;">int</span> motorPin1 <span style="color: #F5B83D;">=</span> <span style="color: #D1595B;">13</span>;
-    <span style="color: #D1595B;">const</span> <span style="color: #D1595B;">int</span> motorPin2 <span style="color: #F5B83D;">=</span> <span style="color: #D1595B;">12</span>;
-    <span style="color: #D1595B;">const</span> <span style="color: #D1595B;">int</span> motorPin3 <span style="color: #F5B83D;">=</span> <span style="color: #D1595B;">11</span>;
-    <span style="color: #D1595B;">const</span> <span style="color: #D1595B;">int</span> motorPin4 <span style="color: #F5B83D;">=</span> <span style="color: #D1595B;">10</span>;
-    
-    <span style="color: #D1595B;">int</span> speed <span style="color: #F5B83D;">=</span> <span style="color: #D1595B;">180</span>;
-    
-    <span style="color: #D1595B;">void</span> setup() {
-        <span style="color: #998066;">// Configuration des pins en sortie</span>
-        pinMode(motorPin1, OUTPUT);
-        pinMode(motorPin2, OUTPUT);
-        pinMode(motorPin3, OUTPUT);
-        pinMode(motorPin4, OUTPUT);
-        
-        <span style="color: #998066;">// Contrôle du moteur A dans les deux directions</span>
-        analogWrite(motorPin1, speed);
-        delay(<span style="color: #D1595B;">2000</span>);
-        analogWrite(motorPin1, <span style="color: #D1595B;">0</span>);
-        delay(<span style="color: #D1595B;">200</span>);
-        
-        analogWrite(motorPin2, speed);
-        delay(<span style="color: #D1595B;">2000</span>);
-        analogWrite(motorPin2, <span style="color: #D1595B;">0</span>);
-        
-        <span style="color: #998066;">// Contrôle du moteur B dans les deux directions</span>
-        analogWrite(motorPin3, speed);
-        delay(<span style="color: #D1595B;">2000</span>);
-        analogWrite(motorPin3, <span style="color: #D1595B;">0</span>);
-        delay(<span style="color: #D1595B;">200</span>);
-        
-        analogWrite(motorPin4, speed);
-        delay(<span style="color: #D1595B;">2000</span>);
-        analogWrite(motorPin4, <span style="color: #D1595B;">0</span>);
-        
-        <span style="color: #998066;">// Ajustement des vitesses dans les deux directions</span>
-        analogWrite(motorPin1, speed);
-        analogWrite(motorPin3, speed <span style="color: #F5B83D;">+</span> <span style="color: #D1595B;">30</span>);
-    }
-    
-    <span style="color: #D1595B;">void</span> loop() {
-        <span style="color: #998066;">// Boucle vide car les actions se font dans le setup</span>
-    }
-                </code></pre>
-                </div>
-                <br>
-                <div class="paragraphe">
-                    <p>
-                        Après avoir testé les différents éléments, nous pouvons commencer le suivi.
-                        Nous allons déterminer un seuil à partir duquel le capteur détecte qu’il est au-dessus de la
-                        ligne,
-                        puis convertir cette valeur en binaire.
-                        Ensuite, nous définirons une répartition de la puissance des moteurs en fonction de chaque
-                        valeur
-                        binaire obtenue, ce qui donnera le résultat suivant :
-                    </p>
-                    <br>
-                </div>
-                <img style="width: 40vw;height: auto;"
-                    src="../../../photo/projet perso/projet_robot/exel_comportement_moteur.png"
-                    alt="exel_comportement_moteur">
-                <br>
-                <img src="../../../photo/projet perso/projet_robot/failvid.gif" alt="fail du robot">
-                <br>
-                <p>Voici le code du suivie :</p>
-                <div class="code">
-                    <pre><code class="language-c">
-    <span style="color: #D1947D;">void</span> suivi(<span style="color: #D1947D;">byte</span> valeur, <span style="color: #D1947D;">int</span> vitesse <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">0</span>) {
-        <span style="color: #D1947D;">switch</span> (valeur) {
-        <span style="color: #998066;">// Tourner à droite fort</span>
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">1</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">3</span>:
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">7</span>] <span style="color: #F5B83D;">+</span> vitesse);  <span style="color: #998066;">// Moteur Droit</span>
-            Timer3.setPwmDuty(motorPin3, <span style="color: #D1947D;">0</span>);                         <span style="color: #998066;">// Moteur Gauche</span>
-            norman <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">1</span>;
-            <span style="color: #D1947D;">break</span>;
-    
-        <span style="color: #998066;">// Tourner à droite moyen</span>
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">2</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">6</span>:
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">6</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            Timer3.setPwmDuty(motorPin3, motorSpeeds[<span style="color: #D1947D;">1</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            <span style="color: #D1947D;">break</span>;
-    
-        <span style="color: #998066;">// Tourner à droite faible</span>
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">4</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">12</span>:
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">4</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            Timer3.setPwmDuty(motorPin3, motorSpeeds[<span style="color: #D1947D;">1</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            <span style="color: #D1947D;">break</span>;
-    
-        <span style="color: #998066;">// Aller tout droit</span>
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">8</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">16</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">24</span>:
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">5</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            Timer3.setPwmDuty(motorPin3, motorSpeeds[<span style="color: #D1947D;">5</span>] <span style="color: #F5B83D;">+</span> vitesse <span style="color: #F5B83D;">-</span> (valeur <span style="color: #F5B83D;">==</span> <span style="color: #D1947D;">16</span> <span style="color: #F5B83D;">?</span> <span style="color: #D1947D;">15</span> <span style="color: #F5B83D;">:</span> <span style="color: #D1947D;">0</span>));
-            <span style="color: #D1947D;">break</span>;
-    
-        <span style="color: #998066;">// Tourner à gauche faible</span>
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">32</span>:
-        <span style="color: #D1947D;">case</span> <span style="color: #D1947D;">48</span>:
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">3</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            Timer3.setPwmDuty(motorPin3, motorSpeeds[<span style="color: #D1947D;">5</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            <span style="color: #D1947D;">break</span>;
-    
-        <span style="color: #998066;">// Par défaut, avancer tout droit</span>
-        <span style="color: #D1947D;">default</span>:
-            Serial.println(<span style="color: #AEAF27;">"default"</span>);
-            Timer1.setPwmDuty(motorPin1, motorSpeeds[<span style="color: #D1947D;">5</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            Timer3.setPwmDuty(motorPin3, motorSpeeds[<span style="color: #D1947D;">5</span>] <span style="color: #F5B83D;">+</span> vitesse);
-            <span style="color: #D1947D;">break</span>;
-        }
-    }
-                    </code></pre>
-                </div>
-                <br>
-                <div class="paragraphe">
-                    <p>Le choix d’utiliser un <span
-                            style="color: red; background-color:rgb(70, 62, 62); ; border-radius: 3px; padding: 3px; align-items: center;">switch
-                            case</span> pour le suivi s'est avéré être une erreur, car il n'était pas
-                        suffisamment optimisé pour un suivi réactif et efficace. Une approche PID aurait été bien plus
-                        performante. Malheureusement, nous avons pris conscience de cela trop tard et n’avons pas eu le
-                        temps d’assimiler le fonctionnement du PID ni de l’intégrer dans notre code.</p>
-                    <p>Nous avons tout de même réussi à relever les défis du concours.</p>
-                </div>
-                <br>
-            </div>
-            <h3>Carte Ultra Son :</h3>
-            <div class="collone">
-                <div class="code">
-                    <pre><code class="language-c">
-    <span style="color: #D1947D;">#include</span> <span style="color: #AEAF27;">"Ultrasonic.h"</span>
-    Ultrasonic ultrasonic(<span style="color: #D1947D;">12</span>); <span style="color: #998066;">// initialise un capteur ultrason sur la broche 12</span>
-    
-    <span style="color: #D1947D;">void</span> setup() {
-        Serial.begin(<span style="color: #D1947D;">9600</span>);
-    }
-    
-    <span style="color: #D1947D;">void</span> loop() {
-        <span style="color: #D1947D;">long</span> RangeInCentimeters;
-        Serial.println(<span style="color: #AEAF27;">"La distance aux obstacles devant est : "</span>);
-        RangeInCentimeters = ultrasonic.MeasureInCentimeters(); <span style="color: #998066;">// deux mesures</span>
-        Serial.print(RangeInCentimeters); <span style="color: #998066;">// 0~400 cm</span>
-        Serial.println(<span style="color: #AEAF27;">" cm"</span>);
-        delay(<span style="color: #D1947D;">250</span>);
-    }
-                </code></pre>
-                </div>
-                <br>
-                <div class="paragraphe">
-                    Finalement, nous n’utiliserons pas le détecteur ultrasonique lors du concours pour les défis liés
-                    aux
-                    obstacles. Comme il s’agissait uniquement de déplacer des gobelets présents sur la piste, nous avons
-                    opté pour une solution plus simple en fixant des bâtons au robot, permettant ainsi de pousser les
-                    gobelets en passant dessus.
-                </div>
-            </div>
-            <br>
-            <h3>Encodeur : </h3>
-            <br>
-            <div class="collone">
-                <div class="paragraphe">
-                    <p>Les encodeurs présentent une particularité :</p>
-                    <p>leur précision est très élevée, ce qui nécessite d'ignorer
-                        certaines impulsions afin d'éviter de surcharger la carte.</p>
-                </div>
-                <br>
-                <div class="code">
-                    <pre><code class="language-c">
-    <span style="color: #998066;">// Compteurs pour les impulsions des encodeurs</span>
-    <span style="color: #D1947D;">unsigned int</span> compteur_gauche <span style="color: #F5B83D;">=</span><span style="color: #D1947D;"> 0</span>, compteur_droit <span style="color: #F5B83D;">=</span><span style="color: #D1947D;"> 0</span>;
-    
-    <span style="color: #998066;">// Pins pour les moteurs</span>
-    <span style="color: #D1947D;">const int</span> motorPin1 <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">13</span>; <span style="color: #998066;">// Moteur 1 (Droite)</span>
-    <span style="color: #D1947D;">const int</span> motorPin2 <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">12</span>;
-    <span style="color: #D1947D;">const int</span> motorPin3 <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">11</span>; <span style="color: #998066;">// Moteur 2 (Gauche)</span>
-    <span style="color: #D1947D;">const int</span> motorPin4 <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">10</span>;
-    
-    <span style="color: #D1947D;">int</span> speed <span style="color: #F5B83D;">=</span> <span style="color: #D1947D;">60</span>; <span style="color: #998066;">// Vitesse des moteurs</span>
-    
-    <span style="color: #D1947D;">void</span> setup() {
-        Serial.begin(<span style="color: #D1947D;">9600</span>); <span style="color: #998066;">// Initialisation de la communication série</span>
-        pinMode(motorPin1, OUTPUT); <span style="color: #998066;">// Configuration de motorPin1 comme sortie</span>
-        pinMode(motorPin2, OUTPUT); <span style="color: #998066;">// Configuration de motorPin2 comme sortie</span>
-        pinMode(motorPin3, OUTPUT); <span style="color: #998066;">// Configuration de motorPin3 comme sortie</span>
-        pinMode(motorPin4, OUTPUT); <span style="color: #998066;">// Configuration de motorPin4 comme sortie</span>
-    }
-    
-    <span style="color: #D1947D;">void</span> comp_gauche() {
-        compteur_gauche <span style="color: #F5B83D;">+=</span><span style="color: #D1947D;"> 1</span>; <span style="color: #998066;">// Incrémente le compteur gauche</span>
-    }
-    
-    <span style="color: #D1947D;">void</span> comp_droit() {
-        compteur_droit <span style="color: #F5B83D;">+=</span><span style="color: #D1947D;"> 1</span>; <span style="color: #998066;">// Incrémente le compteur droit</span>
-    }
-    
-    <span style="color: #D1947D;">void</span> loop() {
-        attachInterrupt(digitalPinToInterrupt(<span style="color: #D1947D;">3</span>), comp_gauche, RISING); <span style="color: #998066;">// Encodeur gauche</span>
-        attachInterrupt(digitalPinToInterrupt(<span style="color: #D1947D;">20</span>), comp_droit, RISING); <span style="color: #998066;">// Encodeur droit</span>
-        
-        <span style="color: #998066;">// Boucle jusqu'à ce que les compteurs atteignent 100 impulsions</span>
-        <span style="color: #D1947D;">while</span> ((compteur_gauche < <span style="color: #D1947D;">100</span>) & (compteur_droit < <span style="color: #D1947D;">100</span>)) {
-        analogWrite(motorPin1, speed); <span style="color: #998066;">// Alimentation du moteur 1</span>
-        analogWrite(motorPin3, speed); <span style="color: #998066;">// Alimentation du moteur 2</span>
-        }
-    
-        detachInterrupt(digitalPinToInterrupt(<span style="color: #D1947D;">3</span>)); <span style="color: #998066;">// Détache l'encodeur gauche</span>
-        detachInterrupt(digitalPinToInterrupt(<span style="color: #D1947D;">20</span>)); <span style="color: #998066;">// Détache l'encodeur droit</span>
-        
-        Serial.print(<span style="color: #AEAF27;">"compteur_gauche : "</span>);
-        Serial.println(compteur_gauche);
-        Serial.print(<span style="color: #AEAF27;">"compteur_droit : "</span>);
-        Serial.println(compteur_droit);
-        
-        analogWrite(motorPin1, <span style="color: #D1947D;">0</span>); <span style="color: #998066;">// Arrêt du moteur 1</span>
-        analogWrite(motorPin3, <span style="color: #D1947D;">0</span>); <span style="color: #998066;">// Arrêt du moteur 2</span>
-    }
-                        </code></pre>
-                </div>
-                <br>
-                <div class="ligne">
-                    <div class="paragraphe">
-                        <h3>Alimentation</h3>
-                        <P>Pour alimenter notre robot, nous avons opté pour une batterie de téléphone de 5V afin de
-                            simplifier le système et de réduire le poids, ce qui allège les moteurs. De plus,
-                            l’efficacité
-                            de notre suiveur ne nous permet pas d’augmenter la vitesse de nos moteurs en passant la
-                            tension
-                            à 9 V.</P>
-                    </div>
-                    <div><img style="width: 20vw;height: auto;"
-                            src="../../../photo/projet perso/projet_robot/batterie_listo.png" alt="batterie listo">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="collone">
-                <p>Maintenant que tous les tests ont été réalisés avec succès et que le système fonctionne correctement,
-                    il
-                    est nécessaire d'ajouter des supports pour l'ensemble des composants.</p>
-                <br>
-                <br>
-                <div class="ligne">
-                    <div>
-                        <img style="width: 20vw;height: auto; margin: 25px;"
-                            src="../../../photo/projet perso/projet_robot/support_infrarougefusion.png"
-                            alt="image 3D d'un support infrarouge">
-                    </div>
-                    <div class="paragraphe">
-                        <h3>Support Infrarouge :</h3>
-                        <p>Il permet de fixer les capteur infrarouge sous le robot tout en permettant de les protéger
-                            des
-                            lumière extérieur qui pourraient fausser les mesures </p>
-                    </div>
-                </div>
-                <div class="ligne_reverse">
-                    <div>
-                        <img style="width: 20vw;height: auto; margin: 25px;"
-                            src="../../../photo/projet perso/projet_robot/support_Ultrasonfusion.png"
-                            alt="image 3D d'un support infrarouge">
-                    </div>
-                    <div class="paragraphe">
-                        <h3>Support Ultrason:</h3>
-                        <p>Il sert à assembler le capteur ultra son et le servo moteur pour permettre au capteur US
-                            d’être
-                            mobile </p>
-                    </div>
-                </div>
-                <div class="ligne">
-                    <div>
-                        <img style="width: 20vw;height: auto; margin: 25px;"
-                            src="../../../photo/projet perso/projet_robot/support_servo.png"
-                            alt="image 3D d'un support infrarouge">
-                    </div>
-                    <div class="paragraphe">
-                        <h3>Support servo:</h3>
-                        <p>Fixe le servo moteur sur le chassie du robot</p>
-                    </div>
-                </div>
-                <div class="ligne_reverse">
-                    <div>
-                        <img style="width: 20vw;height: auto; margin: 25px;"
-                            src="../../../photo/projet perso/projet_robot/support_batterie.png"
-                            alt="image 3D d'un support infrarouge">
-                    </div>
-                    <div class="paragraphe">
-                        <h3>Support pour la batterie externe:</h3>
-                        <p>il permet de fixer la batterie a l’arrière du robot tout en garantissant une répartition du
-                            poids</p>
-                    </div>
-                </div>
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
-                    rel="stylesheet" />
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-                <div class="code-container">
-                    <pre><code class="language-javascript">
-                        function move() {
-                            const head = {...snake[0]};
-                            switch (direction) {
-                                case 'up':
-                                    head.y--;
-                                    break;
-                                case 'down':
-                                    head.y++;
-                                    break;
-                                case 'left':
-                                    head.x--;
-                                    break;
-                                case 'right':
-                                    head.x++;
-                                    break;
-                            }
-                            snake.unshift(head);
-                            snake.pop();
-                        }
-                        </code></pre>
-                </div>
-            </div>
-
-        </section>
-        <div class="proj3model_fab">
-            <iframe title="Pied De Bureau V1" frameborder="0" allowfullscreen mozallowfullscreen="true"
-                webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
-                execution-while-out-of-viewport execution-while-not-rendered web-share
-                src="https://sketchfab.com/models/2dbdac3195ee4327a230317db89b43ca/embed?ui_theme=dark"> </iframe>
-        </div>
-        <section class="proj3conclusion">
-            <h2>Conclusion</h2>
-            <p>Ce projet, réalisé en moins d’une demi-journée, m’a permis de créer mon bureau idéal pour seulement 30
-                centimes, y compris les impressions de test. En utilisant des solutions d’impression 3D efficaces, j'ai
-                pu concrétiser ce projet de manière économique et rapide.</p>
-        </section>
-        </div>
-        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="color: aliceblue;">il n'y a rien pour l'instant mais cette page sera bientot mise à jour</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About Me</h6>
+                    <p style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à
+                        Salon-de-Provence, je suis passionné
+                        par la
+                        conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente
+                        mes projets
+                        académiques et personnels, illustrant mes compétences en électronique, automatisme et impression
+                        3D</p>
+                </div>
 
+                <div class="col-xs-6 col-md-3">
+                    <h6>Categories</h6>
+                    <ul class="footer-links">
+                        <li><a href="../../../pages/Educatif.html">Mes cours</a></li>
+                        <li><a href="../../../pages/personnel/personnel.html">Mes projets personnels</a></li>
+                        <li><a href="../../../fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+                        <li><a href="../../../fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="../../../pages/personnel/personnel.html">About Me</a></li>
+                        <li><a href="../../../pages/Contact.html">Contact Me</a></li>
+                        <li><a href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                        <a href="#">Objex3D</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="map" href="https://maps.app.goo.gl/1hW8uRM92qECqcfW9" target="_blank"><i
+                                    class="fa fa-map-o"></i></a></li>
+                        <li><a class="instagram"
+                                href="https://www.instagram.com/objex.3d/profilecard/?igsh=dXczbXB1MGtrZTJr"
+                                target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/robin-jallade-6732392ba"
+                                target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
