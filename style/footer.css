@@ -152,6 +152,9 @@
     margin-right: 0;
     font-weight: 600
   }
+  .row p{
+    font-weight: 600;
+  }
 }
 
 
@@ -240,7 +243,7 @@ p {
 
 @media (min-width:768px) {
 
-
+  .col-md-3 .c
   .col-sm-12,
   .col-sm-6 {
     float: left
@@ -249,11 +252,19 @@ p {
   .col-sm-12 {
     width: 100%
   }
+  .col-md-3 h6, .col-xs-6 h6{
+    font-size: 30px;
+  }
 
-
-
+  .col-md-3 a, .col-xs-6 a{
+    font-size: 28px;
+  }
+  .col-md-3 li, .col-xs-6 li{
+    padding-top: 13px;
+  }
+  
   .col-sm-6 {
-    width: 50%
+    width: 50%;
   }
 
 }
