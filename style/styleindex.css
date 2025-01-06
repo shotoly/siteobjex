@@ -252,7 +252,7 @@
 
   .cardnav nav ul.menu>li>a {
 
-    font-size: 12px; /* Ajustez la taille selon vos besoins */
+    font-size: 3vw; /* Ajustez la taille selon vos besoins */
     padding: 0px 0px; /* Ajuste l'espacement autour du texte */
     text-align: center; /* Centre le texte si nécessaire */
   }
@@ -267,9 +267,7 @@
     left: 47%;
   }
   
-  .logo-container img {
-    display: none;
-}
+  
 
 .card { 
 
@@ -278,7 +276,7 @@
 }
 
 .card h1{
-  font-size: 40px;
+  font-size: 10vw;
 }
 .card2{
 
@@ -291,3 +289,9 @@ width : 100vw;
 
 }
 }
+@media (max-width: 500px) {
+  .logo-container img {
+    display: none;
+}
+}
+
