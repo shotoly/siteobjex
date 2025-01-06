@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 
+body {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  scroll-behavior: auto; /* Pour désactiver un défilement fluide automatique */
+}
+
+
 
 
 /* carte */
@@ -53,6 +61,7 @@
 
   .content {
     position: relative;
+    align-items: center;
     z-index: 2;
     text-shadow: -3px 0px 2px rgba(0,0,0,0.1);
   }

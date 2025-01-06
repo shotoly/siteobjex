@@ -162,7 +162,7 @@
     margin-right: 0;
     font-weight: 600
   }
-  .row p{
+  .row p , .row a{
     font-weight: 600;
   }
 }
@@ -268,6 +268,8 @@ p {
 
   .col-md-3 a, .col-xs-6 a , .col-sm-12 p , .col-md-6 p{
     font-size: 28px;
+    font-weight: 600;
+
   }
   .col-md-3 li, .col-xs-6 li{
     padding-top: 13px;
