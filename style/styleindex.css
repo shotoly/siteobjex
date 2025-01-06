@@ -250,8 +250,9 @@
     margin: 0; /* Supprime l'espace entre les éléments */
   }
 
-  .menu li a {
-    font-size: 2.5vw; /* Ajustez la taille selon vos besoins */
+  .cardnav nav ul.menu>li>a {
+
+    font-size: 12px; /* Ajustez la taille selon vos besoins */
     padding: 0px 0px; /* Ajuste l'espacement autour du texte */
     text-align: center; /* Centre le texte si nécessaire */
   }
@@ -263,11 +264,30 @@
 
   .cardnav {
     position: absolute;
-    left: 50%;
+    left: 47%;
   }
   
   .logo-container img {
     display: none;
 }
 
+.card { 
+
+  width: 80vw;
+
+}
+
+.card h1{
+  font-size: 40px;
+}
+.card2{
+
+  top: 70%;
+
+}
+.cardnav{
+
+width : 100vw;
+
+}
 }
