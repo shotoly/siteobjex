@@ -6,10 +6,14 @@ body {
   padding: 0;
   overflow: auto;
   scroll-behavior: auto; /* Pour désactiver un défilement fluide automatique */
+  touch-action: pan-y; /* Désactive le défilement horizontal, autorise le vertical */
+
 }
 
 
-
+* {
+  box-sizing: border-box; /* Assure que les bordures et marges sont incluses dans la largeur totale */
+}
 
 /* carte */
 
