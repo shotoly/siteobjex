@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les boutons de Micro-onde</title>
+    <link rel="stylesheet" href="../style-projet/projet.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="../style-projet/projet1.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/mainstyle.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/menu.css"> <!-- Inclure ton fichier CSS ici -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/photo/icone/micro_onde.svg" />
+    <script src="/prog/menu.js" defer></script>
+
+    <script src="/prog/color/Colormode.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/style/footer.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="lang-btncontaine">
+            <a href="/index.html" class="logo-container">
+                <img src="/photo/logo_vecteur_blanc.svg" alt="logo" class="logo" id="logo-site" />
+            </a>
+            
+            
+              <button  class="lang-btn " id="fr-btn" onclick="changeLang('fr')">FR</button>
+              <button class="lang-btn" id="en-btn" onclick="changeLang('en')">EN</button>
+              <button onclick="applyTheme()" class="changeTheme"><i class="fa fa-moon-o moon-icon"></i></button>
+            </div>
+        <nav>
+            <button class="hamburger" id="hamburger">
+                &#9776;
+            </button>
+            <ul class="menu" id="menu">
+                <li><a data-i18n="Accueil" href="/index.html">Accueil</a></li>
+					<li><a data-i18n="Educatif" href="/pages/Educatif.html">Éducatif</a></li>
+					<li><a data-i18n="Professionnel" href="/pages/Professionnel.html">Professionnel</a></li>
+					<li><a data-i18n="personnel" href="/pages/personnel/personnel.html">Personnel</a></li>
+					<li><a href="/pages/Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Bouton de Micro-onde</h1>
+        <p>Projet de réparation de boutons cassés pour un micro-ondes</p>
+        <p>Date : 3 octobre 2024</p>
+
+        <div class="collone">
+            <section class="collone">
+                <h2>Contexte</h2>
+                <div class="paragraphe">
+                    <p>Une cliente a rencontré un problème avec les boutons de son micro-ondes, qui se sont cassés. J'ai
+                        proposé
+                        de concevoir et de réparer ces boutons.</p>
+                </div>
+                <img src="/photo/projet_perso/bouton_micro_onde/bouton_cassée_vue_dessus.png" alt="Projet 1"
+                    class="image-paysage">
+                <img src="/photo/projet_perso/bouton_micro_onde/bouton_cassée_vue_dessous.png" alt="Projet 1"
+                    class="image-paysage">
+            </section>
+
+            <h2>Solution Proposée</h2>
+            <section class="collone">
+                <div class="paragraphe">
+                    <p>La solution que j'ai proposée à la cliente consistait à récupérer les boutons endommagés afin de
+                        les
+                        reproduire fidèlement. J'ai ensuite utilisé une impression 3D avec un profil optimisé pour
+                        garantir
+                        une
+                        solidité maximale tout en maintenant des coûts de production réduits.</p>
+                </div>
+                <br>
+                <div class="ligne2">
+                    <div>
+                        <p>Matériau utilisé : PLA</p>
+                        <p>Imprimante : Bambu Lab A1</p>
+                    </div>
+                    <div class="proj1card2">
+                        <img src="/photo/projet_perso/bouton_micro_onde/Bambu_Lab_A1.png">
+                    </div>
+                </div>
+            </section>
+
+            <h2>Processus de Conception</h2>
+            <section class="collone">
+                <div class="paragraphe">
+                    <p>Afin de garantir que les dimensions du futur bouton soient précises, j'ai commencé par reproduire
+                        la
+                        tige
+                        du
+                        micro-ondes, qui s'insérera dans le bouton. Cette étape était cruciale pour assurer une parfaite
+                        compatibilité entre les deux éléments.</p>
+                </div>
+
+                <div class="ligne2">
+                    <img src="/photo/projet_perso/bouton_micro_onde/tige_micro_onde_3D.png">
+                    <img src="/photo/projet_perso/bouton_micro_onde/tige_micro_impressions.png">
+                    <img src="/photo/projet_perso/bouton_micro_onde/bouton_cassée_avec_tige.png">
+                </div>
+                <p>L'étape suivante consistait à modéliser le bouton en 3D, puis à procéder à l'impression en 3D en
+                    utilisant un
+                    profil adapté pour garantir robustesse et précision.</p>
+                <div class="collone">
+                    <div class="ligne2">
+                        <img src="/photo/projet_perso/bouton_micro_onde/bouton_3D.png">
+                        <img src="/photo/projet_perso/bouton_micro_onde/bouton_impression.png">
+                    </div>
+                    <div class="ligne">
+                        <img src="/photo/projet_perso/bouton_micro_onde/timelaps_bouton.gif">
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="proj1model_fab"> <iframe title="bouton micro onde v10 v1" frameborder="0" allowfullscreen
+                    mozallowfullscreen="true" webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/ee2e4d1649214133bf6a6eafb3219827/embed"> </iframe>
+            </div>
+            <section class="proj1conclusion">
+                <h2>Conclusion</h2>
+                <p>La pièce sera vendue pour un total de 5€, comprenant : Main d'oeuvre et coût des materiaux</p>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About Me</h6>
+              <p data-i18n="about-me" style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je
+                suis passionné
+                par la
+                conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente mes projets
+                académiques et personnels, illustrant mes compétences en électronique, automatisme et impression 3D</p>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Categories</h6>
+              <ul class="footer-links">
+                <li><a data-i18n="Mes-cours" href="/pages/Educatif.html">Mes cours</a></li>
+                <li><a data-i18n="Mes-projets" href="/pages/personnel/personnel.html">Mes projets personnels</a></li>
+                <li><a data-i18n="guide-mersure" href="/fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+                <li><a data-i18n="Mon-CV" href="/fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+              </ul>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li><a href="/pages/personnel/personnel.html">About Me</a></li>
+                <li><a href="/pages/Contact.html">Contact Me</a></li>
+                <li><a data-i18n="ou-me-trouver" href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                <a href="#">Objex3D</a>.
+              </p>
+            </div>
+    
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="map" href="https://maps.app.goo.gl/1hW8uRM92qECqcfW9" target="_blank"><i
+                      class="fa fa-map-o"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/objex.3d/profilecard/?igsh=dXczbXB1MGtrZTJr"
+                    target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i
+                      class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réacteur Arc</title>
+    <link rel="stylesheet" href="../style-projet/projet.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="../style-projet/projet1.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/mainstyle.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/menu.css"> <!-- Inclure ton fichier CSS ici -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/photo/icone/iron_man.svg" />
+    <script src="/prog/menu.js" defer></script>
+
+    <script src="/prog/color/Colormode.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/style/footer.css">
+
+</head>
+
+
+<body>
+    <header>
+        <div class="lang-btncontaine">
+            <a href="/index.html" class="logo-container">
+                <img src="/photo/logo_vecteur_blanc.svg" alt="logo" class="logo" id="logo-site" />
+            </a>
+            
+            
+              <button  class="lang-btn " id="fr-btn" onclick="changeLang('fr')">FR</button>
+              <button class="lang-btn" id="en-btn" onclick="changeLang('en')">EN</button>
+              <button onclick="applyTheme()" class="changeTheme"><i class="fa fa-moon-o moon-icon"></i></button>
+            </div>
+        <nav>
+            <button class="hamburger" id="hamburger">
+                &#9776;
+            </button>
+
+            <ul class="menu" id="menu">
+                <li><a data-i18n="Accueil" href="/index.html">Accueil</a></li>
+					<li><a data-i18n="Educatif" href="/pages/Educatif.html">Éducatif</a></li>
+					<li><a data-i18n="Professionnel" href="/pages/Professionnel.html">Professionnel</a></li>
+					<li><a data-i18n="personnel" href="/pages/personnel/personnel.html">Personnel</a></li>
+					<li><a href="/pages/Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Réacteur ARC - Ironman</h1>
+        <p>Projet de fabrication d'une réplique du réacteur ARC d'Ironman</p>
+        <p>Date : 14 août 2024</p>
+        <div class="projet">
+
+            <section class="collone">
+                <h2>Contexte</h2>
+                <div class="paragraphe">
+                    <p>J'ai découvert sur MakerWorld un projet fascinant de fabrication d'une réplique du réacteur ARC
+                        d'Ironman, ce qui m'a inspiré à réaliser ma propre version.</p>
+                    <p>Source du projet :
+                        <a href="https://makerworld.com/fr/models/467861#profileId-386697" target="_blank"
+                            class="website-link">
+                            ARC Reactor MK1 LED Lamp Kit</a>
+                    </p>
+                </div>
+                <img src="/photo/projet_perso/reacteur_ARK/image_coeur_de_base_sans_modif.jpg"
+                    alt="Projet Ironman" class="image-paysage">
+            </section>
+
+            <section class="collone">
+                <h2>Solution Proposée</h2>
+                <div class="paragraphe">
+                    <p>Passionné par la domotique et les objets connectés, j'ai décidé de rendre mon réacteur
+                        interactif.
+                        Pour
+                        cela, j'ai prévu de remplacer l’éclairage central en intégrant un module ESP8266 et des LED
+                        WS2812B
+                        pour
+                        moderniser et connecter l'appareil.</p>
+                </div>
+
+                <img src="/photo/projet_perso/reacteur_ARK/LEDLampRéacteur.webp" alt="Projet Ironman">
+                <div class="ligne2">
+                    <div>
+                        <p>Matériau utilisé : PLA</p>
+                        <p>Imprimante: Bambu Lab A1</p>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="proj2card2">
+                        <img src="/photo/projet_perso/reacteur_ARK/image.png" alt="Projet Ironman">
+                    </div>
+                </div>
+            </section>
+
+            <section class="collone">
+                <h2>Processus de Conception</h2>
+                <div class="paragraphe">
+                    <p>J'ai commencé par prendre les mesures de l'ancien réacteur, puis j'ai modélisé et imprimé les
+                        nouvelles
+                        pièces en PLA avec l'imprimante 3D.</p>
+                </div>
+                <div class="collone">
+                    <img src="/photo/projet_perso/reacteur_ARK/lumiere_arck_v1.png" alt="Projet Ironman"
+                        class="image-paysage">
+                    <img src="/photo/projet_perso/reacteur_ARK/lumiere_arck_v2.png" alt="Projet Ironman"
+                        class="image-paysage">
+                    <img src="/photo/projet_perso/reacteur_ARK/lumiere_arck_tout.png" alt="Projet Ironman"
+                        class="image-paysage">
+                    <img src="/photo/projet_perso/reacteur_ARK/lumiere_arck_assamblage.png" alt="Projet Ironman"
+                        class="image-paysage">
+                </div>
+                <div class="paragraphe">
+                    <p>Une fois la lampe imprimée, j'ai décidé de simplifier le contrôle des LED en flashant l'ESP avec
+                        WLED.
+                        Cela me permet de le connecter facilement au réseau et de l'intégrer à mon instance Home
+                        Assistant
+                        (HA).
+                    </p>
+                    <p>il ne reste plus qu'à imprimer et monter cette nouvelle version du réacteur ARK</p>
+                </div>
+
+                <img src="/photo/projet_perso/reacteur_ARK/vue_éxplosé.png" alt="Projet Ironman"
+                    class="image-paysage">
+                <div class="paragraphe">
+                    <p>les parties imprimées censées représenter du cuivre seront remplacées par de vrais fils de cuivre
+                        enroulés autour de l'impression</p>
+                </div>
+                <img src="/photo/projet_perso/reacteur_ARK/plateau_composant.png" alt="Projet Ironman"
+                    class="image-paysage">
+                <img src="/photo/projet_perso/reacteur_ARK/starkheart2enbien.jpg" alt="Projet Ironman"
+                    class="image-paysage">
+            </section>
+            <div class="proj2model_fab"> <iframe title="LED Lamp" frameborder="0" allowfullscreen
+                    mozallowfullscreen="true" webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/09e00ff52c8849268b1b06e56e7cc920/embed"> </iframe>
+            </div>
+            <section class="collone">
+                <h2>Conclusion</h2>
+                <p>l'objet coutera un total d'environ 6€ à produire au lieu de 16€ en utlisant la lampe officiel</p>
+                <ul>
+                    <li>Filament : 90g - 2.50€</li>
+                    <li>Composant ESP8266 + 15 LED : 3.50€</li>
+                </ul>
+                <p>Montant total: 6€</p>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About Me</h6>
+              <p data-i18n="about-me" style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je
+                suis passionné
+                par la
+                conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente mes projets
+                académiques et personnels, illustrant mes compétences en électronique, automatisme et impression 3D</p>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Categories</h6>
+              <ul class="footer-links">
+                <li><a data-i18n="Mes-cours" href="/pages/Educatif.html">Mes cours</a></li>
+                <li><a data-i18n="Mes-projets" href="/pages/personnel/personnel.html">Mes projets personnels</a></li>
+                <li><a data-i18n="guide-mersure" href="/fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+                <li><a data-i18n="Mon-CV" href="/fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+              </ul>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li><a href="/pages/personnel/personnel.html">About Me</a></li>
+                <li><a href="/pages/Contact.html">Contact Me</a></li>
+                <li><a data-i18n="ou-me-trouver" href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                <a href="#">Objex3D</a>.
+              </p>
+            </div>
+    
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="map" href="https://maps.app.goo.gl/1hW8uRM92qECqcfW9" target="_blank"><i
+                      class="fa fa-map-o"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/objex.3d/profilecard/?igsh=dXczbXB1MGtrZTJr"
+                    target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i
+                      class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+</body>
+
+</html>

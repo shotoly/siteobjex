@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>les pieds de meubles</title>
+    <link rel="stylesheet" href="../style-projet/projet.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="../style-projet/projet3.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/mainstyle.css"> <!-- Inclure ton fichier CSS ici -->
+    <link rel="stylesheet" href="/style/menu.css"> <!-- Inclure ton fichier CSS ici -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="/photo/icone/bureau.svg" />
+    <script src="/prog/menu.js" defer></script>
+
+    <script src="/prog/color/Colormode.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/style/footer.css">
+
+</head>
+
+
+<body>
+    <header>
+        <div class="lang-btncontaine">
+            <a href="/index.html" class="logo-container">
+                <img src="/photo/logo_vecteur_blanc.svg" alt="logo" class="logo" id="logo-site" />
+            </a>
+            
+            
+              <button  class="lang-btn " id="fr-btn" onclick="changeLang('fr')">FR</button>
+              <button class="lang-btn" id="en-btn" onclick="changeLang('en')">EN</button>
+              <button onclick="applyTheme()" class="changeTheme"><i class="fa fa-moon-o moon-icon"></i></button>
+            </div>
+        <nav>
+            <button class="hamburger" id="hamburger">
+                &#9776;
+            </button>
+
+            <ul class="menu" id="menu">
+                <li><a data-i18n="Accueil" href="/index.html">Accueil</a></li>
+					<li><a data-i18n="Educatif" href="/pages/Educatif.html">Éducatif</a></li>
+					<li><a data-i18n="Professionnel" href="/pages/Professionnel.html">Professionnel</a></li>
+					<li><a data-i18n="personnel" href="/pages/personnel/personnel.html">Personnel</a></li>
+					<li><a href="/pages/Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Pied de meuble</h1>
+        <p>Projet de mise à niveau de deux meubles</p>
+        <p>Date : 6 août 2024</p>
+        <div class="collone">
+
+            <section class="collone">
+                <h2>Contexte</h2>
+                <div class="paragraphe">
+                    <p>Durant les vacances, j'ai constaté que mon bureau chez mes parents n'était plus adapté à mes
+                        besoins.
+                        J'ai
+                        donc décidé de créer un espace de travail semblable à celui que j'utilise durant l'année
+                        scolaire.
+                        Mon
+                        bureau est constitué d'un plan de travail soutenu d'un côté par un caisson à tiroirs et de
+                        l'autre
+                        par
+                        deux
+                        pieds récupérés d'un ancien meuble.</p>
+                </div>
+
+                <br>
+                <img src="/photo/projet_perso/pied_de_bureau/bureau_salon.jpg" alt="Projet Ironman"
+                    class="image-paysage">
+                <br>
+                <div class="paragraphe">
+                    <p>Dans ce projet de bureau, je dispose déjà d'un caisson à roulettes et de deux pieds de bureau
+                        supplémentaires. Mon objectif est d’utiliser ces éléments pour créer un bureau fonctionnel.</p>
+                </div>
+
+                <div class="collone">
+                    <div class="collone">
+                        <br>
+                        <p>Voici le caisson utilisé pour mon bureau actuel :</p>
+                        <img src="/photo/projet_perso/pied_de_bureau/alex_caisson_sans_roulette.png"
+                            alt="caisson_axel" class="proj3project-image">
+                        <br>
+                    </div>
+                    <div class="collone">
+                        <p>Voici le caisson pour le future bureau:</p>
+                        <img src="/photo/projet_perso/pied_de_bureau/mike_caisson_a_roulette.png"
+                            alt="caisson_mike" class="proj3project-image">
+                        <br>
+                    </div>
+                </div>
+                <div class="paragraphe">
+                    <p>Les deux caissons présentent des dimensions similaires, à l'exception de la hauteur de leurs
+                        pieds
+                        respectifs. L'objectif de ce projet est donc de concevoir une solution permettant d’uniformiser
+                        leur
+                        hauteur
+                        pour les adapter aux pieds de bureau existants.</p>
+                </div>
+
+            </section>
+
+            <section class="collone">
+                <h2>Solution Proposée</h2>
+                <div class="paragraphe">
+                    <p>Pour ce projet, je propose de remplacer les roulettes du bureau par des pieds fixes. Pour
+                        réaliser
+                        cela,
+                        j'utiliserai mon imprimante 3D et du filament PETG, qui est plus solide que le PLA. Étant donné
+                        la
+                        pression que les pieds devront supporter, il est essentiel d'utiliser un matériau robuste afin
+                        d'assurer
+                        la durabilité et la stabilité de l'ensemble.</p>
+                </div>
+
+            </section>
+
+            <section class="collone">
+                <h2>Processus de Conception</h2>
+                <div class="paragraphe">
+                    <p>J'ai commencé par mesurer la distance entre le sol et le bas du meuble afin de déterminer la
+                        hauteur
+                        des
+                        pieds nécessaires pour le premier caisson, qui sera de 5 mm. </p>
+                    <br>
+                    <p>Ensuite, j’ai démonté les roulettes pour observer comment elles sont fixées au caisson. Cela m'a
+                        permis
+                        de reproduire les points de fixation dans Fusion 360, afin de concevoir des pieds adaptés et
+                        parfaitement compatibles.</p>
+                </div>
+
+                <div class="ligne">
+                    <img src="/photo/projet_perso/pied_de_bureau/roulette_caisson_ikea.png"
+                        alt="c'est une rooulette" class="proj3project-image">
+                    <img src="/photo/projet_perso/pied_de_bureau/pied_de_bureau_v1.png"
+                        alt="vue 3d du pied de bureau" class="proj3project-image">
+                </div>
+                <div class="paragraphe">
+                    <p>Après quelques essais et ajustements de mesure, les pieds s'adaptent parfaitement au caisson.</p>
+                </div>
+
+                <br>
+            </section>
+            <div class="proj3model_fab">
+                <iframe title="Pied De Bureau V1" frameborder="0" allowfullscreen mozallowfullscreen="true"
+                    webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/2dbdac3195ee4327a230317db89b43ca/embed?ui_theme=dark"> </iframe>
+            </div>
+            <section class="proj3conclusion">
+                <h2>Conclusion</h2>
+                <div class="paragraphe">
+                    <p>Ce projet, réalisé en moins d’une demi-journée, m’a permis de créer mon bureau idéal pour
+                        seulement
+                        30
+                        centimes, y compris les impressions de test. En utilisant des solutions d’impression 3D
+                        efficaces,
+                        j'ai
+                        pu concrétiser ce projet de manière économique et rapide.</p>
+                </div>
+            </section>
+        </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About Me</h6>
+              <p data-i18n="about-me" style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je
+                suis passionné
+                par la
+                conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente mes projets
+                académiques et personnels, illustrant mes compétences en électronique, automatisme et impression 3D</p>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Categories</h6>
+              <ul class="footer-links">
+                <li><a data-i18n="Mes-cours" href="/pages/Educatif.html">Mes cours</a></li>
+                <li><a data-i18n="Mes-projets" href="/pages/personnel/personnel.html">Mes projets personnels</a></li>
+                <li><a data-i18n="guide-mersure" href="/fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+                <li><a data-i18n="Mon-CV" href="/fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+              </ul>
+            </div>
+    
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li><a href="/pages/personnel/personnel.html">About Me</a></li>
+                <li><a href="/pages/Contact.html">Contact Me</a></li>
+                <li><a data-i18n="ou-me-trouver" href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                <a href="#">Objex3D</a>.
+              </p>
+            </div>
+    
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="map" href="https://maps.app.goo.gl/1hW8uRM92qECqcfW9" target="_blank"><i
+                      class="fa fa-map-o"></i></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/objex.3d/profilecard/?igsh=dXczbXB1MGtrZTJr"
+                    target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i
+                      class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+</body>
+
+</html>
