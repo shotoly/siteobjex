@@ -1,0 +1,102 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+    const switchThemeBtn = document.querySelector('.changeTheme');
+    const logo = document.getElementById("logo-site"); // Vérifier que l'élément est bien sélectionné
+    const icone_insta = document.getElementById("insta"); // Vérifier que l'élément est bien sélectionné
+
+
+    // Récupérer le thème enregistré, ou mettre "dark" par défaut
+    let currentTheme = localStorage.getItem("theme") || "dark";
+
+    function applyTheme(theme) {
+        if (theme === "dark") {
+            document.documentElement.style.setProperty('--ecriture', '#FFFFFF');
+            document.documentElement.style.setProperty('--background', '#0A0C10');
+            document.documentElement.style.setProperty('--card', '#1D1D1D');
+            document.documentElement.style.setProperty('--footer', '#26272B');
+            localStorage.setItem("theme", "dark");
+
+            // Changer le logo pour une version claire
+            logo.src = "../photo/logo_vecteur_blanc.svg";
+            icone_insta.src = "../photo/instagram_blanc.svg";
+        } else {
+            document.documentElement.style.setProperty('--ecriture', '#202020');
+            document.documentElement.style.setProperty('--background', '#FFFFFF');
+            document.documentElement.style.setProperty('--card', '#F5F5F5');
+            document.documentElement.style.setProperty('--footer', '#E0E0E0');
+            localStorage.setItem("theme", "light");
+
+            // Changer le logo pour une version sombre
+            logo.src = "../photo/logo_vecteur_noir.svg";
+            icone_insta.src = "../photo/instagram_noir.svg";
+        }
+    }
+
+    // Appliquer le thème (dark par défaut)
+    applyTheme(currentTheme);
+
+    // Ajouter l'écouteur d'événement pour changer le thème
+    switchThemeBtn.addEventListener('click', () => {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(currentTheme);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const switchThemeBtn = document.querySelector('.changeTheme');
+    const logo = document.getElementById("logo-site"); // Vérifier que l'élément est bien sélectionné
+    const icone_insta = document.getElementById("insta"); // Vérifier que l'élément est bien sélectionné
+
+    if (!logo) {
+        console.error("Le logo n'a pas été trouvé, vérifie l'ID dans le HTML.");
+        return;
+    }
+
+    let currentTheme = localStorage.getItem("theme") || "dark";
+
+    function applyTheme(theme) {
+        if (theme === "dark") {
+            document.documentElement.style.setProperty('--ecriture', '#FFFFFF');
+            document.documentElement.style.setProperty('--background', '#0A0C10');
+            document.documentElement.style.setProperty('--card', '#1D1D1D');
+            document.documentElement.style.setProperty('--footer', '#26272B');
+            localStorage.setItem("theme", "dark");
+
+            // Changer le logo pour une version claire
+            logo.src = "../photo/logo_vecteur_blanc.svg";
+            icone_insta.src = "../photo/instagram_blanc.svg";
+        } else {
+            document.documentElement.style.setProperty('--ecriture', '#202020');
+            document.documentElement.style.setProperty('--background', '#FFFFFF');
+            document.documentElement.style.setProperty('--card', '#F5F5F5');
+            document.documentElement.style.setProperty('--footer', '#E0E0E0');
+            localStorage.setItem("theme", "light");
+
+            // Changer le logo pour une version sombre
+            logo.src = "../photo/logo_vecteur_noir.svg";
+            icone_insta.src = "../photo/instagram_noir.svg";
+        }
+    }
+
+    // Appliquer le thème au chargement
+    applyTheme(currentTheme);
+
+    // Ajouter un événement pour basculer le thème et changer le logo
+    switchThemeBtn.addEventListener('click', () => {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(currentTheme);
+    });
+});
