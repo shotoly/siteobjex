@@ -11,6 +11,13 @@
   <script src="prog/suivie.js" defer></script>
   <script src="../../prog/randomcard.js" defer></script>
 
+  <link rel="stylesheet" href="../style/menu_index.css"> <!-- Inclure ton fichier CSS ici -->
+    <script src="../prog/menuindex.js" defer></script>
+  
+  <script src="prog/trad/tradindex.js"></script>
+
+  <script src="prog/color/Colormodeindex.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -24,17 +31,26 @@
 <body>
   <div class="cardnav">
     <header>
+      
+      <div class="lang-btncontaineindex">
       <a href="index.html" class="logo-container">
         <img src="photo/logo_vecteur_blanc.svg" alt="logo" class="logo" />
       </a>
+      
+        <button class="lang-btnindex " id="fr-btn" onclick="changeLang('fr')">FR</button>
+        <button class="lang-btnindex" id="en-btn" onclick="changeLang('en')">EN</button>
+        <button onclick="applyTheme()" class="changeThemeindex"><i class="fa fa-moon-o moon-icon"></i></button>   
+      </div>
       <nav>
-        <ul class="menu">
-          <li><a href="pages/Educatif">Educatif</a></li>
+        <ul class="menuindex">
+          <li><a href="pages/Educatif.html">Educatif</a></li>
           <li><a href="pages/Professionnel.html">Professionnel</a></li>
           <li><a href="pages/personnel/personnel.html">Personnel</a></li>
           <li><a href="pages/Contact.html">Contact</a></li>
         </ul>
       </nav>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+
     </header>
   </div>
 
@@ -42,12 +58,22 @@
 
   <main>
     <div class="groupecard">
+      <div class="fullscreen-menu" id="fullscreen-menu">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="pages/Educatif.html">Éducatif</a></li>
+            <li><a href="pages/Professionnel.html">Professionnel</a></li>
+            <li><a href="pages/personnel/personnel.html">Personnel</a></li>
+            <li><a href="pages/Contact.html">Contact</a></li>
+        </ul>
+    </div>
       <a href="#projects">
         <div class="card">
 
           <div class="Bienvenue">
-            <h1>MON PORTFOLIO</h1>
-            <p>Je suis ravi de vous accueillir. Découvrez mes services et mes compétences.</p>
+            <h1 data-i18n="titre">MON PORTFOLIO</h1>
+            <p data-i18n="Bienvenue" class="indexbienvenu">Je suis ravi de vous accueillir. Découvrez mes services et mes compétences.</p>
           </div>
         </div>
       </a>
@@ -80,7 +106,7 @@
       <!-- Projet 1 -->
       <a href="pages/personnel/projets/projet1.html" class="btn">
         <div class="project-card">
-          <span class="badge">Hors Cours</span>
+          <span data-i18n="Hors-Cours" class="badge">Hors Cours</span>
           <img src="photo/photoprojet/bouton_micro_onde.png" alt="Projet 1" class="project-image">
         </div>
       </a>
@@ -88,7 +114,7 @@
       <!-- Projet 2 -->
       <a href="pages/personnel/projets/projet3.html" class="btn">
         <div class="project-card">
-          <span class="badge">Hors Cours</span>
+          <span data-i18n="Hors-Cours" class="badge">Hors Cours</span>
           <img src="photo/photoprojet/pied_de_bureau.png" alt="Projet 2" class="project-image">
         </div>
       </a>
@@ -96,7 +122,7 @@
       <!-- Projet 3 -->
       <a href="pages/concevoir/Concevoir.html#11a6e0b4-a0c3-80fa-a772-ed5cba8fa476" class="btn">
         <div class="project-card">
-          <span class="badge">Cours</span>
+          <span data-i18n="Cours" class="badge">Cours</span>
           <img src="photo/photoprojet/robot_analogique.png" alt="Projet 3" class="project-image">
         </div>
       </a>
@@ -104,7 +130,7 @@
       <!-- Projet 4 -->
       <a href="pages/personnel/projets/projet4.html" class="btn">
         <div class="project-card">
-          <span class="badge">Cours</span>
+          <span data-i18n="Cours" class="badge">Cours</span>
           <img src="photo/photoprojet/robot.jpg" alt="Projet 4" class="project-image">
         </div>
       </a>
@@ -112,7 +138,7 @@
       <!-- Projet 5 -->
       <a href="pages/concevoir/Concevoir.html#11a6e0b4-a0c3-8079-81da-e2bf5bbee60c" class="btn">
         <div class="project-card">
-          <span class="badge">Cours</span>
+          <span data-i18n="Cours" class="badge">Cours</span>
           <img src="photo/photoprojet/carte_cote_composant_avec_fil.jpg" alt="Projet 5" class="project-image">
         </div>
       </a>
@@ -120,7 +146,7 @@
       <!-- Projet 6 -->
       <a href="pages/personnel/projets/projet2.html" class="btn">
         <div class="project-card">
-          <span class="badge">Hors Cours</span>
+          <span data-i18n="Hors-Cours" class="badge">Hors Cours</span>
           <img src="photo/photoprojet/starkheart2enbien.jpg" alt="Projet 6" class="project-image">
         </div>
       </a>
@@ -133,7 +159,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <h6>About Me</h6>
-          <p style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je
+          <p data-i18n="about-me" style="text-align: justify; color: #737373;">Étudiant en deuxième année de BUT GEII à Salon-de-Provence, je
             suis passionné
             par la
             conception d'objets techniques et la création de solutions innovantes. Mon portfolio présente mes projets
@@ -143,10 +169,10 @@
         <div class="col-xs-6 col-md-3">
           <h6>Categories</h6>
           <ul class="footer-links">
-            <li><a href="pages/Educatif.html">Mes cours</a></li>
-            <li><a href="pages/personnel/personnel.html">Mes projets personnels</a></li>
-            <li><a href="fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
-            <li><a href="fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
+            <li><a data-i18n="Mes-cours" href="pages/Educatif.html">Mes cours</a></li>
+            <li><a data-i18n="Mes-projets" href="pages/personnel/personnel.html">Mes projets personnels</a></li>
+            <li><a data-i18n="guide-mersure" href="fichier/notice.pdf" target="_blank">Le guide de la mersure</a></li>
+            <li><a data-i18n="Mon-CV" href="fichier/CV_JALLADE_Robin.pdf" target="_blank">Mon CV</a></li>
           </ul>
         </div>
 
@@ -155,7 +181,7 @@
           <ul class="footer-links">
             <li><a href="pages/personnel/personnel.html">About Me</a></li>
             <li><a href="pages/Contact.html">Contact Me</a></li>
-            <li><a href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
+            <li><a data-i18n="ou-me-trouver" href="https://maps.app.goo.gl/DXBJZNzrCKRoQ6Eo9">Oû me trouver</a></li>
           </ul>
         </div>
       </div>
