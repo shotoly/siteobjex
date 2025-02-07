@@ -1,0 +1,84 @@
+/* Styles pour les cartes de projet */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  
+}
+
+.project-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  text-align: center;
+  box-shadow: 0px 0px 7px 0 #fff,10px 10px 30px 0 #1d0dca17;
+  /* Utilisation de Flexbox pour positionner les éléments */
+  display: flex;
+  flex-direction: column; /* Disposer les éléments verticalement */
+  justify-content: flex-end; /* Pousser le contenu vers le bas */
+  height: 100%; /* Assurer que la carte prenne toute la hauteur disponible */
+  position: relative; /* Relatif pour permettre au bouton de s'ancrer */
+  
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 1.5rem;
+  padding-bottom: 60px; /* Laisser suffisamment de place pour le bouton */
+  flex-grow: 1; /* Laisser cette section prendre l'espace restant */
+}
+
+.project-info h2 {
+  font-size: 1.8rem;
+  color: #272351;
+  margin-bottom: 10px;
+}
+
+.project-info p {
+  text-align: justify;
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+.project-info .btn {
+  /* Positionner le bouton au bas de la carte */
+  margin-top: auto; /* Assure que le bouton reste en bas */
+  background-color: #272351;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 20px; /* Fixer au bas de la carte */
+  left: 50%;
+  transform: translateX(-50%); /* Centrer le bouton */
+}
+
+.btn {
+  background-color: #272351;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  
+}
+
+.btn:hover {
+  background-color: #34495e;
+}
+

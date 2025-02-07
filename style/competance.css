@@ -1,0 +1,218 @@
+ h1 {
+   margin: 30px;
+   color: var(--ecriture);
+ }
+
+ li {
+   color: var(--ecriture);
+ }
+
+ strong {
+   color: var(--ecriture);
+ }
+
+ h3 {
+   margin-top: 20px;
+   margin-bottom: 10px;
+   text-align: left;
+   color: var(--ecriture);
+ }
+
+ h4 {
+   text-align: left;
+   margin-bottom: 5px;
+   color: var(--ecriture);
+ }
+
+ h2 {
+   margin: 20px;
+   color: var(--ecriture);
+
+ }
+.card{
+  background-color: #333;
+  padding: 10px;
+  border-radius: 20px;
+}
+ .highlight-red {
+   color: #DF5452;
+   /* Optionnel : pour s'assurer que le texte reste lisible */
+   padding: 0.2em;
+   /* Optionnel : ajoute un peu d'espace autour du texte */
+ }
+
+ .highlight-purple {
+   color: #9D68D3;
+   /* Optionnel : pour s'assurer que le texte reste lisible */
+   padding: 0.2em;
+   /* Optionnel : ajoute un peu d'espace autour du texte */
+ }
+
+ .highlight-yellow_background {
+   background-color: rgba(255, 255, 0, 0.264);
+   color: var(--ecriture);
+   /* Optionnel : pour s'assurer que le texte reste lisible */
+   padding: 0.2em;
+   /* Optionnel : ajoute un peu d'espace autour du texte */
+ }
+
+ ol {
+   list-style-type: decimal;
+   /* Affiche des numéros */
+   margin-left: 20px;
+   padding-left: 20px;
+   color: var(--ecriture);
+
+ }
+
+
+ .numbered-list {
+   list-style-type: decimal;
+   /* Réactive les numéros pour cette classe */
+   color: var(--ecriture);
+ }
+
+
+ hr {
+   margin-top: 20px;
+   margin-bottom: 20px;
+   border: 0;
+   border-top: 1px solid var(--ecriture);
+   width: 100%;
+   align-self: stretch;
+ }
+
+
+ main,
+ .projet {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ main {
+   display: flex;
+   flex-direction: column;
+   margin: 20px;
+   align-items: center;
+   color: var(--ecriture);
+
+ }
+
+ .paragraphe {
+   text-align: justify;
+   width: 30vw;
+   color: var(--ecriture);
+ }
+
+ img,
+ .image-paysage {
+   height: 20vw;
+   width: auto;
+   margin: 20px;
+
+ }
+
+ .image-portrait {
+   width: 30vw;
+   height: auto;
+ }
+
+ .image-paysage {
+   width: 60vh;
+   height: auto;
+ }
+
+ embed {
+
+   width: 50vw;
+   height: 80vh;
+   color: var(--ecriture);
+ }
+
+ .collone {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 40vw;
+ }
+
+ .collone_reverse {
+   display: flex;
+   flex-direction: column-reverse;
+   align-items: center;
+   width: 40vw;
+ }
+
+ .ligne,
+ .ligne2 {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: flex-start;
+   /* Aligne les items en haut */
+
+ }
+
+
+ .ligne_reverse,
+ .ligne_reverse2 {
+   display: flex;
+   flex-direction: row-reverse;
+   justify-content: center;
+   align-items: center;
+ }
+
+
+ .code-container {
+
+   width: 50vw;
+   height: fit-content;
+   margin: 20px;
+ }
+
+
+
+ @media (max-width: 768px) {
+
+   h1 {
+     margin: 5px;
+   }
+
+   img {
+     height: 50vw;
+
+   }
+
+   .ligne2,
+   .ligne_reverse2 {
+     flex-direction: column;
+   }
+
+   .paragraphe,
+   .collone {
+     width: 70vw;
+   }
+
+   .code-container {
+     width: 90vw;
+   }
+
+   iframe {
+     width: 40vw;
+     height: auto;
+   }
+
+   .image-paysage,
+   .image-portrait {
+     width: 65vw;
+     height: auto;
+   }
+
+   embed {
+
+     width: 65vw;
+     height: 60vh;
+   }
+
+ }

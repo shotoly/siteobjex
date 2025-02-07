@@ -1,0 +1,102 @@
+
+/* Contact Form */
+.contact-form {
+    background-color: var(--card);
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    color: var(--ecriture);
+    border-radius: 10px;
+}
+
+.contact-form h2 {
+    margin-top: 0;
+    color: var(--ecriture);
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 10px;
+    color: var(--ecriture);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #555;
+}
+/* Images Notice */
+.imagenotice {
+    padding: 10px;
+    width: 70%;
+    height: auto;
+}
+
+.card{
+    background-color: #333;
+    width: 95vw;
+    height: fit-content;
+    border-radius: 10px;
+
+}
+.container_card{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Download Section */
+.download-section {
+  
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .download-link {
+    background-color: rgba(255, 255, 255, 0.888);
+    color: #203a43;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 0px 30px 0 var(--ecriture),10px 10px 30px 0 var(--background);
+    display: inline-block; /* Ensure the link doesn't overlap */
+    margin-top: 10px; /* Add margin on top to avoid overlap */
+    width: fit-content;
+  }
+  
+  
+  .download-link:hover {
+    background-color: white;
+  }
+  
+  @media (max-width: 768px) {
+
+    .imagenotice {
+        width: 100%;
+        height: auto;
+    }
+    
+    
+  }
