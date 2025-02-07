@@ -311,6 +311,14 @@ body {
 width : 100vw;
 
 }
+
+
+.download-link{
+
+font-size: 3vw;
+}
+
+
 }
 @media (max-width: 815px) {
   .logo-container img {
