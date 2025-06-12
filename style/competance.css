@@ -34,6 +34,11 @@
   padding: 10px;
   border-radius: 20px;
 }
+.card_white{
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 20px
+}
  .highlight-red {
    color: #DF5452;
    /* Optionnel : pour s'assurer que le texte reste lisible */
