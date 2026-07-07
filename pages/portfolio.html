@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets | Objex3D</title>
+
+    <!-- Locomotive Scroll Removed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="../photo/logo_vecteur_violet_électrique.svg" />
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../photo/logo_vecteur_blanc.svg" alt="Logo Objex3D" style="height: 50px;">
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="menu-droite">
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="portfolio.html" style="color: var(--provence-violet);">Mes Projets</a></li>
+                <li><a href="services.html">Mes Services</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="../en/pages/portfolio.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a></li>
+                <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Header Page -->
+        <section class="section-titre-geants reveal-on-scroll"
+            style="position: relative; padding-top: 15vw; min-height: 40vh; display: flex; align-items: center; background: url('../axel-richter-Ky0B3cBJGKo-unsplash.jpg') center/cover no-repeat;">
+            <div class="inner-wrap" style="position: relative; z-index: 1;">
+                <div class="gTitre">
+                    <div class="line-flex">
+                        <span class="gTitre split">MON PORTFOLIO</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="p60" style="min-height: 50vh;">
+
+            <!-- Système de filtres dynamiques -->
+            <div class="portfolio-filters reveal-on-scroll">
+                <button class="filter-btn active" data-filter="tous">Tous</button>
+                <button class="filter-btn" data-filter="cours">Cours</button>
+                <button class="filter-btn" data-filter="perso">Personnel</button>
+            </div>
+
+            <div class="podcast-grid" id="grid-portfolio">
+                <!-- Les projets Notion seront injectés ici -->
+            </div>
+
+            <!-- Scripts Notion si applicable -->
+            <script src="../js/render-notion.js"></script>
+        </section>
+
+        <!-- Footer Fancy -->
+        <section class="footer fancy-footer reveal-on-scroll" id="footer">
+            <div class="footer-backdrop"></div>
+            <div class="footer-content">
+                <div class="col col1">
+                    <h3 class="footer-logo">Objex3D</h3>
+                    <p class="footer-sub">Robin Jallade</p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/objex.3d/" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col col2">
+                    <p style="margin-bottom: 25px;"><b>Catégories</b></p>
+                    <p><a class="link-act" href="portfolio.html">Mes Projets</a></p>
+                    <p><a class="link-act" href="services.html">Mes Services</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

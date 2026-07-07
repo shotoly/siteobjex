@@ -1,0 +1,820 @@
+/* ==========================================================================
+   1. RESET CSS & VARIABLES (Design Moderne & Épuré)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Nouvelle Palette pour Objex3D */
+    --provence-jaune: #FBBF24;
+    /* Un jaune chaleureux */
+    --provence-vert: #A3E635;
+    /* Un vert anis */
+    --provence-violet: #7C3AED;
+    /* Violet profond, repris du logo */
+    --provence-bleu: #38BDF8;
+    /* Un bleu vif */
+    --provence-sable: #EAB308;
+    /* Sable/or */
+
+    /* Couleurs de fond et texte modernisées (Clair par défaut) */
+    --couleur-fond: #FAFAFA;
+    --couleur-texte: #171717;
+    --couleur-texte-secondaire: #525252;
+    --couleur-navbar-bg: rgba(250, 250, 250, 0.4);
+    --couleur-navbar-border: rgba(124, 58, 237, 0.1);
+    --couleur-transparent: transparent;
+
+    /* Typographie Moderne (Google Fonts) */
+    --police-texte: 'Inter', sans-serif;
+    --police-titre: 'Outfit', sans-serif;
+    --police-animation: 'Bebas Neue', sans-serif;
+}
+
+/* Variables du Thème Sombre */
+[data-theme="dark"] {
+    --couleur-fond: #121212;
+    --couleur-texte: #FAFAFA;
+    --couleur-texte-secondaire: #A3A3A3;
+    --couleur-navbar-bg: rgba(18, 18, 18, 0.4);
+    --couleur-navbar-border: rgba(255, 255, 255, 0.1);
+
+    --provence-violet: #A78BFA;
+    --provence-jaune: #FDE047;
+}
+
+body {
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font-family: var(--police-texte);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* CLASSES OUTILS */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.p60 {
+    padding: 60px 5vw;
+}
+
+/* ==========================================================================
+   2. EN-TÊTE ET NAVIGATION (Effet Verre Moderne)
+   ========================================================================== */
+.navbar {
+    height: 85px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar.is-scrolled {
+    background-color: var(--couleur-navbar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--couleur-navbar-border);
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.menu-droite ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.menu-droite a {
+    text-decoration: none;
+    color: var(--couleur-texte);
+    font-family: var(--police-titre);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.menu-droite a:hover {
+    color: var(--provence-violet);
+    transform: translateY(-2px);
+}
+
+/* Bouton Dark Mode Toggle */
+#theme-toggle {
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    border-radius: 50%;
+    color: var(--couleur-texte);
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--provence-jaune);
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* RESPONSIVE MENU */
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--couleur-texte);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    color: var(--provence-violet);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-droite {
+        position: fixed;
+        top: 85px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 85px);
+        background-color: var(--couleur-navbar-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid var(--couleur-navbar-border);
+    }
+
+    .menu-droite.active {
+        right: 0;
+    }
+
+    .menu-droite ul {
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        padding-right: 40px;
+        gap: 40px;
+    }
+
+    .menu-droite a {
+        font-size: 1.5rem;
+    }
+
+    #theme-toggle {
+        font-size: 2rem;
+    }
+}
+
+/* Forcer la couleur blanche en haut de page si le fond est sombre (vidéo) */
+body:not(.is-scrolled) .menu-droite a,
+body:not(.is-scrolled) .menu-toggle,
+body:not(.is-scrolled) #theme-toggle {
+    color: #FAFAFA !important;
+}
+
+/* ==========================================================================
+   3. HERO SECTION (Accueil)
+   ========================================================================== */
+#hero {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+    /* fallack for video */
+}
+
+.hero-video-desktop,
+.hero-video-mobile {
+    opacity: 0.7;
+}
+
+.hero-video-mobile {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-video-desktop {
+        display: none !important;
+    }
+
+    .hero-video-mobile {
+        display: block !important;
+    }
+}
+
+.hero-logo-img {
+    height: auto;
+    width: 60vw;
+    max-width: 400px;
+    display: block;
+}
+
+/* Bouton Brutal/Moderne */
+.btn-brutal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 16px 36px;
+    background-color: var(--provence-violet);
+    color: #fff;
+    font-family: var(--police-titre);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-brutal:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(124, 58, 237, 0.6);
+    color: #fff;
+}
+
+/* ==========================================================================
+   4. TITRES GÉANTS (Locomotive)
+   ========================================================================== */
+.section-titre-geants {
+    padding: 8vw 0;
+    overflow: hidden;
+    background-color: var(--couleur-fond);
+}
+
+.inner-wrap {
+    width: 100vw;
+    margin: 0;
+}
+
+.gTitre {
+    font-family: var(--police-animation);
+    font-size: 5vw;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--provence-sable);
+    white-space: nowrap;
+}
+
+.line-flex {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.split {
+    display: inline-block;
+    will-change: transform;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   ANIMATIONS AU DÉFILEMENT (REVEAL)
+   ========================================================================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   FILTRES PORTFOLIO
+   ========================================================================== */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--provence-violet);
+    color: var(--couleur-texte);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-family: var(--police-titre);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--provence-violet);
+    color: #fff;
+}
+
+/* ==========================================================================
+   5. GRILLE PROJETS
+   ========================================================================== */
+.podcast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card-podcast {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: var(--couleur-fond);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    cursor: pointer;
+    text-decoration: none; /* For anchor tags */
+    color: inherit; /* For anchor tags */
+}
+
+[data-theme="dark"] .card-podcast {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-podcast:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(124, 58, 237, 0.15);
+}
+
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-podcast:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.badges-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    z-index: 2;
+}
+
+.date-badge {
+    background: rgba(124, 58, 237, 0.9);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-family: var(--police-titre);
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+}
+
+/* ==========================================================================
+   6. FOOTER FANCY
+   ========================================================================== */
+.fancy-footer {
+    position: relative;
+    width: 100%;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    color: var(--couleur-texte);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2vw;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.fancy-footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2.5rem;
+    flex: 1;
+}
+
+.fancy-footer .col2,
+.fancy-footer .col3 {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .fancy-footer .col2,
+[data-theme="dark"] .fancy-footer .col3 {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-logo {
+    font-family: var(--police-titre);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--provence-violet);
+    margin-bottom: 0.5rem;
+}
+
+.footer-sub {
+    font-size: 1.1rem;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 1.5rem;
+}
+
+.social a {
+    color: var(--couleur-texte);
+    font-size: 1.5rem;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social a:hover {
+    color: var(--provence-violet);
+}
+
+.link-act {
+    color: var(--couleur-texte);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.link-act:hover {
+    color: var(--provence-violet);
+}
+
+@media screen and (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* ==========================================================================
+   7. STYLES NOTION (Contenu Généré)
+   ========================================================================== */
+
+/* Étape 1 : Structure et Mise en page */
+.notion-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 25px;
+    align-items: stretch;
+}
+
+.notion-col {
+    flex: 1;
+    min-width: 280px;
+    /* Casse l'alignement sur mobile */
+}
+
+/* Étape 2 : Typographie et Enrichissement */
+.projet-content h1,
+.projet-content h2,
+.projet-content h3 {
+    font-family: var(--police-titre);
+    color: var(--couleur-texte);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .projet-content h1,
+[data-theme="dark"] .projet-content h2,
+[data-theme="dark"] .projet-content h3 {
+    color: #FFFFFF;
+}
+
+.projet-content p {
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.projet-content strong {
+    color: var(--provence-violet);
+    font-weight: 700;
+}
+
+.projet-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.projet-content ul li {
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.projet-content ul li::before {
+    content: "•";
+    color: var(--provence-bleu);
+    position: absolute;
+    left: -10px;
+    font-weight: bold;
+}
+
+.projet-content blockquote {
+    border-left: 4px solid var(--provence-violet);
+    padding-left: 20px;
+    margin: 25px 0;
+    font-style: italic;
+    color: var(--couleur-texte-secondaire);
+    background: rgba(124, 58, 237, 0.05);
+    padding: 15px 20px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Étape 3 : Médias et Projets Techniques */
+.projet-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .projet-content img {
+    filter: brightness(0.9);
+    /* Légère gestion de la luminosité en mode sombre */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.projet-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95rem;
+}
+
+.projet-content th,
+.projet-content td {
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+[data-theme="dark"] .projet-content th,
+[data-theme="dark"] .projet-content td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projet-content th {
+    background-color: rgba(124, 58, 237, 0.05);
+    font-weight: 600;
+    color: var(--couleur-texte);
+}
+
+.projet-content tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .projet-content tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.projet-content a {
+    color: var(--provence-bleu);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.projet-content a:hover {
+    color: var(--provence-vert);
+    border-bottom: 1px solid var(--provence-vert);
+}
+
+.projet-content pre {
+    background-color: #1A1A2E;
+    color: #A3E635;
+    /* Vert terminal */
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 25px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.projet-content code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(124, 58, 237, 0.1);
+    color: var(--provence-violet);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.projet-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* ==========================================================================
+   SOMMAIRE FLOTTANT (STYLE NOTION)
+   ========================================================================== */
+.sommaire-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    z-index: 100;
+}
+
+.sommaire-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sommaire-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    height: 10px;
+}
+
+.sommaire-line {
+    display: inline-block;
+    height: 3px;
+    background-color: #5F5E59;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Mode sombre */
+body.dark-theme .sommaire-line,
+.dark-theme .sommaire-line {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sommaire-item.active .sommaire-line {
+    background-color: var(--provence-violet) !important;
+}
+
+.sommaire-item:hover .sommaire-line {
+    background-color: var(--provence-violet) !important;
+}
+
+/* Tailles de ligne selon le niveau de titre */
+.sommaire-item[data-level="1"] .sommaire-line {
+    width: 30px;
+}
+
+.sommaire-item[data-level="2"] .sommaire-line {
+    width: 22px;
+}
+
+.sommaire-item[data-level="3"] .sommaire-line {
+    width: 14px;
+}
+
+.sommaire-item[data-level="4"] .sommaire-line {
+    width: 8px;
+}
+
+.sommaire-text {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--couleur-texte);
+    white-space: nowrap;
+    position: absolute;
+    left: 40px;
+    /* Décalage de base par rapport aux lignes */
+}
+
+/* Indentation du texte selon le niveau */
+.sommaire-item[data-level="1"] .sommaire-text {
+    margin-left: 0px;
+    font-weight: bold;
+}
+
+.sommaire-item[data-level="2"] .sommaire-text {
+    margin-left: 10px;
+}
+
+.sommaire-item[data-level="3"] .sommaire-text {
+    margin-left: 20px;
+}
+
+.sommaire-item[data-level="4"] .sommaire-text {
+    margin-left: 30px;
+}
+
+.sommaire-container:hover .sommaire-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.sommaire-item:hover .sommaire-text {
+    color: var(--provence-violet);
+}
+
+@media (max-width: 1200px) {
+    .sommaire-container {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   BLOCS DE CODE (HIGHLIGHT.JS)
+   ========================================================================== */
+pre {
+    background: #1e1e1e !important;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+}
+
+code {
+    font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Services | Objex3D</title>
+
+    <!-- Locomotive Scroll Removed -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../photo/logo_vecteur_violet_électrique.svg" />
+    <link rel="stylesheet" href="../style/style.css">
+
+    <style>
+        .contact-card {
+            background: var(--couleur-fond);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            font-family: inherit;
+        }
+
+        [data-theme="dark"] .form-control {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .notice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto 80px;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .notice-img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            background: #000000;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../photo/logo_vecteur_blanc.svg" alt="Logo Objex3D" style="height: 50px;">
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="menu-droite">
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="portfolio.html">Mes Projets</a></li>
+                <li><a href="services.html" style="color: var(--provence-violet);">Mes Services</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="../en/pages/services.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a></li>
+                <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Header Page -->
+        <section class="section-titre-geants reveal-on-scroll" style="position: relative; padding-top: 15vw; min-height: 50vh; display: flex; align-items: center; background: url('../jakub-zerdzicki-zC17GMIaGjE-unsplash.jpg') center/cover no-repeat;">
+            <div class="inner-wrap" style="position: relative; z-index: 1;">
+                <div class="gTitre">
+                    <div class="line-flex">
+                        <span class="gTitre split">EXPÉRIENCES ET</span>
+                    </div>
+                    <div class="line-flex">
+                        <span class="gTitre split">PROJETS PROS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="p60" style="min-height: 50vh;">
+            <div class="notice-container reveal-on-scroll">
+                <img src="../photo/photo_notice/la_.svg" alt="Image de la Notice" class="notice-img" loading="lazy" />
+                <a href="../fichier/notice blanc.pdf" class="btn-brutal" target="_blank">
+                    <i class="fa-solid fa-download"></i> Télécharger la notice en PDF !!!
+                </a>
+            </div>
+
+            <div class="contact-card reveal-on-scroll">
+                <h2 style="font-family: var(--police-titre); font-size: 2.5rem; margin-bottom: 30px;">Contactez-moi</h2>
+                <form id="contactForm" action="mailto:objex3d@gmail.com?subject=Demande%20pro" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Pseudo:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Numéro:</label>
+                        <input type="number" id="number" name="number" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Commentaire:</label>
+                        <textarea id="comment" name="comment" rows="4" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-brutal" style="width: 100%; border: none; cursor: pointer; font-size: 1.2rem; margin-top: 10px;">
+                        <i class="fa-solid fa-paper-plane"></i> Envoyer
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer Fancy -->
+        <section class="footer fancy-footer reveal-on-scroll" id="footer">
+            <div class="footer-backdrop"></div>
+            <div class="footer-content">
+                <div class="col col1">
+                    <h3 class="footer-logo">Objex3D</h3>
+                    <p class="footer-sub">Robin Jallade</p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/objex.3d/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col col2">
+                    <p style="margin-bottom: 25px;"><b>Catégories</b></p>
+                    <p><a class="link-act" href="portfolio.html">Mes Projets</a></p>
+                    <p><a class="link-act" href="services.html">Mes Services</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

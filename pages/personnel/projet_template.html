@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITRE}} | Objex3D</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="shortcut icon" href="../../../photo/logo_vecteur_violet_électrique.svg" />
+    <link rel="stylesheet" href="../../../style/style.css">
+
+    <style>
+        .projet-header {
+            padding-top: 15vw;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .projet-header-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.3;
+        }
+        .projet-header-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, var(--couleur-fond), transparent, var(--couleur-fond));
+            z-index: -1;
+        }
+        .projet-title {
+            font-family: var(--police-titre);
+            font-size: 5rem;
+            color: var(--provence-violet);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .projet-meta {
+            text-align: center;
+            color: var(--couleur-texte-secondaire);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .projet-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .projet-content img {
+            max-width: 100%;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .projet-content h1, .projet-content h2, .projet-content h3 {
+            font-family: var(--police-titre);
+            color: var(--couleur-texte);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../../../index.html">
+                <img src="../../../photo/logo_vecteur_blanc.svg" alt="Logo Objex3D" style="height: 50px;">
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="menu-droite">
+            <ul>
+                <li><a href="../../../index.html">Accueil</a></li>
+                <li><a href="../../portfolio.html" style="color: var(--provence-violet);">Mes Projets</a></li>
+                <li><a href="../../services.html">Mes Services</a></li>
+                <li><a href="../../Contact.html">Contact</a></li>
+                <li><a href="../../../en/index.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a></li>
+                <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {{SOMMAIRE}}
+
+    <main>
+        <section class="projet-header">
+            <img src="{{IMAGE}}" alt="Background" class="projet-header-bg">
+            <div class="projet-header-overlay"></div>
+            <div style="z-index: 1;">
+                <h1 class="projet-title">{{TITRE}}</h1>
+                <div class="projet-meta">
+                    <span><i class="fa-regular fa-calendar"></i> {{DATE}}</span>
+                    <span style="margin-left: 20px;">{{CATEGORIES}}</span>
+                </div>
+                <div class="projet-description" style="text-align: center; max-width: 700px; margin: 0 auto; margin-top: 20px; font-size: 1.1rem; opacity: 0.8; font-style: italic;">
+                    {{DESCRIPTION}}
+                </div>
+            </div>
+        </section>
+
+        <section class="projet-content">
+            {{CONTENU}}
+        </section>
+
+        <section class="p60 reveal-on-scroll" style="text-align: center;">
+            <a href="../../portfolio.html" class="btn-brutal"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
+        </section>
+
+        <!-- Footer Fancy -->
+        <section class="footer fancy-footer reveal-on-scroll" id="footer">
+            <div class="footer-backdrop"></div>
+            <div class="footer-content">
+                <div class="col col1">
+                    <h3 class="footer-logo">Objex3D</h3>
+                    <p class="footer-sub">Robin Jallade</p>
+                </div>
+                <div class="col col2">
+                    <p style="margin-bottom: 25px;"><b>Catégories</b></p>
+                    <p><a class="link-act" href="../../portfolio.html">Mes Projets</a></p>
+                    <p><a class="link-act" href="../../services.html">Mes Services</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../../js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sommaireItems = document.querySelectorAll('.sommaire-item');
+            if (sommaireItems.length > 0) {
+                // Smooth scroll au clic
+                sommaireItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const targetId = item.getAttribute('data-target');
+                        const targetEl = document.getElementById(targetId);
+                        if (targetEl) {
+                            const y = targetEl.getBoundingClientRect().top + window.scrollY - 100;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                    });
+                });
+
+                // Activer le bon sommaire-item en scrollant
+                window.addEventListener('scroll', () => {
+                    let activeItem = null;
+                    sommaireItems.forEach(item => {
+                        const targetId = item.getAttribute('data-target');
+                        const targetEl = document.getElementById(targetId);
+                        if (targetEl) {
+                            const top = targetEl.getBoundingClientRect().top;
+                            if (top <= window.innerHeight * 0.4) {
+                                activeItem = item;
+                            }
+                        }
+                    });
+
+                    sommaireItems.forEach(item => item.classList.remove('active'));
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    } else if (sommaireItems.length > 0 && window.scrollY < 200) {
+                        sommaireItems[0].classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
