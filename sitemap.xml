@@ -4,99 +4,56 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
+<!-- Version FR -->
 <url>
   <loc>https://robinjallade.com/index.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://robinjallade.com/pages/Educatif</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://robinjallade.com/pages/portfolio.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
 </url>
 <url>
-  <loc>https://robinjallade.com/pages/Professionnel.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/personnel.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
+  <loc>https://robinjallade.com/pages/services.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://robinjallade.com/pages/Contact.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/fichier/CV_JALLADE_Robin.pdf</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet1.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet3.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/concevoir/Concevoir.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet4.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet2.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/Educatif.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/fichier/notice.pdf</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/verifier/Verifier.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/a%C3%AFe.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/fichier/notice%20blanc.pdf</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet5.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://robinjallade.com/pages/personnel/projets/projet6.html</loc>
-  <lastmod>2025-01-05T02:33:47+00:00</lastmod>
-  <priority>0.64</priority>
 </url>
 
+<!-- Version EN -->
+<url>
+  <loc>https://robinjallade.com/en/index.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://robinjallade.com/en/pages/portfolio.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://robinjallade.com/en/pages/services.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+<url>
+  <loc>https://robinjallade.com/en/pages/Contact.html</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.70</priority>
+</url>
+
+<!-- Fichiers -->
+<url>
+  <loc>https://robinjallade.com/fichier/CV_JALLADE_Robin.pdf</loc>
+  <lastmod>2026-07-07T00:00:00+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
 
 </urlset>
