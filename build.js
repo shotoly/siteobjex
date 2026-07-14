@@ -10,6 +10,15 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 const parentPageId = process.env.NOTION_DB_PERSONNEL;
 
+function slugify(text) {
+    return text.toString().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, "") // Enlever les accents
+        .replace(/\s+/g, '-')           // Remplacer les espaces par -
+        .replace(/[^\w-]+/g, '')       // Supprimer les caractères non-alphanumériques
+        .replace(/--+/g, '-')         // Éviter les tirets multiples
+        .replace(/^-+|-+$/g, '');      // Enlever les tirets au début et à la fin
+}
+
 // --- COLONNES NOTION ---
 n2m.setCustomTransformer('column_list', async (block) => {
     const { results } = await notion.blocks.children.list({ block_id: block.id });
@@ -198,7 +207,7 @@ n2m.setCustomTransformer('file', async (block) => {
     }
     if (!url) return '';
     
-    if (file.name && file.name.toLowerCase().endsWith('.pdf')) {
+    if (file.name?.toLowerCase().endsWith('.pdf')) {
         return `\n<div class="notion-pdf-wrapper" style="width: 100%; height: 80vh; min-height: 600px; margin: 40px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.06);"><iframe class="notion-pdf-iframe" src="${url}" style="width: 100%; height: 100%; border: none;"></iframe></div>\n`;
     }
 
@@ -290,7 +299,7 @@ async function processInternalPdfs(contenuHtml, id, titre, subfolder) {
 }
 
 function processGoogleDriveLinks(contenuHtml) {
-    const regex = /<a[^>]*href="(https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)[^"]*)"[^>]*>.*?<\/a>/g;
+    const regex = /<a\b[^>]*\bhref="(https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)[^"]*)"[^>]*>.*?<\/a>/g;
     return contenuHtml.replaceAll(regex, (match, url, fileId) => {
         return `\n<div class="notion-video-wrapper"><iframe src="https://drive.google.com/file/d/${fileId}/preview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>\n`;
     });
@@ -321,7 +330,7 @@ function checkFailedIntegrations(contenuHtml, titre) {
         'spotify.com', 'deezer.com', 'soundcloud.com', 'apple.com', 'sketchfab.com'
     ];
     
-    const regex = /<a\s+([^>]*\s+)?href="([^"]+)"/gi;
+    const regex = /<a\b[^>]*\bhref="([^"]+)"/gi;
     let match;
     while ((match = regex.exec(contenuHtml)) !== null) {
         const fullTag = match[0];
@@ -370,7 +379,7 @@ function groupSocialLinks(contenuHtml) {
         });
     }
 
-    const broadRe = /(?:<[^>]+>|\s)*(?:<!--SOCIAL_LINK_START-->.*?<!--SOCIAL_LINK_END-->)+(?:<[^>]+>|\s)*/gi;
+    const broadRe = /(?:<p>\s*)?(?:<!--SOCIAL_LINK_START-->.*?<!--SOCIAL_LINK_END-->)+(?:\s*<\/p>)?/gi;
     contenuHtml = contenuHtml.replaceAll(broadRe, (match) => {
         const links = [];
         const linkRe = /<!--SOCIAL_LINK_START-->(.*?)<!--SOCIAL_LINK_END-->/g;
@@ -386,7 +395,117 @@ function groupSocialLinks(contenuHtml) {
     return contenuHtml;
 }
 
+async function processMermaid(contenuHtml, id, titre, subfolder) {
+    const regex = /<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/gi;
+    const matches = [...contenuHtml.matchAll(regex)];
+    let newContenuHtml = contenuHtml;
+    
+    let mermaidIndex = 0;
+    for (const match of matches) {
+        mermaidIndex++;
+        let code = match[1];
+        
+        let decodedCode = code
+            .replaceAll('&amp;', '&')
+            .replaceAll('&lt;', '<')
+            .replaceAll('&gt;', '>')
+            .replaceAll('&quot;', '"')
+            .replaceAll('&#39;', "'");
+
+        // Optimisation en largeur: forcer l'orientation Left-to-Right
+        decodedCode = decodedCode.replace(/^(flowchart|graph)\s+TD\b/m, '$1 LR');
+
+        const imgUrlRegex = /(https?:\/\/[^\s"'()<>]+)/g;
+        const urlMatches = [...decodedCode.matchAll(imgUrlRegex)];
+        
+        let imgIndex = 0;
+        for (const urlMatch of urlMatches) {
+            const originalUrl = urlMatch[1];
+            if (originalUrl.match(/\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i) || decodedCode.includes(`src="${originalUrl}"`) || decodedCode.includes(`image="${originalUrl}"`)) {
+                imgIndex++;
+                try {
+                    const urlObj = new URL(originalUrl);
+                    let ext = urlObj.pathname.split('.').pop();
+                    if (!ext || ext.length > 4 || !/^[a-zA-Z0-9]+$/.test(ext)) ext = 'png';
+                    const filename = `mermaid_${id}_${mermaidIndex}_${imgIndex}.${ext}`;
+                    const filepath = path.join(__dirname, 'photo', subfolder, filename);
+                    console.log(`\x1b[36m   Téléchargement de l'image Mermaid ${imgIndex} pour l'article ${titre}...\x1b[0m`);
+                    await downloadImage(originalUrl, filepath);
+                    const localUrl = `../../../photo/${subfolder}/${filename}`;
+                    decodedCode = decodedCode.split(originalUrl).join(localUrl);
+                } catch (err) {
+                    console.error(`\x1b[31m   Erreur lors du téléchargement de l'image Mermaid ${imgIndex} pour ${titre}:\x1b[0m`, err.message);
+                }
+            }
+        }
+
+        const replacement = `\n<div class="mermaid-wrapper"><div class="mermaid">\n${decodedCode}\n</div></div>\n`;
+        newContenuHtml = newContenuHtml.replace(match[0], replacement);
+    }
+    return newContenuHtml;
+}
+
 // --- TRAITEMENT D'UNE PAGE ---
+function extractTags(page) {
+    let tagsArray = [];
+    const propEtiq = page.properties["Étiquettes"] || page.properties["Catégorie"] || page.properties["Categorie"];
+    if (propEtiq?.status) tagsArray.push(propEtiq.status.name);
+    else if (propEtiq?.select) tagsArray.push(propEtiq.select.name);
+    else if (propEtiq?.multi_select && propEtiq.multi_select.length > 0) tagsArray.push(...propEtiq.multi_select.map(e => e.name));
+
+    const propSelect = page.properties["select"] || page.properties["Select"];
+    if (propSelect?.multi_select && propSelect.multi_select.length > 0) {
+        tagsArray.push(...propSelect.multi_select.map(e => e.name));
+    } else if (propSelect?.select) {
+        tagsArray.push(propSelect.select.name);
+    }
+    return [...new Set(tagsArray.filter(Boolean))];
+}
+
+function generateSommaire(contenuHtml) {
+    let sommaireHtml = "";
+    const headings = [];
+    let headingIndex = 0;
+    const seenIds = new Set();
+    
+    const headingRegex = /<(h[1-4])([^>]*)>(.*?)<\/\1>/gi;
+    let newContenuHtml = contenuHtml.replace(headingRegex, (match, tag, attrs, content) => {
+        headingIndex++;
+        const level = Number.parseInt(tag[1]);
+        let safeText = content.replace(/<[^>]+>/g, '').trim();
+        let id = safeText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        if (!id) id = `heading-${headingIndex}`;
+        
+        let originalId = id;
+        let counter = 1;
+        while (seenIds.has(id)) {
+            id = `${originalId}-${counter}`;
+            counter++;
+        }
+        seenIds.add(id);
+        
+        if (!attrs.includes('id=')) {
+            attrs = `${attrs} id="${id}"`;
+        } else {
+            attrs = attrs.replace(/id="[^"]*"/, `id="${id}"`);
+        }
+        headings.push({ level, id, text: safeText });
+        return `<${tag}${attrs}>${content}</${tag}>`;
+    });
+    
+    if (headings.length > 0) {
+        sommaireHtml = `\n<div class="sommaire-container">\n  <div class="sommaire-wrapper">\n`;
+        for (const h of headings) {
+            sommaireHtml += `    <div class="sommaire-item" data-level="${h.level}" data-target="${h.id}">\n`;
+            sommaireHtml += `      <span class="sommaire-line"></span>\n`;
+            sommaireHtml += `      <span class="sommaire-text">${h.text}</span>\n`;
+            sommaireHtml += `    </div>\n`;
+        }
+        sommaireHtml += `  </div>\n</div>\n`;
+    }
+    return { newContenuHtml, sommaireHtml };
+}
+
 async function processPage(page, index, total, category, subfolder) {
     const id = page.id;
     const prefix = `[${category}/${subfolder}] [${index}/${total}]`;
@@ -398,24 +517,13 @@ async function processPage(page, index, total, category, subfolder) {
     }
 
     const titre = page.properties["Nom"]?.title?.[0]?.plain_text || "Sans titre";
+    const slug = slugify(titre) || id;
     console.log(`\x1b[34m${prefix} Traitement : "${titre}"\x1b[0m`);
 
     try {
         const date = page.properties["Date"]?.date?.start || "";
         
-        let tagsArray = [];
-        const propEtiq = page.properties["Étiquettes"] || page.properties["Catégorie"] || page.properties["Categorie"];
-        if (propEtiq?.status) tagsArray.push(propEtiq.status.name);
-        else if (propEtiq?.select) tagsArray.push(propEtiq.select.name);
-        else if (propEtiq?.multi_select && propEtiq.multi_select.length > 0) tagsArray.push(...propEtiq.multi_select.map(e => e.name));
-
-        const propSelect = page.properties["select"] || page.properties["Select"];
-        if (propSelect?.multi_select && propSelect.multi_select.length > 0) {
-            tagsArray.push(...propSelect.multi_select.map(e => e.name));
-        } else if (propSelect?.select) {
-            tagsArray.push(propSelect.select.name);
-        }
-        tagsArray = [...new Set(tagsArray.filter(t => t))];
+        const tagsArray = extractTags(page);
 
         const getColorForTag = (tag) => {
             const palette = [
@@ -426,7 +534,7 @@ async function processPage(page, index, total, category, subfolder) {
             ];
             let hash = 0;
             for (let i = 0; i < tag.length; i++) {
-                hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+                hash = tag.codePointAt(i) + ((hash << 5) - hash);
             }
             hash = Math.abs(hash);
             return palette[hash % palette.length];
@@ -460,6 +568,7 @@ async function processPage(page, index, total, category, subfolder) {
         let contenuHtml = marked.parse(texteMarkdown);
 
         // Nouveaux traitements sur le contenu HTML
+        contenuHtml = await processMermaid(contenuHtml, id, titre, subfolder);
         contenuHtml = await processInternalImages(contenuHtml, id, titre, subfolder);
         contenuHtml = await processInternalPdfs(contenuHtml, id, titre, subfolder);
         contenuHtml = groupSocialLinks(contenuHtml);
@@ -468,63 +577,26 @@ async function processPage(page, index, total, category, subfolder) {
         contenuHtml = processNativeVideoLinks(contenuHtml);
         checkFailedIntegrations(contenuHtml, titre);
 
-        let sommaireHtml = "";
-        const headings = [];
-        let headingIndex = 0;
-        const seenIds = new Set();
-        
-        const headingRegex = /<(h[1-4])([^>]*)>(.*?)<\/\1>/gi;
-        contenuHtml = contenuHtml.replace(headingRegex, (match, tag, attrs, content) => {
-            headingIndex++;
-            const level = parseInt(tag[1]);
-            let safeText = content.replace(/<[^>]+>/g, '').trim();
-            let id = safeText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-            if (!id) id = `heading-${headingIndex}`;
-            
-            let originalId = id;
-            let counter = 1;
-            while (seenIds.has(id)) {
-                id = `${originalId}-${counter}`;
-                counter++;
-            }
-            seenIds.add(id);
-            
-            if (!attrs.includes('id=')) {
-                attrs = `${attrs} id="${id}"`;
-            } else {
-                attrs = attrs.replace(/id="[^"]*"/, `id="${id}"`);
-            }
-            headings.push({ level, id, text: safeText });
-            return `<${tag}${attrs}>${content}</${tag}>`;
-        });
-        
-        if (headings.length > 0) {
-            sommaireHtml = `\n<div class="sommaire-container">\n  <div class="sommaire-wrapper">\n`;
-            for (const h of headings) {
-                sommaireHtml += `    <div class="sommaire-item" data-level="${h.level}" data-target="${h.id}">\n`;
-                sommaireHtml += `      <span class="sommaire-line"></span>\n`;
-                sommaireHtml += `      <span class="sommaire-text">${h.text}</span>\n`;
-                sommaireHtml += `    </div>\n`;
-            }
-            sommaireHtml += `  </div>\n</div>\n`;
-        }
+        const resultSommaire = generateSommaire(contenuHtml);
+        contenuHtml = resultSommaire.newContenuHtml;
+        let sommaireHtml = resultSommaire.sommaireHtml;
 
         // Template HTML (uniquement pour les pages statiques générées)
         const templatePath = path.join(__dirname, 'pages', 'personnel', 'projet_template.html');
         if (fs.existsSync(templatePath)) {
             let template = fs.readFileSync(templatePath, 'utf8');
-            template = template.replace(/{{TITRE}}/g, titre)
-                               .replace(/{{IMAGE}}/g, image)
-                               .replace(/{{DATE}}/g, date)
-                               .replace(/{{CATEGORIES}}/g, categoriesHtml)
-                               .replace(/{{DESCRIPTION}}/g, description)
-                               .replace(/{{SOMMAIRE}}/g, sommaireHtml)
-                               .replace(/{{CONTENU}}/g, contenuHtml);
+            template = template.replaceAll('{{TITRE}}', titre)
+                               .replaceAll('{{IMAGE}}', image)
+                               .replaceAll('{{DATE}}', date)
+                               .replaceAll('{{CATEGORIES}}', categoriesHtml)
+                               .replaceAll('{{DESCRIPTION}}', description)
+                               .replaceAll('{{SOMMAIRE}}', sommaireHtml)
+                               .replaceAll('{{CONTENU}}', contenuHtml);
 
             const outDir = path.join(__dirname, 'pages', category, subfolder);
             if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
             
-            const outPath = path.join(outDir, `${id}.html`);
+            const outPath = path.join(outDir, `${slug}.html`);
             fs.writeFileSync(outPath, template);
         }
 
@@ -538,7 +610,7 @@ async function processPage(page, index, total, category, subfolder) {
             image: imageForJson,
             imageVinyl: imageVinyl ? imageVinyl.replace("../../../", "../../") : null,
             audio: audioUrl,
-            url: `${subfolder}/${id}.html`,
+            url: `${subfolder}/${slug}.html`,
             contenu: contenuHtml,
             accueil: estAfficheAccueil,
             markdown: texteMarkdown
@@ -549,6 +621,54 @@ async function processPage(page, index, total, category, subfolder) {
         console.error(`\x1b[31m❌ ${prefix} Erreur sur "${titre}" : ${error.message}\x1b[0m`);
         return { status: 'error', error };
     }
+}
+
+async function processDatabase(dbBlock) {
+    const title = dbBlock.child_database.title.toLowerCase();
+    let category = 'personnel';
+    let subfolder = 'projets';
+    
+    if (title.includes('portfolio') || title.includes('educatif')) {
+        category = 'educatif';
+        subfolder = 'portfolios';
+    }
+
+    console.log(`\n\x1b[35m--- 📥 Traitement de la base de données : ${dbBlock.child_database.title} (${category}/${subfolder}) ---\x1b[0m`);
+    
+    const dbResponse = await notion.databases.query({
+        database_id: dbBlock.id,
+        sorts: [{ property: 'Date', direction: 'descending' }],
+    });
+
+    const total = dbResponse.results.length;
+    console.log(`\x1b[36mTotal trouvé dans "${dbBlock.child_database.title}" : ${total} pages.\x1b[0m\n`);
+
+    const articles = [];
+    let successCount = 0;
+    let errorCount = 0;
+    let ignoredCount = 0;
+
+    for (let i = 0; i < total; i++) {
+        const page = dbResponse.results[i];
+        const result = await processPage(page, i + 1, total, category, subfolder);
+        
+        if (result.status === 'success') {
+            articles.push(result.data);
+            successCount++;
+        } else if (result.status === 'ignored') {
+            ignoredCount++;
+        } else if (result.status === 'error') {
+            errorCount++;
+        }
+    }
+
+    const categoryDir = path.join(__dirname, 'pages', category);
+    if (!fs.existsSync(categoryDir)) fs.mkdirSync(categoryDir, { recursive: true });
+    
+    const jsonPath = path.join(categoryDir, 'donnees.json');
+    fs.writeFileSync(jsonPath, JSON.stringify(articles, null, 2));
+
+    return { total, successCount, errorCount, ignoredCount };
 }
 
 // --- FONCTION PRINCIPALE ---
@@ -571,50 +691,11 @@ async function fetchNotionData() {
         let globalIgnoredCount = 0;
 
         for (const dbBlock of databases) {
-            const title = dbBlock.child_database.title.toLowerCase();
-            let category = 'personnel';
-            let subfolder = 'projets';
-            
-            if (title.includes('portfolio') || title.includes('educatif')) {
-                category = 'educatif';
-                subfolder = 'portfolios';
-            } else if (title.includes('projet')) {
-                category = 'personnel';
-                subfolder = 'projets';
-            }
-
-            console.log(`\n\x1b[35m--- 📥 Traitement de la base de données : ${dbBlock.child_database.title} (${category}/${subfolder}) ---\x1b[0m`);
-            
-            const dbResponse = await notion.databases.query({
-                database_id: dbBlock.id,
-                sorts: [{ property: 'Date', direction: 'descending' }],
-            });
-
-            const total = dbResponse.results.length;
-            totalProcessed += total;
-            console.log(`\x1b[36mTotal trouvé dans "${dbBlock.child_database.title}" : ${total} pages.\x1b[0m\n`);
-
-            const articles = [];
-
-            for (let i = 0; i < total; i++) {
-                const page = dbResponse.results[i];
-                const result = await processPage(page, i + 1, total, category, subfolder);
-                
-                if (result.status === 'success') {
-                    articles.push(result.data);
-                    globalSuccessCount++;
-                } else if (result.status === 'ignored') {
-                    globalIgnoredCount++;
-                } else if (result.status === 'error') {
-                    globalErrorCount++;
-                }
-            }
-
-            const categoryDir = path.join(__dirname, 'pages', category);
-            if (!fs.existsSync(categoryDir)) fs.mkdirSync(categoryDir, { recursive: true });
-            
-            const jsonPath = path.join(categoryDir, 'donnees.json');
-            fs.writeFileSync(jsonPath, JSON.stringify(articles, null, 2));
+            const stats = await processDatabase(dbBlock);
+            totalProcessed += stats.total;
+            globalSuccessCount += stats.successCount;
+            globalErrorCount += stats.errorCount;
+            globalIgnoredCount += stats.ignoredCount;
         }
         
         const duration = ((Date.now() - startTime) / 1000).toFixed(2);

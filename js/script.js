@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.dataset.theme = 'dark';
         if (iconTheme) {
             iconTheme.classList.remove('fa-moon');
             iconTheme.classList.add('fa-sun');
@@ -80,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const currentTheme = document.documentElement.dataset.theme;
             if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
+                delete document.documentElement.dataset.theme;
                 localStorage.setItem('theme', 'light');
                 iconTheme.classList.remove('fa-sun');
                 iconTheme.classList.add('fa-moon');
             } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.dataset.theme = 'dark';
                 localStorage.setItem('theme', 'dark');
                 iconTheme.classList.remove('fa-moon');
                 iconTheme.classList.add('fa-sun');
@@ -100,29 +100,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectCards = document.querySelectorAll('.card-podcast');
 
     if (filterBtns.length > 0 && projectCards.length > 0) {
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
+        function applyFilter(btn) {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                const filterValue = btn.getAttribute('data-filter');
+            const filterValue = btn.dataset.filter;
 
-                projectCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filterValue === 'tous' || filterValue === category) {
-                        card.style.display = 'flex';
-                        // Re-trigger animation
-                        card.classList.remove('is-visible');
-                        setTimeout(() => {
-                            card.classList.add('is-visible');
-                        }, 50);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+            projectCards.forEach(card => {
+                const category = card.dataset.category;
+                if (filterValue === 'tous' || filterValue === category) {
+                    card.style.display = 'flex';
+                    card.classList.remove('is-visible');
+                    setTimeout(() => {
+                        card.classList.add('is-visible');
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
             });
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => applyFilter(btn));
         });
     }
 });

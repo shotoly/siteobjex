@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{TITRE}} | Objex3D</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" integrity="sha384-oaMLBGEzBOJx3UHwac0cVndtX5fxGQIfnAeFZ35RTgqPcYlbprH9o9PUV/F8Le07" crossorigin="anonymous">
     <link rel="shortcut icon" href="../../../photo/logo_vecteur_violet_électrique.svg" />
     <link rel="stylesheet" href="../../../style/style.css">
 
@@ -21,19 +24,28 @@
             justify-content: center;
             position: relative;
         }
+
         .projet-header-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             z-index: -2;
             opacity: 0.3;
         }
+
         .projet-header-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(to bottom, var(--couleur-fond), transparent, var(--couleur-fond));
             z-index: -1;
         }
+
         .projet-title {
             font-family: var(--police-titre);
             font-size: 5rem;
@@ -41,12 +53,14 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
         .projet-meta {
             text-align: center;
             color: var(--couleur-texte-secondaire);
             font-size: 1.2rem;
             margin-bottom: 40px;
         }
+
         .projet-content {
             max-width: 900px;
             margin: 0 auto;
@@ -54,17 +68,177 @@
             font-size: 1.1rem;
             line-height: 1.8;
         }
+
         .projet-content img {
             max-width: 100%;
             border-radius: 20px;
             margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        .projet-content h1, .projet-content h2, .projet-content h3 {
+
+        .projet-content h1,
+        .projet-content h2,
+        .projet-content h3 {
             font-family: var(--police-titre);
             color: var(--couleur-texte);
             margin-top: 40px;
             margin-bottom: 20px;
+        }
+
+        /* Style pour l'afficheur Mermaid interactif */
+        .mermaid-wrapper {
+            position: relative;
+            width: 80vw;
+            left: 50%;
+            transform: translateX(-50%);
+            aspect-ratio: 16 / 9;
+            /* Format paysage large proportionnel */
+            max-height: 85vh;
+            min-height: 400px;
+            background-color: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin: 60px 0;
+            cursor: grab;
+        }
+
+        .mermaid-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .mermaid {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Customisation des labels (tags) Mermaid */
+        .edgeLabel {
+            background-color: #222222 !important;
+            color: #ffaa00 !important;
+            border: 1px solid #444 !important;
+            border-radius: 6px !important;
+            padding: 4px 10px !important;
+            font-family: var(--police-texte), sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
+            line-height: 1.2 !important;
+            box-sizing: border-box !important;
+            display: inline-block !important;
+        }
+
+        /* Empêcher les tags et images d'être coupés */
+        .node foreignObject,
+        .edgeLabel foreignObject,
+        .edgeTerminals foreignObject {
+            overflow: visible !important;
+        }
+
+        /* Cibler le vrai conteneur HTML pour forcer une boîte carrée plus petite (180x180) */
+        .node foreignObject>div {
+            width: 180px !important;
+            height: 180px !important;
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            white-space: normal !important;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 18px !important;
+        }
+
+        /* Masquer le saut de ligne forcé par Notion/Mermaid pour rapprocher le texte */
+        .node foreignObject br {
+            display: none;
+        }
+
+        /* Images de même taille, carrées avec un arrondi max 5px. Réduites proportionnellement (110px). */
+        .node foreignObject img {
+            width: 110px !important;
+            height: 110px !important;
+            object-fit: cover !important;
+            border-radius: 5px !important;
+            display: block;
+            margin: 0 auto 4px auto;
+            /* Marge réduite */
+            flex-shrink: 0 !important;
+            /* Empêche le flexbox d'écraser l'image sur les côtés */
+        }
+
+        /* Style des cartes / noeuds aléatoires */
+        .node rect,
+        .node polygon,
+        .node circle {
+            fill: #181818 !important;
+            stroke-width: 2px !important;
+            /* Bordure des cartes plus fine */
+        }
+
+        .node rect {
+            rx: 5px !important;
+            ry: 5px !important;
+        }
+
+        /* Épaissir les lignes de connexion */
+        .edgePath path {
+            stroke-width: 3px !important;
+        }
+
+        .node:nth-of-type(6n+1) rect,
+        .node:nth-of-type(6n+1) polygon,
+        .node:nth-of-type(6n+1) circle {
+            stroke: #00e5ff !important;
+        }
+
+        .node:nth-of-type(6n+2) rect,
+        .node:nth-of-type(6n+2) polygon,
+        .node:nth-of-type(6n+2) circle {
+            stroke: #ff007f !important;
+        }
+
+        .node:nth-of-type(6n+3) rect,
+        .node:nth-of-type(6n+3) polygon,
+        .node:nth-of-type(6n+3) circle {
+            stroke: #ffea00 !important;
+        }
+
+        .node:nth-of-type(6n+4) rect,
+        .node:nth-of-type(6n+4) polygon,
+        .node:nth-of-type(6n+4) circle {
+            stroke: #00e676 !important;
+        }
+
+        .node:nth-of-type(6n+5) rect,
+        .node:nth-of-type(6n+5) polygon,
+        .node:nth-of-type(6n+5) circle {
+            stroke: #d500f9 !important;
+        }
+
+        .node:nth-of-type(6n+6) rect,
+        .node:nth-of-type(6n+6) polygon,
+        .node:nth-of-type(6n+6) circle {
+            stroke: #ff9100 !important;
+        }
+
+        /* Boutons de zoom et reset (+, -, o) sans le surlignage gris */
+        #svg-pan-zoom-controls path {
+            fill: #ffffff !important;
+        }
+
+        .svg-pan-zoom-control-background {
+            fill: #222222 !important;
+            fill-opacity: 0.8 !important;
+            rx: 5px !important;
+            ry: 5px !important;
+        }
+
+        .svg-pan-zoom-control-element:hover .svg-pan-zoom-control-background {
+            fill: #444444 !important;
         }
     </style>
 </head>
@@ -85,7 +259,9 @@
                 <li><a href="../../portfolio.html" style="color: var(--provence-violet);">Mes Projets</a></li>
                 <li><a href="../../services.html">Mes Services</a></li>
                 <li><a href="../../Contact.html">Contact</a></li>
-                <li><a href="../../../en/index.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a></li>
+                <li><a href="../../../en/index.html"
+                        style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a>
+                </li>
                 <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
             </ul>
         </nav>
@@ -103,7 +279,8 @@
                     <span><i class="fa-regular fa-calendar"></i> {{DATE}}</span>
                     <span style="margin-left: 20px;">{{CATEGORIES}}</span>
                 </div>
-                <div class="projet-description" style="text-align: center; max-width: 700px; margin: 0 auto; margin-top: 20px; font-size: 1.1rem; opacity: 0.8; font-style: italic;">
+                <div class="projet-description"
+                    style="text-align: center; max-width: 700px; margin: 0 auto; margin-top: 20px; font-size: 1.1rem; opacity: 0.8; font-style: italic;">
                     {{DESCRIPTION}}
                 </div>
             </div>
@@ -114,7 +291,8 @@
         </section>
 
         <section class="p60 reveal-on-scroll" style="text-align: center;">
-            <a href="../../portfolio.html" class="btn-brutal"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
+            <a href="../../portfolio.html" class="btn-brutal"><i class="fa-solid fa-arrow-left"></i> Retour aux
+                projets</a>
         </section>
 
         <!-- Footer Fancy -->
@@ -142,7 +320,7 @@
                 // Smooth scroll au clic
                 sommaireItems.forEach(item => {
                     item.addEventListener('click', () => {
-                        const targetId = item.getAttribute('data-target');
+                        const targetId = item.dataset.target;
                         const targetEl = document.getElementById(targetId);
                         if (targetEl) {
                             const y = targetEl.getBoundingClientRect().top + window.scrollY - 100;
@@ -155,7 +333,7 @@
                 window.addEventListener('scroll', () => {
                     let activeItem = null;
                     sommaireItems.forEach(item => {
-                        const targetId = item.getAttribute('data-target');
+                        const targetId = item.dataset.target;
                         const targetEl = document.getElementById(targetId);
                         if (targetEl) {
                             const top = targetEl.getBoundingClientRect().top;
@@ -175,7 +353,46 @@
             }
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha384-g4mRvs7AO0/Ol5LxcGyz4Doe21pVhGNnC3EQw5shw+z+aXDN86HqUdwXWO+Gz2zI" crossorigin="anonymous"></script>
     <script>hljs.highlightAll();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js" integrity="sha384-WmdflGW9aGfoBdHc4rRyWzYuAjEmDwMdGdiPNacbwfGKxBW/SO6guzuQ76qjnSlr" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js" integrity="sha384-yc/c2Lk1s2V2ir1rxvjo8YyVD9PlOlYTqpNr3Wm1WIuAA30GlDYNx6U5104OiavY" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: 'dark',
+                flowchart: {
+                    curve: 'step',
+                    nodeSpacing: 30,
+                    rankSpacing: 40
+                }
+            });
+
+            const mermaidElements = document.querySelectorAll('.mermaid');
+            if (mermaidElements.length > 0) {
+                await mermaid.run({
+                    querySelector: '.mermaid',
+                    postRenderCallback: (id) => {
+                        const svg = document.getElementById(id);
+                        if (svg) {
+                            svg.style.width = '100%';
+                            svg.style.height = '100%';
+                            svg.style.maxWidth = 'none'; // Empêcher Mermaid de limiter la largeur de l'image
+                            svgPanZoom(svg, {
+                                zoomEnabled: true,
+                                controlIconsEnabled: true,
+                                fit: true,
+                                center: true,
+                                minZoom: 0.1,
+                                maxZoom: 10
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>

@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // Déterminer le préfixe vers la racine
-    const basePath = window.SITE_ROOT !== undefined ? window.SITE_ROOT : (window.location.pathname.includes('/pages/') ? "../" : "");
+    let basePath = "";
+    if (window.SITE_ROOT !== undefined) {
+        basePath = window.SITE_ROOT;
+    } else if (window.location.pathname.includes('/pages/')) {
+        basePath = "../";
+    }
 
     async function fetchAllProjects() {
         const persoUrl = basePath + "pages/personnel/donnees.json";
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ];
                 let hash = 0;
                 for (let i = 0; i < tag.length; i++) {
-                    hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+                    hash = tag.codePointAt(i) + ((hash << 5) - hash);
                 }
                 hash = Math.abs(hash);
                 let badgeColor = palette[hash % palette.length];
@@ -104,28 +108,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 3. Système de Filtrage Dynamique (Doit s'exécuter après l'injection)
     const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    function handleFilterClick(btn) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.dataset.filter;
+        const projectCards = document.querySelectorAll('.card-podcast');
+
+        projectCards.forEach(card => {
+            const category = card.dataset.category;
+            if (filterValue === 'tous' || filterValue === category) {
+                card.style.display = 'flex';
+                card.classList.remove('is-visible');
+                setTimeout(() => {
+                    card.classList.add('is-visible');
+                }, 50);
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filterValue = btn.getAttribute('data-filter');
-                const projectCards = document.querySelectorAll('.card-podcast');
-
-                projectCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filterValue === 'tous' || filterValue === category) {
-                        card.style.display = 'flex';
-                        card.classList.remove('is-visible');
-                        setTimeout(() => {
-                            card.classList.add('is-visible');
-                        }, 50);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
+            btn.addEventListener('click', () => handleFilterClick(btn));
         });
     }
 });
