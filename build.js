@@ -713,6 +713,7 @@ async function fetchNotionData() {
         }
         console.log(`\x1b[35m=========================================\x1b[0m\n`);
 
+        process.exit(0);
     } catch (err) {
         console.error(`\x1b[31m❌ Erreur critique lors du fetch initial :\x1b[0m`, err);
         process.exit(1);
