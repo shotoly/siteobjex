@@ -334,7 +334,7 @@ function checkFailedIntegrations(contenuHtml, titre) {
     let match;
     while ((match = regex.exec(contenuHtml)) !== null) {
         const fullTag = match[0];
-        const url = match[2];
+        const url = match[1];
         
         if (fullTag.includes('social-icon-link')) continue;
         
