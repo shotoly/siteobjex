@@ -138,6 +138,21 @@
             overflow: visible !important;
         }
 
+        /* Rendre l'intérieur des zones (subgraphs) transparent */
+        .cluster rect {
+            fill: transparent !important;
+            stroke: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* Rendre le fond des nœuds transparent (derrière les images) */
+        .node rect,
+        .node circle,
+        .node ellipse,
+        .node polygon,
+        .node path {
+            fill: transparent !important;
+        }
+
         /* Cibler le vrai conteneur HTML pour forcer une boîte carrée plus petite (180x180) */
         .node foreignObject>div {
             width: 180px !important;
@@ -150,6 +165,13 @@
             box-sizing: border-box;
             font-family: 'JetBrains Mono', monospace !important;
             font-size: 18px !important;
+            color: white !important;
+        }
+
+        /* Garantir que tout texte à l'intérieur des noeuds soit blanc */
+        .node foreignObject span, 
+        .node foreignObject div {
+            color: white !important;
         }
 
         /* Masquer le saut de ligne forcé par Notion/Mermaid pour rapprocher le texte */
@@ -174,7 +196,6 @@
         .node rect,
         .node polygon,
         .node circle {
-            fill: #181818 !important;
             stroke-width: 2px !important;
             /* Bordure des cartes plus fine */
         }
@@ -362,10 +383,16 @@
             mermaid.initialize({
                 startOnLoad: false,
                 theme: 'dark',
+                themeVariables: {
+                    mainBkg: 'transparent',
+                    nodeBkg: 'transparent',
+                    clusterBkg: 'transparent'
+                },
                 flowchart: {
                     curve: 'step',
-                    nodeSpacing: 30,
-                    rankSpacing: 40
+                    nodeSpacing: 100,
+                    rankSpacing: 120,
+                    padding: 50
                 }
             });
 

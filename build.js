@@ -220,7 +220,13 @@ async function downloadImage(url, filepath) {
         const dir = path.dirname(filepath);
         if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
         const file = fs.createWriteStream(filepath);
-        https.get(url, response => {
+        const options = {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+            }
+        };
+        const lib = url.startsWith('http://') ? require('http') : https;
+        lib.get(url, options, response => {
             if (response.statusCode >= 200 && response.statusCode < 300) {
                 response.pipe(file);
                 file.on('finish', () => { file.close(); resolve(filepath); });
@@ -412,8 +418,11 @@ async function processMermaid(contenuHtml, id, titre, subfolder) {
             .replaceAll('&quot;', '"')
             .replaceAll('&#39;', "'");
 
-        // Optimisation en largeur: forcer l'orientation Left-to-Right
-        decodedCode = decodedCode.replace(/^(flowchart|graph)\s+TD\b/m, '$1 LR');
+        // Optimisation en largeur: forcer l'orientation Left-to-Right (LR)
+        decodedCode = decodedCode.replace(/^(flowchart|graph)\s+(TD|TB)\b/mi, '$1 LR');
+        // Remplacer les couleurs de fond (fill) et texte (color) par transparent/blanc
+        decodedCode = decodedCode.replace(/((?:classDef|style)\s+\w+[^;\n]*?)(fill:\s*[^,;\n]+)/gi, '$1fill:transparent');
+        decodedCode = decodedCode.replace(/((?:classDef|style)\s+\w+[^;\n]*?)(color:\s*[^,;\n]+)/gi, '$1color:white');
 
         const imgUrlRegex = /(https?:\/\/[^\s"'()<>]+)/g;
         const urlMatches = [...decodedCode.matchAll(imgUrlRegex)];
@@ -421,7 +430,10 @@ async function processMermaid(contenuHtml, id, titre, subfolder) {
         let imgIndex = 0;
         for (const urlMatch of urlMatches) {
             const originalUrl = urlMatch[1];
-            if (originalUrl.match(/\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i) || decodedCode.includes(`src="${originalUrl}"`) || decodedCode.includes(`image="${originalUrl}"`)) {
+            if (originalUrl.match(/\.(png|jpe?g|gif|webp|svg|avif)(\?.*)?$/i) || 
+                decodedCode.includes(`src="${originalUrl}"`) || 
+                decodedCode.includes(`src='${originalUrl}'`) || 
+                decodedCode.includes(`image="${originalUrl}"`)) {
                 imgIndex++;
                 try {
                     const urlObj = new URL(originalUrl);
