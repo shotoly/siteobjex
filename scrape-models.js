@@ -1,5 +1,4 @@
 require('dotenv').config();
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -54,6 +53,14 @@ async function scrapeMakerWorld() {
     }
 
     console.log(`1. Lancement de Chrome...`);
+    let puppeteer;
+    try {
+        const puppeteerModule = await import('puppeteer');
+        puppeteer = puppeteerModule.default || puppeteerModule;
+    } catch {
+        puppeteer = require('puppeteer');
+    }
+
     // Le mode headless par défaut avec bons flags évite les détections anti-bot
     const isHeadless = process.env.HEADLESS !== 'false';
     const browser = await puppeteer.launch({

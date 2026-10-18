@@ -5,7 +5,6 @@ const { marked } = require('marked');
 const fs = require('node:fs');
 const https = require('node:https');
 const path = require('node:path');
-const { scrapeMakerWorld } = require('./scrape-models');
 
 const apiKey = process.env.NOTION_API_KEY;
 const parentPageId = process.env.NOTION_DB_PERSONNEL;
@@ -1306,12 +1305,13 @@ async function fetchNotionData() {
     if (shouldScrape) {
         try {
             console.log(`\n\x1b[36m🤖 Lancement du scraper MakerWorld (Puppeteer)...\x1b[0m`);
+            const { scrapeMakerWorld } = require('./scrape-models');
             await scrapeMakerWorld();
         } catch (scrapeErr) {
             console.warn(`\x1b[33m⚠️ Attention : Le scraper MakerWorld a rencontré une erreur (${scrapeErr.message}). Le build continue avec les données existantes.\x1b[0m`);
         }
     } else {
-        console.log(`\n\x1b[33m⏩ Scraping MakerWorld ignoré (mode build sécurisé/Render par défaut. Utilisez --scrape pour forcer).\x1b[0m`);
+        console.log(`\n\x1b[33m⚡ Scraping MakerWorld ignoré (mode build sécurisé/Render par défaut. Utilisez --scrape pour forcer).\x1b[0m`);
     }
 
     // 1. DÉCOUVERTE ET TRAITEMENT VIA LA PAGE PARENTE NOTION
