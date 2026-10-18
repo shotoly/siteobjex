@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil | Objex3D</title>
+
+    <!-- Locomotive Scroll Removed -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" href="photo/logo_vecteur_violet_électrique.svg" />
+    <link rel="stylesheet" href="style/style.css">
+
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <!-- Using original logo or text -->
+                <img src="photo/logo_vecteur_blanc.svg" alt="Logo Objex3D" style="height: 50px;">
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="menu-droite">
+            <ul>
+                <li><a href="index.html" style="color: var(--provence-violet);">Accueil</a></li>
+                <li><a href="pages/portfolio.html">Mes Projets</a></li>
+                <li><a href="pages/services.html">Mes Services</a></li>
+                <li><a href="pages/Contact.html">Contact</a></li>
+                <li><a href="en/index.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">EN</a></li>
+                <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section Hero -->
+        <section id="hero">
+            <video src="https://pub-31f7da08ec024979995850b5c410d6d7.r2.dev/video%20interface/Presnetation_website.mp4"
+                autoplay loop muted playsinline class="hero-video"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;">
+                <track kind="captions" src="" label="English" default>
+            </video>
+
+            <div
+                style="z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; background: rgba(0,0,0,0.4); padding: clamp(20px, 5vw, 40px); border-radius: 20px; backdrop-filter: blur(10px); max-width: 90vw;">
+                <img src="photo/logo_vecteur_blanc.svg" alt="Objex3D" class="hero-logo-img"
+                    style="margin-bottom: 20px;">
+                <p
+                    style="font-family: var(--police-titre); font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: #fff; margin-top: 10px;">
+                    MON PORTFOLIO</p>
+                <p
+                    style="font-family: var(--police-texte); font-size: clamp(1rem, 3vw, 1.2rem); color: #eee; margin-top: 10px; max-width: 600px;">
+                    Je suis ravi de vous accueillir. Découvrez mes services et mes compétences.</p>
+                <a href="fichier/CV_JALLADE_Robin.pdf" target="_blank" class="btn-brutal">
+                    <i class="fa-solid fa-download"></i> Mon Curriculum Vitae
+                </a>
+            </div>
+
+            <!-- Flèche pour descendre -->
+            <div
+                style="position: absolute; bottom: 30px; z-index: 2; color: white; font-size: 2rem; animation: bounce 2s infinite;">
+                <a href="#portfolio" style="color: white;"><i class="fa-solid fa-angle-down"></i></a>
+            </div>
+        </section>
+
+        <!-- Titre Géant -->
+        <section class="section-titre-geants reveal-on-scroll" style="position: relative;">
+            <div class="inner-wrap" style="position: relative; z-index: 1;">
+                <div class="gTitre">
+                    <div class="line-flex">
+                        <span class="gTitre split">MES DERNIERS</span>
+                    </div>
+                    <div class="line-flex">
+                        <span class="gTitre split">PROJETS ET</span>
+                    </div>
+                    <div class="line-flex">
+                        <span class="gTitre split">RÉALISATIONS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grille des Projets -->
+        <section id="portfolio" class="p60">
+            <div class="podcast-grid" id="grid-index">
+                <!-- Les projets Notion pour l'accueil seront injectés ici -->
+            </div>
+        </section>
+
+        <!-- Footer Fancy Unifié -->
+        <footer class="footer fancy-footer" id="footer">
+            <div class="footer-backdrop"></div>
+            <div class="footer-content">
+                <div class="col col1">
+                    <h3 class="footer-logo">Objex3D</h3>
+                    <p class="footer-sub">Robin Jallade</p>
+                    <p style="color: var(--couleur-texte-secondaire); max-width: 320px; margin-bottom: 20px;">
+                        Atelier de fabrication additive & modélisation CAO. Pièces techniques, prototypes fonctionnels et impressions 3D de précision à Marseille (13ème).
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/objex.3d/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col col2">
+                    <p style="margin-bottom: 25px;"><b>Navigation</b></p>
+                    <p><a class="link-act" href="index.html">Accueil</a></p>
+                    <p><a class="link-act" href="pages/portfolio.html">Mes Projets</a></p>
+                    <p><a class="link-act" href="pages/services.html">Mes Services</a></p>
+                    <p><a class="link-act" href="pages/Contact.html">Contact</a></p>
+                    <p><a class="link-act" href="fichier/notice.pdf" target="_blank">Guide de la mesure</a></p>
+                </div>
+
+                <div class="col col3">
+                    <p style="margin-bottom: 25px;"><b>Contact & Atelier</b></p>
+                    <p><i class="fa-solid fa-location-dot" style="color: var(--provence-violet); margin-right: 6px;"></i> Marseille (13ème), France</p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--provence-violet); margin-right: 6px;"></i> <a href="mailto:objex3d@gmail.com" class="link-act">objex3d@gmail.com</a></p>
+                    <p><i class="fa-solid fa-hand-holding-hand" style="color: var(--provence-violet); margin-right: 6px;"></i> Remise en main propre</p>
+                </div>
+            </div>
+
+            <div class="footer-legal-bar">
+                <span>© 2026 Objex3D • Robin Jallade. Tous droits réservés.</span>
+                <div class="footer-legal-links">
+                    <a href="pages/mentions-legales.html">Mentions Légales</a>
+                    <a href="pages/politique-confidentialite.html">Politique de Confidentialité</a>
+                    <a href="pages/cgv.html">Conditions Générales de Vente (CGV)</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/render-notion.js"></script>
+</body>
+
+</html>

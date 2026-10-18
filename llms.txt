@@ -1,0 +1,28 @@
+# Objex3D — Robin Jallade
+
+> Atelier indépendant de fabrication additive (impression 3D FDM) et de modélisation CAO basé à Salon-de-Provence (Bouches-du-Rhône, France).
+
+## À propos
+Objex3D est la vitrine et la plateforme de service opérée par Robin Jallade, passionné d'ingénierie, de modélisation 3D et de fabrication numérique. Le site propose une double compétence :
+1. **Impression 3D à la demande (Print-on-Demand)** : production soignée de pièces fonctionnelles et décoratives issues de modèles vérifiés (notamment du catalogue MakerWorld sous licences commerciales autorisées CC BY / CC BY-SA) avec configurateur de matériaux (PLA, PETG) et de coloris.
+2. **Conception et modélisation CAO sur-mesure** : prototypage rapide, conception mécanique de pièces de rechange introuvables ou adaptées aux besoins de particuliers.
+3. **Modalité de livraison** : remise en main propre sur Salon-de-Provence et sa périphérie immédiate.
+
+## Pages et Documentation Principale
+- [Accueil](https://robinjallade.com/index.html) : Présentation de l'artisan, de l'atelier et vision d'ingénierie.
+- [Mes Projets / Portfolio](https://robinjallade.com/pages/portfolio.html) : Galerie de réalisations concrètes, prototypes mécaniques et pièces techniques imprimées.
+- [Mes Services & Impression 3D](https://robinjallade.com/pages/services.html) : Configurateur de pièces Print-on-Demand, sélection de filaments et formulaire de demande sur-mesure.
+- [Contact](https://robinjallade.com/pages/Contact.html) : Formulaire direct d'échange et coordonnées de l'atelier.
+
+## Cadre Légal et Déontologique
+- **Éditeur** : Robin Jallade (Particulier / créateur indépendant, franchise en base de TVA art. 293 B du CGI).
+- **Hébergement** : Render Services Inc. (serveurs situés dans l'Union Européenne à Francfort, Allemagne).
+- **Protection des données (RGPD)** : Traitement strict des commandes (minimisation, pas de revente de données, pas de cookies traceurs).
+- **Mentions Légales** : https://robinjallade.com/pages/mentions-legales.html
+- **Politique de Confidentialité** : https://robinjallade.com/pages/politique-confidentialite.html
+- **Conditions Générales de Vente (CGV)** : https://robinjallade.com/pages/cgv.html (avec exclusion légale du droit de rétractation pour les pièces sur-mesure selon l'article L. 221-28 3° du Code de la consommation).
+
+## Coordonnées
+- **Email** : objex3d@gmail.com
+- **Localisation** : Salon-de-Provence (13300), France
+- **Instagram** : @objex.3d

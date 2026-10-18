@@ -1,0 +1,7 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://robinjallade.com/sitemap.xml
+# Documentation LLM / AI agents
+# https://llmstxt.org
+# llms.txt: https://robinjallade.com/llms.txt

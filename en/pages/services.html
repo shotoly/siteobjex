@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Services | Objex3D</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../../photo/logo_vecteur_violet_électrique.svg" />
+    <link rel="stylesheet" href="../../style/style.css">
+
+    <style>
+        .contact-card {
+            background: var(--couleur-fond);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            font-family: inherit;
+        }
+
+        [data-theme="dark"] .form-control {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .notice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto 80px;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .notice-img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            background: #000000;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../../photo/logo_vecteur_blanc.svg" alt="Logo Objex3D" style="height: 50px;">
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="menu-droite">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="portfolio.html">My Projects</a></li>
+                <li><a href="services.html" style="color: var(--provence-violet);">My Services</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="../../pages/services.html" style="border: 2px solid var(--provence-violet); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">FR</a></li>
+                <li id="theme-toggle-li"><a href="#" id="theme-toggle"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Header Page -->
+        <section class="section-titre-geants reveal-on-scroll" style="position: relative; padding-top: 15vw; min-height: 50vh; display: flex; align-items: center; background: url('../../jakub-zerdzicki-zC17GMIaGjE-unsplash.jpg') center/cover no-repeat;">
+            <div class="inner-wrap" style="position: relative; z-index: 1;">
+                <div class="gTitre">
+                    <div class="line-flex">
+                        <span class="gTitre split">EXPERIENCES AND</span>
+                    </div>
+                    <div class="line-flex">
+                        <span class="gTitre split">PRO PROJECTS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured 3D Prints Showcase Section -->
+        <section id="impressions-vedette" class="p60">
+            <div class="section-services-header">
+                <span class="section-subtitle">MakerWorld & Community Selection</span>
+                <h2 class="section-title">Featured 3D Prints</h2>
+                <p class="section-desc">Discover a curated selection of trending 3D models under commercial license, ready to be printed on demand with our precision filaments.</p>
+            </div>
+
+            <!-- 100% Custom Project / CAD Modeling Banner -->
+            <div class="pod-custom-banner reveal-on-scroll">
+                <div class="pod-custom-banner-text">
+                    <span class="pod-custom-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> A unique project?</span>
+                    <h3>Have a custom 3D file or need mechanical CAD modeling?</h3>
+                    <p>Custom 3D printing for your technical parts, functional prototypes, and bespoke designs.</p>
+                </div>
+                <button type="button" class="btn-brutal btn-custom-cta">
+                    <i class="fa-solid fa-compass-drafting"></i> 100% Custom Project
+                </button>
+            </div>
+
+            <div class="podcast-grid" id="grid-featured-prints">
+                <!-- FEATURED_PRINTS_START -->
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3420624" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3420624.webp" alt="Fidget Web - Free to Sell" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Fidget Web - Free to Sell</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by BeninManc.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3420624">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@BeninManc" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">BeninManc</a></span>
+                            <span><a href="https://makerworld.com/en/models/3420624-fidget-web-free-to-sell" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3419396" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3419396.webp" alt="Vertical Folding Box" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Vertical Folding Box</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by Lima’s Craft.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3419396">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@AdlerLima" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">Lima’s Craft</a></span>
+                            <span><a href="https://makerworld.com/en/models/3419396-vertical-folding-box" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3425779" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3425779.webp" alt="Christmas  Tray | Festive Holiday Decor" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Christmas  Tray | Festive Holiday Decor</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by astavr.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3425779">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@astavr" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">astavr</a></span>
+                            <span><a href="https://makerworld.com/en/models/3425779-christmas-tray-festive-holiday-decor" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3411894" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3411894.webp" alt="Pumpkin napkin holder" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Pumpkin napkin holder</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by bluemanos.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3411894">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@bluemanos" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">bluemanos</a></span>
+                            <span><a href="https://makerworld.com/en/models/3411894-pumpkin-napkin-holder" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3431982" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3431982.webp" alt="Letras + Accesorios + Herramientas Cordón 4mm" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Letras + Accesorios + Herramientas Cordón 4mm</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by Sandy Design.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3431982">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@sandydesigncl" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">Sandy Design</a></span>
+                            <span><a href="https://makerworld.com/en/models/3431982-letters-accessories-4mm-cord-tools" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3418495" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3418495.webp" alt="Fat Santa – Cute & Chubby Christmas Decor" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Fat Santa – Cute & Chubby Christmas Decor</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by MX3D.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3418495">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@MyMax" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">MX3D</a></span>
+                            <span><a href="https://makerworld.com/en/models/3418495-fat-santa-cute-chubby-christmas-decor" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3416388" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3416388.webp" alt="Brick halo ODST updated armor" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Brick halo ODST updated armor</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by KingArmorGames.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3416388">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@EliasCaldwell" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">KingArmorGames</a></span>
+                            <span><a href="https://makerworld.com/en/models/3416388-brick-halo-odst-updated-armor" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3413824" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3413824.webp" alt="Pumpkin napkin holder" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Pumpkin napkin holder</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by bluemanos.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3413824">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@bluemanos" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">bluemanos</a></span>
+                            <span><a href="https://makerworld.com/en/models/3413824-pumpkin-napkin-holder" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3424861" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3424861.webp" alt="Christmas LED Light Bowls – 3 Festive Designs" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Christmas LED Light Bowls – 3 Festive Designs</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by LangHjornArt.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3424861">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@user_2635990440" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">LangHjornArt</a></span>
+                            <span><a href="https://makerworld.com/en/models/3424861-christmas-led-light-bowls-3-festive-designs" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3431360" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3431360.webp" alt="Letras Bicolor Detalles Estrellas y Corazones" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Letras Bicolor Detalles Estrellas y Corazones</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by Sandy Design.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3431360">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@sandydesigncl" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">Sandy Design</a></span>
+                            <span><a href="https://makerworld.com/en/models/3431360-two-tone-letters-star-and-heart-details" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="3418860" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img src="../../photo/store/store_3418860.webp" alt="Beautiful rocking horse" loading="lazy">
+                        </div>
+                        <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
+                            <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">Beautiful rocking horse</h3>
+                            <p class="client-project-desc" style="font-size: 0.92rem; color: var(--couleur-texte-secondaire); margin-bottom: 12px; line-height: 1.4;">3D model under commercial license by Metju.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="padding: 0 20px 14px 20px;">
+                            <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="3418860">
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>Order
+                            </button>
+                        </div>
+                        <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;"><i class="fa-solid fa-user-pen" style="color: var(--provence-violet); margin-right: 6px;"></i><strong>By :</strong> <a href="https://makerworld.com/en/@user_4017908768" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;" onclick="event.stopPropagation();">Metju</a></span>
+                            <span><a href="https://makerworld.com/en/models/3418860-beautiful-rocking-horse" target="_blank" rel="noopener noreferrer" style="color: var(--provence-violet); font-weight: 600; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();"><i class="fa-solid fa-arrow-up-right-from-square"></i> MakerWorld</a></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- FEATURED_PRINTS_END -->
+            </div>
+
+            <!-- Redirection to MakerWorld global catalog if user reached end of selection -->
+            <div class="makerworld-catalog-banner reveal-on-scroll">
+                <div class="makerworld-banner-content">
+                    <span class="makerworld-banner-tag"><i class="fa-solid fa-compass"></i> Looking for something else?</span>
+                    <h3>Explore the immense global catalog on MakerWorld</h3>
+                    <p>Tens of thousands of verified 3D models ready to print. Find your dream model, then let our workshop manufacture it with precision filaments or bespoke CAD engineering!</p>
+                </div>
+                <a href="https://makerworld.com/en" target="_blank" rel="noopener noreferrer" class="makerworld-banner-btn">
+                    <span>Explore MakerWorld</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Client Projects Showcase Section -->
+        <section id="projets-clients" class="p60">
+            <div class="section-services-header">
+                <span class="section-subtitle">Expertise & Prototyping</span>
+                <h2 class="section-title">Client Projects Showcase</h2>
+                <p class="section-desc">Explore a selection of custom projects designed and manufactured for our corporate and individual clients: technical enclosures, mechanical parts, architectural scale models, and small series production.</p>
+            </div>
+
+            <!-- Project Category Filters -->
+            <div class="portfolio-filters reveal-on-scroll" id="services-filters">
+                <button class="filter-btn active" data-filter="tous">All projects</button>
+                <button class="filter-btn" data-filter="conception-3d">3D Design</button>
+                <button class="filter-btn" data-filter="electronique">Electronics</button>
+                <button class="filter-btn" data-filter="developpement">Development</button>
+                <button class="filter-btn" data-filter="professionnel">Professional</button>
+                <button class="filter-btn" data-filter="ecole">Academic</button>
+            </div>
+
+            <div class="podcast-grid" id="grid-client-projects">
+                <!-- CLIENT_PROJECTS_START -->
+
+                <div class="card-podcast reveal-on-scroll is-visible" data-service="conception-3d" data-tags="conception-3d pla" style="display:flex;">
+                    <div class="card-image-wrapper">
+                        <img src="../../photo/projets_clients/pro_3fa6e0b4-a0c3-8093-aeeb-de158d6f7675.png" alt="bouton micro onde" loading="lazy">
+                        <div class="badges-container"><div class="date-badge" style="background: var(--provence-violet); color: white;">Conception 3D</div><div class="date-badge" style="background: var(--provence-violet); color: white;">PLA</div></div>
+                    </div>
+                    <div class="client-project-body">
+                        <h3 style="font-family: var(--police-titre); font-size: 1.4rem; color: var(--couleur-texte);">bouton micro onde</h3>
+                        <p class="client-project-desc">Le projet vise à recréer les boutons cassés d'un micro-ondes grâce à l'impression 3D.</p>
+                        <div class="client-project-meta">
+                            <span><i class="fa-solid fa-layer-group" style="color: var(--provence-violet); margin-right: 6px;"></i>Conception 3D</span>
+                            <span><i class="fa-regular fa-calendar" style="margin-right: 6px;"></i>2024-10-03</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-podcast reveal-on-scroll is-visible" data-service="conception-3d" data-tags="conception-3d petg" style="display:flex;">
+                    <div class="card-image-wrapper">
+                        <img src="../../photo/projets_clients/pro_3fa6e0b4-a0c3-80eb-ba7f-e7f8b47063ab.jpeg" alt="Casier camping car" loading="lazy">
+                        <div class="badges-container"><div class="date-badge" style="background: var(--provence-violet); color: white;">Conception 3D</div><div class="date-badge" style="background: var(--provence-violet); color: white;">PETG</div></div>
+                    </div>
+                    <div class="client-project-body">
+                        <h3 style="font-family: var(--police-titre); font-size: 1.4rem; color: var(--couleur-texte);">Casier camping car</h3>
+                        <p class="client-project-desc">Concevoir et imprimer un casier pour un camping car</p>
+                        <div class="client-project-meta">
+                            <span><i class="fa-solid fa-layer-group" style="color: var(--provence-violet); margin-right: 6px;"></i>Conception 3D</span>
+                            <span><i class="fa-regular fa-calendar" style="margin-right: 6px;"></i>2024-07-23</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- CLIENT_PROJECTS_END -->
+            </div>
+        </section>
+
+        <!-- In-Store Filament Catalog Section -->
+        <section id="catalogue-filaments" class="p60" style="background: rgba(124, 58, 237, 0.03); border-top: 1px solid rgba(124, 58, 237, 0.1); border-bottom: 1px solid rgba(124, 58, 237, 0.1);">
+            <div class="section-services-header">
+                <span class="section-subtitle">Objex3D Material Library</span>
+                <h2 class="section-title">In-Store Available Filaments</h2>
+                <p class="section-desc">Browse our spools and technical resins available directly at the workshop for immediate printing or on-demand orders.</p>
+            </div>
+
+            <!-- Material Filters -->
+            <div class="portfolio-filters reveal-on-scroll" id="filaments-filters">
+                <button class="filter-btn active" data-material="tous">All materials</button>
+                <button class="filter-btn" data-material="pla">PLA</button>
+                <button class="filter-btn" data-material="petg">PETG</button>
+                <button class="filter-btn" data-material="abs">ABS / ASA</button>
+                <button class="filter-btn" data-material="tpu">Flexible TPU</button>
+                <button class="filter-btn" data-material="resine">SLA Resin</button>
+                <button class="filter-btn" data-material="technique">Technical (Nylon/PC)</button>
+            </div>
+
+            <div class="filaments-grid" id="grid-filaments">
+                <!-- FILAMENTS_START -->
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Chêne</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #C19A6B;"></span>
+                            <span class="color-name">#C19A6B</span>
+                            <span class="color-hex">#C19A6B</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Vert olive</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #808000;"></span>
+                            <span class="color-name">#808000</span>
+                            <span class="color-hex">#808000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Transparent</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #00000000;"></span>
+                            <span class="color-name">#00000000</span>
+                            <span class="color-hex">#00000000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Lavande</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #E6E6FA;"></span>
+                            <span class="color-name">#E6E6FA</span>
+                            <span class="color-hex">#E6E6FA</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Magenta</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FF00FF;"></span>
+                            <span class="color-name">#FF00FF</span>
+                            <span class="color-hex">#FF00FF</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Gris</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #808080;"></span>
+                            <span class="color-name">#808080</span>
+                            <span class="color-hex">#808080</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Noir</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #000000;"></span>
+                            <span class="color-name">#000000</span>
+                            <span class="color-hex">#000000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Blanc</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FFFFFF;"></span>
+                            <span class="color-name">#FFFFFF</span>
+                            <span class="color-hex">#FFFFFF</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Blanc osseux</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #F0EAD6;"></span>
+                            <span class="color-name">#F0EAD6</span>
+                            <span class="color-hex">#F0EAD6</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Orange soleil</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FF9F00;"></span>
+                            <span class="color-name">#FF9F00</span>
+                            <span class="color-hex">#FF9F00</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Beige</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #F5F5DC;"></span>
+                            <span class="color-name">#F5F5DC</span>
+                            <span class="color-hex">#F5F5DC</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Rouge</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FF0000;"></span>
+                            <span class="color-name">#FF0000</span>
+                            <span class="color-hex">#FF0000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Bleu Klein</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #002FA7;"></span>
+                            <span class="color-name">#002FA7</span>
+                            <span class="color-hex">#002FA7</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Vert</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #008000;"></span>
+                            <span class="color-name">#008000</span>
+                            <span class="color-hex">#008000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Jaune vif</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FFFF00;"></span>
+                            <span class="color-name">#FFFF00</span>
+                            <span class="color-hex">#FFFF00</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-onorder"><i class="fa-solid fa-clock"></i> On Order</span>
+                        </div>
+                        <h3 class="filament-title">PLA+ Brun Café</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #8B4513;"></span>
+                            <span class="color-name">#8B4513</span>
+                            <span class="color-hex">#8B4513</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 22 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="abs">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">ABS</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">ABS Noir</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #000000;"></span>
+                            <span class="color-name">#000000</span>
+                            <span class="color-hex">#000000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Amazon basics</span>
+                            <span><strong>Price :</strong> 20 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA+</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">Silk PLA+ Light gold</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FFDA0A;"></span>
+                            <span class="color-name">#FFDA0A</span>
+                            <span class="color-hex">#FFDA0A</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Sunlu</span>
+                            <span><strong>Price :</strong> 20 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">PLA GOLD</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #CCAE00;"></span>
+                            <span class="color-name">#CCAE00</span>
+                            <span class="color-hex">#CCAE00</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> RS PRO</span>
+                            <span><strong>Price :</strong> 25 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="petg">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PETG</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">PETG high speed matte gris</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #3B5B68;"></span>
+                            <span class="color-name">#3B5B68</span>
+                            <span class="color-hex">#3B5B68</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Atome3D</span>
+                            <span><strong>Price :</strong> 20 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="tpu">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">TPU</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">TPU Flexible</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #000000;"></span>
+                            <span class="color-name">#000000</span>
+                            <span class="color-hex">#000000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Eryone</span>
+                            <span><strong>Price :</strong> 35 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">PLA Matte Blanc ivoir</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #FFFFFF;"></span>
+                            <span class="color-name">#FFFFFF</span>
+                            <span class="color-hex">#FFFFFF</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Bambu Lab</span>
+                            <span><strong>Price :</strong> 21 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-filament reveal-on-scroll is-visible" data-material="pla">
+                    <div>
+                        <div class="filament-header">
+                            <span class="filament-material-badge">PLA</span>
+                            <span class="filament-stock-badge stock-instock"><i class="fa-solid fa-circle-check"></i> In Stock</span>
+                        </div>
+                        <h3 class="filament-title">PLA Matte Charbon</h3>
+                        <div class="filament-color-row">
+                            <span class="color-dot" style="background-color: #000000;"></span>
+                            <span class="color-name">#000000</span>
+                            <span class="color-hex">#000000</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="filament-specs">
+                            <span><strong>Brand :</strong> Bambu Lab</span>
+                            <span><strong>Price :</strong> 21 €</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- FILAMENTS_END -->
+            </div>
+        </section>
+
+        
+
+        <section id="portfolio" class="p60" style="min-height: 50vh;">
+            <div class="notice-container reveal-on-scroll">
+                <img src="../../photo/photo_notice/la_.svg" alt="Notice" class="notice-img" loading="lazy" />
+                <a href="../../fichier/notice blanc.pdf" class="btn-brutal" target="_blank">
+                    <i class="fa-solid fa-download"></i> Download the PDF guide !!!
+                </a>
+            </div>
+
+            <div class="contact-card reveal-on-scroll">
+                <h2 style="font-family: var(--police-titre); font-size: 2.5rem; margin-bottom: 30px;">Contact Me</h2>
+                <form id="contactForm" action="mailto:objex3d@gmail.com?subject=Objex3D%20Inquiry" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Your Name * :</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email * :</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="john.doe@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Your Message * :</label>
+                        <textarea id="comment" name="comment" rows="4" class="form-control" placeholder="Describe your question or technical project..." required></textarea>
+                    </div>
+
+                    <p class="form-legal-notice" style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-lock"></i> Your data is used exclusively to answer your request. Learn more in our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.
+                    </p>
+
+                    <button type="submit" class="btn-brutal" style="width: 100%; border: none; cursor: pointer; font-size: 1.2rem; margin-top: 10px;">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Unified Footer -->
+        <footer class="footer fancy-footer" id="footer">
+            <div class="footer-backdrop"></div>
+            <div class="footer-content">
+                <div class="col col1">
+                    <h3 class="footer-logo">Objex3D</h3>
+                    <p class="footer-sub">Robin Jallade</p>
+                    <p style="color: var(--couleur-texte-secondaire); max-width: 320px; margin-bottom: 20px;">
+                        Additive manufacturing workshop & CAD modeling. Technical parts, rapid functional prototyping and precision 3D printing in Marseille (13th arr.).
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/objex.3d/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/robin-jallade-6732392ba" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col col2">
+                    <p style="margin-bottom: 25px;"><b>Navigation</b></p>
+                    <p><a class="link-act" href="../index.html">Home</a></p>
+                    <p><a class="link-act" href="portfolio.html">Projects</a></p>
+                    <p><a class="link-act" href="services.html">Services</a></p>
+                    <p><a class="link-act" href="Contact.html">Contact</a></p>
+                </div>
+
+                <div class="col col3">
+                    <p style="margin-bottom: 25px;"><b>Workshop & Contact</b></p>
+                    <p><i class="fa-solid fa-location-dot" style="color: var(--provence-violet); margin-right: 6px;"></i> Marseille (13th arr.), France</p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--provence-violet); margin-right: 6px;"></i> <a href="mailto:objex3d@gmail.com" class="link-act">objex3d@gmail.com</a></p>
+                    <p><i class="fa-solid fa-hand-holding-hand" style="color: var(--provence-violet); margin-right: 6px;"></i> In-person handover</p>
+                </div>
+            </div>
+
+            <div class="footer-legal-bar">
+                <span>© 2026 Objex3D • Robin Jallade. All rights reserved.</span>
+                <div class="footer-legal-links">
+                    <a href="legal-notice.html">Legal Notice</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-sale.html">Terms of Sale</a>
+                    <a href="#" class="btn-open-bug-ticket" style="color: var(--provence-violet); font-weight: 600;"><i class="fa-solid fa-bug" style="margin-right: 4px;"></i>Report a bug</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- PRINT-ON-DEMAND MODAL & CONFIGURATOR -->
+    <!-- ========================================== -->
+    <div id="pod-modal" class="pod-modal-overlay">
+        <div class="pod-modal-dialog">
+            <button type="button" id="pod-modal-close" class="pod-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="pod-modal-grid">
+                <!-- Left Column: Media Carousel -->
+                <div class="pod-modal-media-col">
+                    <div class="pod-carousel-wrapper">
+                        <div id="pod-media-viewer" class="pod-media-viewer">
+                            <!-- Active image or video injected by order-handler.js -->
+                        </div>
+                        <button type="button" id="pod-carousel-prev" class="pod-carousel-btn prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button type="button" id="pod-carousel-next" class="pod-carousel-btn next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div id="pod-thumbnails" class="pod-thumbnails-track">
+                        <!-- Thumbnails track -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Metadata, Configurator & Order Form (Uber Eats Minimalist) -->
+                <div class="pod-modal-content-col uber-checkout-flow">
+                    <!-- Clean Product Header -->
+                    <div class="uber-header">
+                        <div class="uber-header-tags">
+                            <span class="uber-tag"><i class="fa-solid fa-cube"></i> Print-on-Demand</span>
+                        </div>
+                        <h2 id="pod-model-title" class="uber-title">3D Model</h2>
+                        <div id="pod-model-author" class="uber-creator">
+                            <i class="fa-solid fa-circle-check" style="color: var(--provence-violet);"></i> By: Creator
+                        </div>
+                    </div>
+
+                    <!-- Clean Divider -->
+                    <div class="uber-divider"></div>
+
+                    <!-- Step 1: Color & Material Option -->
+                    <div class="uber-section">
+                        <div class="uber-section-header">
+                            <div>
+                                <h3 class="uber-section-title">1. Color & Material</h3>
+                                <p class="uber-section-subtitle">Select the primary finish for your print</p>
+                            </div>
+                            <span class="uber-required-badge">Required</span>
+                        </div>
+
+                        <!-- Primary Color Card -->
+                        <div class="uber-option-card" id="pod-slot-color1">
+                            <div class="uber-option-left">
+                                <div class="uber-option-thumb">
+                                    <img id="pod-color1-img" src="../../photo/filaments/filament_default.jpg" alt="Filament 1">
+                                    <span id="pod-color1-dot" class="color-dot uber-color-dot" style="background-color: #C19A6B;"></span>
+                                </div>
+                                <div class="uber-option-texts">
+                                    <strong id="pod-color1-name" class="uber-option-name">Loading...</strong>
+                                    <span id="pod-color1-meta" class="uber-option-meta">Reference material</span>
+                                </div>
+                            </div>
+                            <div class="uber-option-right">
+                                <span id="pod-color1-badge" class="uber-material-chip">PLA+</span>
+                                <button type="button" class="btn-pick-filament uber-btn-change" data-slot="1" id="btn-pick-color1">
+                                    Change
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dual Color Add-on Option (Uber Eats Style) -->
+                        <div class="uber-extra-card">
+                            <label class="uber-checkbox-label pod-toggle-label" for="pod-bicolor-checkbox">
+                                <div class="uber-checkbox-content">
+                                    <div class="uber-custom-check-wrap">
+                                        <input type="checkbox" id="pod-bicolor-checkbox" class="pod-toggle-checkbox">
+                                        <span class="uber-checkbox-box"><i class="fa-solid fa-check"></i></span>
+                                    </div>
+                                    <div class="uber-extra-desc">
+                                        <strong>Dual-Color Print</strong>
+                                        <span>Clean dual-color finish</span>
+                                    </div>
+                                </div>
+                                <span class="uber-extra-price">+25%</span>
+                            </label>
+                        </div>
+
+                        <!-- Secondary Color Slot (Revealed if active) -->
+                        <div class="uber-option-card uber-slot-secondary" id="pod-slot-color2" style="display: none; margin-top: 10px;">
+                            <div class="uber-option-left">
+                                <div class="uber-option-thumb">
+                                    <img id="pod-color2-img" src="../../photo/filaments/filament_default.jpg" alt="Filament 2">
+                                    <span id="pod-color2-dot" class="color-dot uber-color-dot" style="background-color: #808000;"></span>
+                                </div>
+                                <div class="uber-option-texts">
+                                    <strong id="pod-color2-name" class="uber-option-name">Select secondary color</strong>
+                                    <span id="pod-color2-meta" class="uber-option-meta">Secondary color</span>
+                                </div>
+                            </div>
+                            <div class="uber-option-right">
+                                <span id="pod-color2-badge" class="uber-material-chip">PLA+</span>
+                                <button type="button" class="btn-pick-filament uber-btn-change" data-slot="2" id="btn-pick-color2">
+                                    Choose
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hidden select for backward compatibility -->
+                        <select id="pod-filament-select" class="form-control pod-select" style="display: none;"></select>
+                    </div>
+
+                    <div class="uber-divider"></div>
+
+                    <!-- Step 2: Customer Details -->
+                    <div class="uber-section">
+                        <div class="uber-section-header">
+                            <div>
+                                <h3 class="uber-section-title">2. Order Details</h3>
+                                <p class="uber-section-subtitle">For manufacturing updates and delivery</p>
+                            </div>
+                        </div>
+
+                        <form id="pod-order-form" class="uber-form">
+                            <div class="uber-form-row">
+                                <div class="uber-field">
+                                    <label for="pod-firstname">First Name *</label>
+                                    <input type="text" id="pod-firstname" class="uber-input" placeholder="John" required>
+                                </div>
+                                <div class="uber-field">
+                                    <label for="pod-lastname">Last Name *</label>
+                                    <input type="text" id="pod-lastname" class="uber-input" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div class="uber-field">
+                                <label for="pod-email">Contact Email *</label>
+                                <input type="email" id="pod-email" class="uber-input" placeholder="john.doe@email.com" required>
+                            </div>
+                            <div class="uber-field">
+                                <label for="pod-notes">Special Instructions (optional)</label>
+                                <textarea id="pod-notes" class="uber-input uber-textarea" rows="2" placeholder="e.g. infill density, deadline or special requests..."></textarea>
+                            </div>
+
+                            <div class="form-legal-group" style="margin: 18px 0 12px 0;">
+                                <label class="form-legal-label">
+                                    <input type="checkbox" id="pod-cgv-consent" class="form-legal-checkbox" required>
+                                    <span>I have read and unconditionally accept the <a href="terms-of-sale.html" target="_blank">Terms of Sale</a>. I expressly acknowledge that this 3D-printed item is custom-made to order, thereby excluding the statutory right of withdrawal (Article L. 221-28 3° of the French Consumer Code). *</span>
+                                </label>
+                                <p class="form-legal-notice">
+                                    <i class="fa-solid fa-lock"></i> Data collected solely to fulfill your order and in-person handover. Learn more in our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.
+                                </p>
+                            </div>
+
+                            <div id="pod-status-msg" class="pod-status-msg"></div>
+
+                            <!-- Uber Eats Sticky Bottom Bar -->
+                            <div class="uber-bottom-bar">
+                                <div class="uber-qty-control">
+                                    <button type="button" class="uber-qty-btn" id="uber-qty-minus" aria-label="Decrease"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="pod-quantity" class="uber-qty-value" min="1" max="100" value="1" readonly>
+                                    <button type="button" class="uber-qty-btn" id="uber-qty-plus" aria-label="Increase"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+
+                                <button type="submit" id="pod-submit-btn" class="uber-checkout-btn">
+                                    <span class="uber-btn-label">Order</span>
+                                    <span class="uber-btn-dot">•</span>
+                                    <span id="pod-calc-price" class="uber-btn-price">0.00 €</span>
+                                </button>
+                            </div>
+
+                            <div id="pod-formula-breakdown" class="uber-formula-caption">
+                                <!-- Formula breakdown -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 100% CUSTOM PROJECT / CAD MODAL -->
+    <!-- ========================================== -->
+    <div id="custom-modal" class="pod-modal-overlay">
+        <div class="pod-modal-dialog custom-dialog">
+            <button type="button" id="custom-modal-close" class="pod-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="custom-modal-content">
+                <div class="pod-header-info">
+                    <span class="pod-badge-tag" style="background: #3B82F6;"><i class="fa-solid fa-compass-drafting"></i> Bespoke & CAD</span>
+                    <h2 class="pod-dialog-title">Custom Project or CAD Modeling</h2>
+                    <p style="color: var(--couleur-texte-secondaire); font-size: 0.95rem; margin-top: 6px;">
+                        Have a 3D file (.step, .stl, .obj), a sketch or need end-to-end mechanical engineering? Describe your requirements to get a feasibility review and quote within 24h.
+                    </p>
+                </div>
+
+                <form id="custom-order-form" class="pod-form" style="margin-top: 20px;">
+                    <div class="pod-form-row">
+                        <div class="form-group">
+                            <label for="custom-firstname">First Name *</label>
+                            <input type="text" id="custom-firstname" class="form-control" placeholder="Robin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom-lastname">Last Name *</label>
+                            <input type="text" id="custom-lastname" class="form-control" placeholder="Jallade" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-email">Email Address *</label>
+                        <input type="email" id="custom-email" class="form-control" placeholder="contact@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-type">Service Type *</label>
+                        <select id="custom-type" class="form-control pod-select">
+                            <option value="Custom 3D Printing (3D file provided)">Custom 3D Printing (3D file provided)</option>
+                            <option value="CAD Modeling & Mechanical Design">CAD Modeling & Mechanical Design</option>
+                            <option value="Broken Part Replacement / Reverse Engineering">Broken Part Replacement / Reverse Engineering</option>
+                            <option value="Rapid Multi-material Prototyping">Rapid Multi-material Prototyping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="custom-details">Project Requirements *</label>
+                        <textarea id="custom-details" class="form-control" rows="4" placeholder="Dimensions, mechanical/thermal constraints, quantity, file link or technical specifications..." required></textarea>
+                    </div>
+
+                    <div class="form-legal-group" style="margin: 16px 0 12px 0;">
+                        <label class="form-legal-label">
+                            <input type="checkbox" id="custom-cgv-consent" class="form-legal-checkbox" required>
+                            <span>I accept the <a href="terms-of-sale.html" target="_blank">Terms of Sale</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a> for the technical study of my project. *</span>
+                        </label>
+                        <p class="form-legal-notice">
+                            <i class="fa-solid fa-shield-halved"></i> Your contact information and 3D models remain strictly confidential.
+                        </p>
+                    </div>
+
+                    <div id="custom-status-msg" class="pod-status-msg"></div>
+
+                    <button type="submit" id="custom-submit-btn" class="btn-brutal pod-submit-btn" style="background: #3B82F6;">
+                        <i class="fa-solid fa-paper-plane"></i> Send Custom Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FILAMENT GALLERY PICKER MODAL -->
+    <!-- ========================================== -->
+    <div id="filament-picker-modal" class="pod-modal-overlay">
+        <div class="pod-modal-dialog filament-picker-dialog">
+            <button type="button" id="filament-picker-close" class="pod-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="filament-picker-header">
+                <span class="pod-badge-tag"><i class="fa-solid fa-swatchbook"></i> Objex3D Material Library</span>
+                <h3 id="filament-picker-title" class="pod-dialog-title" style="margin-bottom: 6px;">Select your filament</h3>
+                <p id="filament-picker-desc" style="color: var(--couleur-texte-secondaire); font-size: 0.9rem; margin-bottom: 14px;">
+                    Choose from our high-precision workshop spools available in stock.
+                </p>
+
+                <div class="filament-picker-controls">
+                    <div class="filament-picker-search-wrap">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="filament-picker-search" placeholder="Search by color, brand..." class="form-control">
+                    </div>
+                    <div class="filament-picker-tabs" id="filament-picker-tabs">
+                        <!-- Material filters: All, PLA, PETG, TPU... -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filaments Grid -->
+            <div class="filament-picker-grid-wrap">
+                <div class="filament-picker-grid" id="filament-picker-grid">
+                    <!-- Filament cards injected by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Scripts -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="../../js/render-notion.js"></script>
+    <script src="../../js/order-handler.js"></script>
+    <script src="../../js/pagination.js"></script>
+    <script src="../../js/bug-ticket.js"></script>
+</body>
+</html>
+

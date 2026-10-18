@@ -1,0 +1,115 @@
+# ==============================================================================
+# OBJEX3D - GITIGNORE
+# Optimisé pour déploiement Render, intégration Notion & N8N Webhooks
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Dépendances & Gestionnaires de paquets
+# ------------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ------------------------------------------------------------------------------
+# 2. Variables d'environnement & Secrets
+# ------------------------------------------------------------------------------
+.env
+.env.*
+.env.local
+.env.*.local
+!.env.example
+
+# ------------------------------------------------------------------------------
+# 3. Fichiers système & Éditeurs (Windows / macOS / Linux / IDE)
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.swp
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# 4. Données dynamiques générées lors du build (reconstruites à chaque build Render)
+# ------------------------------------------------------------------------------
+pages/services/*.json
+!pages/services/.gitkeep
+pages/personnel/donnees.json
+pages/educatif/donnees.json
+scraped_*.json
+scraped-*.json
+
+# ------------------------------------------------------------------------------
+# 5. Articles HTML générés automatiquement depuis Notion
+# ------------------------------------------------------------------------------
+pages/personnel/projets/*.html
+!pages/personnel/projets/.gitkeep
+pages/educatif/portfolios/*.html
+!pages/educatif/portfolios/.gitkeep
+
+# ------------------------------------------------------------------------------
+# 6. Médias téléchargés dynamiquement depuis Notion & MakerWorld
+# ------------------------------------------------------------------------------
+photo/store/*
+!photo/store/.gitkeep
+photo/filaments/*
+!photo/filaments/.gitkeep
+photo/portfolios/*
+!photo/portfolios/.gitkeep
+photo/projets/*
+!photo/projets/.gitkeep
+photo/projets_clients/*
+!photo/projets_clients/.gitkeep
+
+# ------------------------------------------------------------------------------
+# 7. Scripts de test, diagnostics & fichiers temporaires
+# ------------------------------------------------------------------------------
+test_*.js
+test-*.js
+test*.js
+verify-*.js
+quick_test.js
+inspect_*.js
+regenerate-*.js
+find_overflow.js
+analyze_*.js
+tree_*.js
+capture_*.js
+scripts/test_*.js
+scripts/test-*.js
+scratch/
+
+# ------------------------------------------------------------------------------
+# 8. Captures d'écran, logs & artefacts graphiques temporaires
+# ------------------------------------------------------------------------------
+screenshot_*.png
+screenshot_*.jpg
+test_*.png
+test_*.jpg
+modal_*.png
+modal_*.jpg
+e2e_*.png
+*.png.tmp
+*.log
+
+# ------------------------------------------------------------------------------
+# 9. Caches & dossiers temporaires
+# ------------------------------------------------------------------------------
+.cache/
+.parcel-cache/
+dist/
+temp/
+tmp/
