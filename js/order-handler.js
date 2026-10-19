@@ -247,10 +247,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const priceGram = isBicolorActive ? ((priceGram1 + priceGram2) / 2) : priceGram1;
         const qty = podQuantity ? Math.max(1, parseInt(podQuantity.value || 1, 10)) : 1;
 
-        // Taux de majoration bicolore (+25%)
+        // Taux de majoration bicolore (0.0 : aucun surcoût bicolore)
         const bicolorRate = (window.OBJEX_CONFIG && window.OBJEX_CONFIG.BICOLOR_SURCHARGE_RATE) !== undefined 
             ? window.OBJEX_CONFIG.BICOLOR_SURCHARGE_RATE 
-            : 0.25;
+            : 0.0;
         const bicolorMultiplier = isBicolorActive ? (1 + bicolorRate) : 1.0;
 
         // Prix défini dynamiquement dans Notion pour ce modèle
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             formulaHtml = `
                 <div class="formula-line" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
                     <span style="color: var(--couleur-texte-secondaire); font-size: 0.88rem;">${isEn ? 'Unit price' : 'Prix unitaire'} : <strong>${unitPrice.toFixed(2)} €</strong> ${qty > 1 ? `× ${qty}` : ''}</span>
-                    ${isBicolorActive ? `<span class="pod-bicolor-pill-badge" style="font-size: 0.76rem; background: rgba(124, 58, 237, 0.1); color: var(--provence-violet); padding: 2px 10px; border-radius: 20px; font-weight: 600;">+25% Bicolore</span>` : ''}
+                    ${isBicolorActive ? `<span class="pod-bicolor-pill-badge" style="font-size: 0.76rem; background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 2px 10px; border-radius: 20px; font-weight: 600;"><i class="fa-solid fa-palette" style="margin-right: 4px;"></i>${isEn ? '2 Colors' : 'Bicolore'}</span>` : ''}
                 </div>
             `;
 
@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             formulaHtml = `
                 <div class="formula-line" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
                     <span style="color: var(--couleur-texte-secondaire); font-size: 0.88rem;">${isEn ? 'Unit price' : 'Prix unitaire'} : <strong>${unitPrice.toFixed(2)} €</strong> ${qty > 1 ? `× ${qty}` : ''}</span>
-                    ${isBicolorActive ? `<span class="pod-bicolor-pill-badge" style="font-size: 0.76rem; background: rgba(124, 58, 237, 0.1); color: var(--provence-violet); padding: 2px 10px; border-radius: 20px; font-weight: 600;">+25% Bicolore</span>` : ''}
+                    ${isBicolorActive ? `<span class="pod-bicolor-pill-badge" style="font-size: 0.76rem; background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 2px 10px; border-radius: 20px; font-weight: 600;"><i class="fa-solid fa-palette" style="margin-right: 4px;"></i>${isEn ? '2 Colors' : 'Bicolore'}</span>` : ''}
                 </div>
             `;
 
@@ -410,6 +410,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const authorLink = cardEl.querySelector('.client-project-meta a');
                 const author = authorLink?.textContent?.trim() || "Créateur";
                 const authorUrl = authorLink?.getAttribute('href') || "#";
+                const priceBadgeText = cardEl.querySelector('.pod-price-badge')?.textContent?.replace(/[^0-9.]/g, '') || "";
+                const dataPrice = cardEl.dataset.price || priceBadgeText;
+                const parsedPrice = dataPrice ? parseFloat(dataPrice) : null;
                 currentModel = {
                     id: modelId,
                     title,
@@ -421,6 +424,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     lienAuteur: authorUrl,
                     image: img,
                     localImage: img,
+                    prix: parsedPrice,
+                    price: parsedPrice,
                     weight: 50,
                     poids: 50,
                     printTimeMinutes: 60,

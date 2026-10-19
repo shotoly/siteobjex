@@ -3061,6 +3061,23 @@ code {
         object-fit: cover !important;
     }
 
+    #grid-featured-prints .card-pod-item .badges-container {
+        top: 6px !important;
+        left: 6px !important;
+        gap: 4px !important;
+    }
+
+    #grid-featured-prints .card-pod-item .date-badge {
+        padding: 3px 8px !important;
+        font-size: 0.72rem !important;
+        border-radius: 20px !important;
+    }
+
+    #grid-featured-prints .card-pod-item .pod-price-badge {
+        font-size: 0.78rem !important;
+        font-weight: 800 !important;
+    }
+
     #grid-featured-prints .card-pod-item .client-project-body {
         padding: 10px 8px 6px 8px !important;
     }
@@ -3093,13 +3110,14 @@ code {
 
     #grid-featured-prints .card-pod-item .btn-brutal {
         width: 100% !important;
-        padding: 7px 6px !important;
-        font-size: 0.82rem !important;
+        padding: 7px 4px !important;
+        font-size: 0.78rem !important;
+        white-space: nowrap !important;
         border-radius: 8px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 5px !important;
+        gap: 4px !important;
     }
 
     #grid-featured-prints .card-pod-item .client-project-meta {

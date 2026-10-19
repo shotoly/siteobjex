@@ -1319,16 +1319,25 @@ function generateStaticHtml(servicesData, isEn, basePath) {
                 imgHtml = `<div class="card-image-placeholder"><i class="fa-solid fa-cube"></i></div>`;
             }
 
-            const priceBadge = prix ? `<div class="date-badge" style="background: #10B981; color: white; font-weight: 700;">${prix} €</div>` : '';
-            const likesBadge = likes > 0 ? `<div class="date-badge" style="background: rgba(0,0,0,0.65); color: #F59E0B; backdrop-filter: blur(4px);"><i class="fa-solid fa-heart" style="margin-right: 4px;"></i>${likes}</div>` : '';
             const weight = m.weight || m.poids || 50;
+            const finalPrice = (prix !== null && prix !== undefined && prix > 0)
+                ? Number(prix)
+                : Math.max(2.0, (weight * 0.022) * 1.5);
+            const displayPrice = Number.isInteger(finalPrice) ? finalPrice.toString() : finalPrice.toFixed(2);
+
+            const priceBadge = `<div class="date-badge pod-price-badge" style="background: #10B981; color: white; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); border: 1px solid rgba(255, 255, 255, 0.25);"><i class="fa-solid fa-tag" style="margin-right: 5px;"></i>${displayPrice} €</div>`;
+            const likesBadge = likes > 0 ? `<div class="date-badge" style="background: rgba(0,0,0,0.65); color: #F59E0B; backdrop-filter: blur(4px);"><i class="fa-solid fa-heart" style="margin-right: 4px;"></i>${likes}</div>` : '';
             const weightBadge = `<div class="date-badge" style="background: rgba(124, 58, 237, 0.85); color: white;"><i class="fa-solid fa-weight-hanging" style="margin-right: 4px;"></i>${weight}g</div>`;
 
             return `
-                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="${m.id}" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
+                <div class="card-podcast card-pod-item reveal-on-scroll is-visible" data-model-id="${m.id}" data-price="${displayPrice}" style="display:flex; flex-direction:column; justify-content:space-between; cursor: pointer;">
                     <div>
                         <div class="card-image-wrapper">
                             ${imgHtml}
+                            <div class="badges-container">
+                                ${priceBadge}
+                                ${weightBadge}
+                            </div>
                         </div>
                         <div class="client-project-body" style="padding: 20px 20px 10px 20px;">
                             <h3 style="font-family: var(--police-titre); font-size: 1.25rem; color: var(--couleur-texte); margin-bottom: 8px; line-height: 1.3;">${titre}</h3>
@@ -1338,7 +1347,7 @@ function generateStaticHtml(servicesData, isEn, basePath) {
                     <div>
                         <div style="padding: 0 20px 14px 20px;">
                             <button type="button" class="btn-brutal btn-open-pod-modal" data-model-id="${m.id}">
-                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>${isEn ? 'Order' : 'Commander'}
+                                <i class="fa-solid fa-cart-shopping" style="margin-right: 8px;"></i>${isEn ? 'Order' : 'Commander'} • ${displayPrice} €
                             </button>
                         </div>
                         <div class="client-project-meta" style="padding: 12px 20px 18px 20px; border-top: 1px solid rgba(124, 58, 237, 0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
@@ -1580,9 +1589,19 @@ async function fetchNotionData() {
     console.log(`   - ⚠ Non publics          : \x1b[33m${globalIgnoredCount}\x1b[0m`);
     console.log(`\x1b[35m=========================================\x1b[0m\n`);
 
-    process.exit(0);
+    if (require.main === module) {
+        process.exit(0);
+    }
 }
 
-fetchNotionData();
+if (require.main === module) {
+    fetchNotionData();
+}
+
+module.exports = {
+    generateStaticHtml,
+    injectServicesHtml,
+    fetchNotionData
+};
 
 

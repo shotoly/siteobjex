@@ -17,8 +17,8 @@ window.OBJEX_CONFIG = {
     // Prix minimum plancher par commande (€)
     PRIX_MINIMUM: 2.0,
     
-    // Majoration pour impression bicolore (+25% sur la pièce pour purges et changements AMS)
-    BICOLOR_SURCHARGE_RATE: 0.25,
+    // Majoration pour impression bicolore (0.0 : aucun surcoût bicolore)
+    BICOLOR_SURCHARGE_RATE: 0.0,
 
     // Timeout de requête Webhook (en ms) avant bascule automatique sur mailto
     WEBHOOK_TIMEOUT_MS: 5000
