@@ -13,6 +13,70 @@ const filamentsDbId = process.env.NOTION_FILAMENTS_DB_ID;
 const featuredPrintsDbId = process.env.NOTION_PRINTS_DB_ID;
 
 const notion = new Client({ auth: apiKey || 'secret_dummy' });
+
+// --- NOTION RATE LIMITER & RETRY SYSTEM ---
+// Notion API autorise en moyenne 3 requêtes/seconde par jeton d'intégration.
+// Pour prévenir tout dépassement (code: 'rate_limited', HTTP 429) sur Render
+// et lors du traitement intensif des blocs Markdown (notion-to-md),
+// nous sérialisons toutes les requêtes (cadence minimale de 360ms) et appliquons
+// un réessai automatique avec backoff exponentiel (jusqu'à 6 tentatives, respect de Retry-After).
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const MIN_NOTION_REQUEST_INTERVAL_MS = 360;
+let notionRequestQueue = Promise.resolve();
+
+function enqueueNotionRequest(fn) {
+    const run = async () => {
+        await sleep(MIN_NOTION_REQUEST_INTERVAL_MS);
+        return fn();
+    };
+    const promise = notionRequestQueue.then(run, run);
+    notionRequestQueue = promise.catch(() => {});
+    return promise;
+}
+
+const originalNotionRequest = notion.request.bind(notion);
+
+notion.request = function (args) {
+    return enqueueNotionRequest(async () => {
+        const maxRetries = 6;
+        let attempt = 0;
+
+        while (true) {
+            try {
+                return await originalNotionRequest(args);
+            } catch (error) {
+                attempt++;
+                const isRateLimit = error.code === 'rate_limited' || 
+                                    error.status === 429 || 
+                                    (error.message && error.message.toLowerCase().includes('rate limited'));
+                const isServerError = (error.status >= 500 && error.status <= 599) || 
+                                      error.code === 'internal_server_error' || 
+                                      error.code === 'service_unavailable';
+
+                if ((isRateLimit || isServerError) && attempt <= maxRetries) {
+                    let waitSeconds = Math.pow(2, attempt); // 2s, 4s, 8s, 16s, 32s, 64s
+                    if (error.headers && typeof error.headers.get === 'function') {
+                        const retryAfter = error.headers.get('retry-after');
+                        if (retryAfter && !isNaN(retryAfter)) {
+                            waitSeconds = Math.max(waitSeconds, parseInt(retryAfter, 10) + 1);
+                        }
+                    } else if (error.headers && (error.headers['retry-after'] || error.headers['Retry-After'])) {
+                        const retryAfter = error.headers['retry-after'] || error.headers['Retry-After'];
+                        if (retryAfter && !isNaN(retryAfter)) {
+                            waitSeconds = Math.max(waitSeconds, parseInt(retryAfter, 10) + 1);
+                        }
+                    }
+                    console.warn(`\x1b[33m⏳ [Notion API] ${isRateLimit ? 'Rate limit (429)' : 'Erreur ' + (error.status || error.code)} sur "${args?.path || 'requête'}". Pause de ${waitSeconds}s avant réessai ${attempt}/${maxRetries}...\x1b[0m`);
+                    await sleep(waitSeconds * 1000);
+                } else {
+                    throw error;
+                }
+            }
+        }
+    });
+};
+
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 
@@ -653,23 +717,33 @@ async function processDatabase(dbBlock) {
 
     console.log(`\n\x1b[35m--- 📥 Traitement de la base de données : ${dbBlock.child_database.title} (${category}/${subfolder}) ---\x1b[0m`);
     
-    // Nettoyer les anciens fichiers HTML générés pour éviter de garder des pages supprimées de Notion
     const outDir = path.join(__dirname, 'pages', category, subfolder);
-    if (fs.existsSync(outDir)) {
-        const existingFiles = fs.readdirSync(outDir);
-        for (const file of existingFiles) {
-            if (file.endsWith('.html')) {
-                try { fs.unlinkSync(path.join(outDir, file)); } catch {}
-            }
-        }
-    } else {
+    if (!fs.existsSync(outDir)) {
         fs.mkdirSync(outDir, { recursive: true });
     }
 
-    const dbResponse = await notion.databases.query({
-        database_id: dbBlock.id,
-        sorts: [{ property: 'Date', direction: 'descending' }],
-    });
+    let dbResponse;
+    try {
+        dbResponse = await notion.databases.query({
+            database_id: dbBlock.id,
+            sorts: [{ property: 'Date', direction: 'descending' }],
+        });
+    } catch {
+        try {
+            dbResponse = await notion.databases.query({ database_id: dbBlock.id });
+        } catch (err) {
+            console.error(`\x1b[31m❌ Impossible de charger la base "${dbBlock.child_database?.title}" : ${err.message}\x1b[0m`);
+            return { total: 0, successCount: 0, errorCount: 1, ignoredCount: 0 };
+        }
+    }
+
+    // Nettoyer les anciens fichiers HTML générés seulement après succès de la requête
+    const existingFiles = fs.readdirSync(outDir);
+    for (const file of existingFiles) {
+        if (file.endsWith('.html')) {
+            try { fs.unlinkSync(path.join(outDir, file)); } catch {}
+        }
+    }
 
     const total = dbResponse.results.length;
     console.log(`\x1b[36mTotal trouvé dans "${dbBlock.child_database.title}" : ${total} pages.\x1b[0m\n`);
@@ -724,7 +798,7 @@ function getColorHexFromName(colorName) {
 // --- BASE DE DONNÉES : PROJETS CLIENTS ("Pro") ---
 async function processClientProjects(dbId) {
     console.log(`\n\x1b[35m--- 📥 Traitement de la base Notion : Projets Clients (${dbId}) ---\x1b[0m`);
-    let dbResponse;
+    let dbResponse = null;
     try {
         dbResponse = await notion.databases.query({
             database_id: dbId,
@@ -732,162 +806,202 @@ async function processClientProjects(dbId) {
         });
     } catch {
         // En cas d'erreur avec le tri par Date, requêter sans tri
-        dbResponse = await notion.databases.query({ database_id: dbId });
+        try {
+            dbResponse = await notion.databases.query({ database_id: dbId });
+        } catch (err) {
+            console.warn(`\x1b[33m⚠️ Requête Notion Projets Clients impossible (${err.message}). Utilisation des données locales si disponibles.\x1b[0m`);
+        }
     }
-
-    const total = dbResponse.results.length;
-    console.log(`\x1b[36mTotal trouvé dans Projets Clients : ${total} pages.\x1b[0m\n`);
 
     const clientProjects = [];
     let successCount = 0;
     let ignoredCount = 0;
 
-    for (let i = 0; i < total; i++) {
-        const page = dbResponse.results[i];
-        const id = page.id;
-        
-        // La propriété dans Notion est 'publiqe' (avec un 'q')
-        const isPublic = page.properties["publiqe"]?.checkbox 
-                      ?? page.properties["publique"]?.checkbox 
-                      ?? page.properties["Publique"]?.checkbox 
-                      ?? page.properties["public"]?.checkbox 
-                      ?? page.properties["Public"]?.checkbox 
-                      ?? false;
+    if (dbResponse && Array.isArray(dbResponse.results)) {
+        const total = dbResponse.results.length;
+        console.log(`\x1b[36mTotal trouvé dans Projets Clients : ${total} pages.\x1b[0m\n`);
 
-        if (!isPublic) {
-            ignoredCount++;
-            continue;
+        for (let i = 0; i < total; i++) {
+            const page = dbResponse.results[i];
+            const id = page.id;
+            
+            // La propriété dans Notion est 'publiqe' (avec un 'q')
+            const isPublic = page.properties["publiqe"]?.checkbox 
+                          ?? page.properties["publique"]?.checkbox 
+                          ?? page.properties["Publique"]?.checkbox 
+                          ?? page.properties["public"]?.checkbox 
+                          ?? page.properties["Public"]?.checkbox 
+                          ?? false;
+
+            if (!isPublic) {
+                ignoredCount++;
+                continue;
+            }
+
+            const titre = page.properties["Nom"]?.title?.[0]?.plain_text 
+                       || page.properties["Titre"]?.title?.[0]?.plain_text 
+                       || "Projet Client";
+
+            const description = page.properties["Description"]?.rich_text?.map(t => t.plain_text).join('') || "";
+            const date = page.properties["Date"]?.date?.start || "";
+
+            // Propriétés réelles Notion : 'Select' et 'filament utilisé'
+            const selectTags = (page.properties["Select"]?.multi_select || []).map(s => s.name);
+            const filamentTags = (page.properties["filament utilisé"]?.multi_select || []).map(s => s.name);
+            const etiquettes = [...selectTags, ...filamentTags];
+            const service = selectTags[0] || "Impression 3D";
+
+            let image = await downloadNotionImage(page, "image", "pro", id, titre, "projets_clients")
+                     || await downloadNotionImage(page, "Image", "pro", id, titre, "projets_clients")
+                     || "";
+
+            if (image.includes('photo/')) {
+                image = image.substring(image.indexOf('photo/'));
+            }
+
+            clientProjects.push({
+                id,
+                titre,
+                description,
+                service,
+                etiquettes,
+                filamentsUtilises: filamentTags,
+                date,
+                image
+            });
+            successCount++;
+            console.log(`\x1b[32m✅ [Projets Clients] "${titre}" ajouté.\x1b[0m`);
         }
-
-        const titre = page.properties["Nom"]?.title?.[0]?.plain_text 
-                   || page.properties["Titre"]?.title?.[0]?.plain_text 
-                   || "Projet Client";
-
-        const description = page.properties["Description"]?.rich_text?.map(t => t.plain_text).join('') || "";
-        const date = page.properties["Date"]?.date?.start || "";
-
-        // Propriétés réelles Notion : 'Select' et 'filament utilisé'
-        const selectTags = (page.properties["Select"]?.multi_select || []).map(s => s.name);
-        const filamentTags = (page.properties["filament utilisé"]?.multi_select || []).map(s => s.name);
-        const etiquettes = [...selectTags, ...filamentTags];
-        const service = selectTags[0] || "Impression 3D";
-
-        let image = await downloadNotionImage(page, "image", "pro", id, titre, "projets_clients")
-                 || await downloadNotionImage(page, "Image", "pro", id, titre, "projets_clients")
-                 || "";
-
-        if (image.includes('photo/')) {
-            image = image.substring(image.indexOf('photo/'));
-        }
-
-        clientProjects.push({
-            id,
-            titre,
-            description,
-            service,
-            etiquettes,
-            filamentsUtilises: filamentTags,
-            date,
-            image
-        });
-        successCount++;
-        console.log(`\x1b[32m✅ [Projets Clients] "${titre}" ajouté.\x1b[0m`);
     }
 
-    return { clientProjects, total, successCount, ignoredCount };
+    if (clientProjects.length === 0) {
+        const localPath = path.join(__dirname, 'pages', 'services', 'projets_clients.json');
+        if (fs.existsSync(localPath)) {
+            try {
+                const local = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+                if (Array.isArray(local) && local.length > 0) {
+                    console.log(`\x1b[33mℹ️ Repli de sécurité : ${local.length} projets clients restaurés depuis le cache local.\x1b[0m`);
+                    return { clientProjects: local, total: local.length, successCount: local.length, ignoredCount: 0 };
+                }
+            } catch {}
+        }
+    }
+
+    return { clientProjects, total: clientProjects.length, successCount, ignoredCount };
 }
 
 // --- BASE DE DONNÉES : FILAMENTS EN STOCK ("filament") ---
 async function processFilaments(dbId) {
     console.log(`\n\x1b[35m--- 📥 Traitement de la base Notion : Filaments (${dbId}) ---\x1b[0m`);
-    const dbResponse = await notion.databases.query({ database_id: dbId });
-    const total = dbResponse.results.length;
-    console.log(`\x1b[36mTotal trouvé dans Filaments : ${total} pages.\x1b[0m\n`);
+    let dbResponse = null;
+    try {
+        dbResponse = await notion.databases.query({ database_id: dbId });
+    } catch (err) {
+        console.warn(`\x1b[33m⚠️ Requête Notion Filaments impossible (${err.message}). Utilisation des données locales si disponibles.\x1b[0m`);
+    }
 
     const filaments = [];
     let successCount = 0;
     let ignoredCount = 0;
 
-    for (let i = 0; i < total; i++) {
-        const page = dbResponse.results[i];
-        const id = page.id;
+    if (dbResponse && Array.isArray(dbResponse.results)) {
+        const total = dbResponse.results.length;
+        console.log(`\x1b[36mTotal trouvé dans Filaments : ${total} pages.\x1b[0m\n`);
 
-        // La propriété dans Notion est 'publiqe' (avec un 'q')
-        const isPublic = page.properties["publiqe"]?.checkbox 
-                      ?? page.properties["publique"]?.checkbox 
-                      ?? page.properties["Publique"]?.checkbox 
-                      ?? page.properties["public"]?.checkbox 
-                      ?? page.properties["Public"]?.checkbox 
-                      ?? false;
+        for (let i = 0; i < total; i++) {
+            const page = dbResponse.results[i];
+            const id = page.id;
 
-        if (!isPublic) {
-            ignoredCount++;
-            continue;
+            // La propriété dans Notion est 'publiqe' (avec un 'q')
+            const isPublic = page.properties["publiqe"]?.checkbox 
+                          ?? page.properties["publique"]?.checkbox 
+                          ?? page.properties["Publique"]?.checkbox 
+                          ?? page.properties["public"]?.checkbox 
+                          ?? page.properties["Public"]?.checkbox 
+                          ?? false;
+
+            if (!isPublic) {
+                ignoredCount++;
+                continue;
+            }
+
+            const materiau = page.properties["Type"]?.select?.name 
+                          || page.properties["Matériau"]?.select?.name 
+                          || "PLA";
+
+            const couleur = page.properties["Couleur"]?.rich_text?.[0]?.plain_text 
+                         || page.properties["Couleur"]?.select?.name 
+                         || "Standard";
+
+            let nom = page.properties["Nom"]?.title?.[0]?.plain_text || "";
+            if (!nom) {
+                nom = `${materiau} ${couleur}`.trim();
+            }
+
+            let codeHex = "";
+            if (couleur.startsWith('#')) {
+                codeHex = couleur;
+            } else {
+                codeHex = getColorHexFromName(couleur);
+            }
+
+            // Notion 'État' : options 'Absent', 'Commendé', 'En stock'
+            const stock = page.properties["État"]?.status?.name 
+                       || page.properties["Etat"]?.status?.name 
+                       || page.properties["Statut"]?.status?.name 
+                       || "En stock";
+
+            const prix = page.properties["prix"]?.number ?? page.properties["Prix"]?.number ?? null;
+            const prixKg = prix !== null ? prix : null;
+            const prixGramme = prixKg !== null ? Number((prixKg / 1000).toFixed(5)) : 0.022;
+
+            const rawStockLower = (stock || "").toLowerCase();
+            const enRupture = rawStockLower.includes("absent") || rawStockLower.includes("rupture") || rawStockLower.includes("out");
+
+            const marques = (page.properties["Marque"]?.multi_select || []).map(m => m.name);
+            const marque = marques.join(', ');
+
+            let image = await downloadNotionImage(page, "image", "filament", id, nom, "filaments")
+                     || await downloadNotionImage(page, "Image", "filament", id, nom, "filaments")
+                     || "";
+
+            if (image.includes('photo/')) {
+                image = image.substring(image.indexOf('photo/'));
+            }
+
+            filaments.push({
+                id,
+                nom,
+                materiau,
+                couleur,
+                codeHex,
+                stock,
+                prix: prixKg,
+                prixKg,
+                prixGramme,
+                enRupture,
+                marque,
+                image
+            });
+            successCount++;
+            console.log(`\x1b[32m✅ [Filaments] "${nom}" (${materiau} - ${couleur}) ajouté (Stock: ${stock}, ${prixKg ? prixKg + '€/kg' : 'N/C'}).\x1b[0m`);
         }
-
-        const materiau = page.properties["Type"]?.select?.name 
-                      || page.properties["Matériau"]?.select?.name 
-                      || "PLA";
-
-        const couleur = page.properties["Couleur"]?.rich_text?.[0]?.plain_text 
-                     || page.properties["Couleur"]?.select?.name 
-                     || "Standard";
-
-        let nom = page.properties["Nom"]?.title?.[0]?.plain_text || "";
-        if (!nom) {
-            nom = `${materiau} ${couleur}`.trim();
-        }
-
-        let codeHex = "";
-        if (couleur.startsWith('#')) {
-            codeHex = couleur;
-        } else {
-            codeHex = getColorHexFromName(couleur);
-        }
-
-        // Notion 'État' : options 'Absent', 'Commendé', 'En stock'
-        const stock = page.properties["État"]?.status?.name 
-                   || page.properties["Etat"]?.status?.name 
-                   || page.properties["Statut"]?.status?.name 
-                   || "En stock";
-
-        const prix = page.properties["prix"]?.number ?? page.properties["Prix"]?.number ?? null;
-        const prixKg = prix !== null ? prix : null;
-        const prixGramme = prixKg !== null ? Number((prixKg / 1000).toFixed(5)) : 0.022;
-
-        const rawStockLower = (stock || "").toLowerCase();
-        const enRupture = rawStockLower.includes("absent") || rawStockLower.includes("rupture") || rawStockLower.includes("out");
-
-        const marques = (page.properties["Marque"]?.multi_select || []).map(m => m.name);
-        const marque = marques.join(', ');
-
-        let image = await downloadNotionImage(page, "image", "filament", id, nom, "filaments")
-                 || await downloadNotionImage(page, "Image", "filament", id, nom, "filaments")
-                 || "";
-
-        if (image.includes('photo/')) {
-            image = image.substring(image.indexOf('photo/'));
-        }
-
-        filaments.push({
-            id,
-            nom,
-            materiau,
-            couleur,
-            codeHex,
-            stock,
-            prix: prixKg,
-            prixKg,
-            prixGramme,
-            enRupture,
-            marque,
-            image
-        });
-        successCount++;
-        console.log(`\x1b[32m✅ [Filaments] "${nom}" (${materiau} - ${couleur}) ajouté (Stock: ${stock}, ${prixKg ? prixKg + '€/kg' : 'N/C'}).\x1b[0m`);
     }
 
-    return { filaments, total, successCount, ignoredCount };
+    if (filaments.length === 0) {
+        const localPath = path.join(__dirname, 'pages', 'services', 'filaments.json');
+        if (fs.existsSync(localPath)) {
+            try {
+                const local = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+                if (Array.isArray(local) && local.length > 0) {
+                    console.log(`\x1b[33mℹ️ Repli de sécurité : ${local.length} filaments restaurés depuis le cache local.\x1b[0m`);
+                    return { filaments: local, total: local.length, successCount: local.length, ignoredCount: 0 };
+                }
+            } catch {}
+        }
+    }
+
+    return { filaments, total: filaments.length, successCount, ignoredCount };
 }
 
 // --- TRAITEMENT DE LA BASE IMPRESSIONS 3D (MAKERWORLD / VEDETTES) ---
@@ -1029,9 +1143,9 @@ async function processFeaturedPrints(dbId) {
         }
     }
 
-    // Repli uniquement si la requête Notion a échoué (mode hors-ligne)
-    if (!dbResponse && featuredPrints.length === 0 && localScrapedList.length > 0) {
-        console.log(`\x1b[33mℹ️ Connexion Notion non disponible : utilisation du secours store_prints.json (${localScrapedList.length} modèles)\x1b[0m`);
+    // Repli de secours si aucun modèle n'a pu être récupéré de Notion
+    if (featuredPrints.length === 0 && localScrapedList.length > 0) {
+        console.log(`\x1b[33mℹ️ Repli de sécurité : ${localScrapedList.length} impressions vedettes restaurées depuis store_prints.json local.\x1b[0m`);
         return { featuredPrints: localScrapedList, total: localScrapedList.length, successCount: localScrapedList.length, ignoredCount: 0 };
     }
 
@@ -1325,42 +1439,46 @@ async function fetchNotionData() {
             for (const dbBlock of databases) {
                 const titleLower = (dbBlock.child_database.title || "").toLowerCase().trim();
                 
-                // Routage selon le titre
-                if (titleLower === 'pro' || (titleLower.includes('pro') && !titleLower.includes('projet'))) {
-                    // Base Projets Clients ("Pro")
-                    const resProj = await processClientProjects(dbBlock.id);
-                    servicesData.clientProjects = resProj.clientProjects;
-                    totalProcessed += resProj.total;
-                    globalSuccessCount += resProj.successCount;
-                    globalIgnoredCount += resProj.ignoredCount;
-                    proDbProcessed = true;
-                } else if (titleLower.includes('filament')) {
-                    // Base Filaments ("filament")
-                    const resFil = await processFilaments(dbBlock.id);
-                    servicesData.filaments = resFil.filaments;
-                    totalProcessed += resFil.total;
-                    globalSuccessCount += resFil.successCount;
-                    globalIgnoredCount += resFil.ignoredCount;
-                    filamentDbProcessed = true;
-                } else if (titleLower.includes('impress') || titleLower.includes('maker') || titleLower.includes('vedette') || titleLower.includes('store') || titleLower.includes('print')) {
-                    // Base Impressions 3D ("Impressions 3D")
-                    const resPrints = await processFeaturedPrints(dbBlock.id);
-                    servicesData.featuredPrints = resPrints.featuredPrints;
-                    totalProcessed += resPrints.total;
-                    globalSuccessCount += resPrints.successCount;
-                    globalIgnoredCount += resPrints.ignoredCount;
-                    featuredPrintsDbProcessed = true;
-                } else if (titleLower.includes('commande') || titleLower.includes('order')) {
-                    // Base privée de suivi des commandes clients : ne pas traiter comme contenu de portfolio
-                    console.log(`\x1b[33m⏩ Base "${dbBlock.child_database.title}" ignorée (gestion interne des commandes).\x1b[0m`);
-                    continue;
-                } else {
-                    // Bases Portfolio ("portfolios", "Projet")
-                    const stats = await processDatabase(dbBlock);
-                    totalProcessed += stats.total;
-                    globalSuccessCount += stats.successCount;
-                    globalErrorCount += stats.errorCount;
-                    globalIgnoredCount += stats.ignoredCount;
+                try {
+                    // Routage selon le titre
+                    if (titleLower === 'pro' || (titleLower.includes('pro') && !titleLower.includes('projet'))) {
+                        // Base Projets Clients ("Pro")
+                        const resProj = await processClientProjects(dbBlock.id);
+                        servicesData.clientProjects = resProj.clientProjects;
+                        totalProcessed += resProj.total;
+                        globalSuccessCount += resProj.successCount;
+                        globalIgnoredCount += resProj.ignoredCount;
+                        proDbProcessed = true;
+                    } else if (titleLower.includes('filament')) {
+                        // Base Filaments ("filament")
+                        const resFil = await processFilaments(dbBlock.id);
+                        servicesData.filaments = resFil.filaments;
+                        totalProcessed += resFil.total;
+                        globalSuccessCount += resFil.successCount;
+                        globalIgnoredCount += resFil.ignoredCount;
+                        filamentDbProcessed = true;
+                    } else if (titleLower.includes('impress') || titleLower.includes('maker') || titleLower.includes('vedette') || titleLower.includes('store') || titleLower.includes('print')) {
+                        // Base Impressions 3D ("Impressions 3D")
+                        const resPrints = await processFeaturedPrints(dbBlock.id);
+                        servicesData.featuredPrints = resPrints.featuredPrints;
+                        totalProcessed += resPrints.total;
+                        globalSuccessCount += resPrints.successCount;
+                        globalIgnoredCount += resPrints.ignoredCount;
+                        featuredPrintsDbProcessed = true;
+                    } else if (titleLower.includes('commande') || titleLower.includes('order')) {
+                        // Base privée de suivi des commandes clients : ne pas traiter comme contenu de portfolio
+                        console.log(`\x1b[33m⏩ Base "${dbBlock.child_database.title}" ignorée (gestion interne des commandes).\x1b[0m`);
+                        continue;
+                    } else {
+                        // Bases Portfolio ("portfolios", "Projet")
+                        const stats = await processDatabase(dbBlock);
+                        totalProcessed += stats.total;
+                        globalSuccessCount += stats.successCount;
+                        globalErrorCount += stats.errorCount;
+                        globalIgnoredCount += stats.ignoredCount;
+                    }
+                } catch (dbErr) {
+                    console.error(`\x1b[31m❌ Erreur lors du traitement de la base "${dbBlock.child_database?.title || dbBlock.id}" : ${dbErr.message}\x1b[0m`);
                 }
             }
         } catch (err) {
@@ -1415,17 +1533,28 @@ async function fetchNotionData() {
     const servicesDir = path.join(__dirname, 'pages', 'services');
     if (!fs.existsSync(servicesDir)) fs.mkdirSync(servicesDir, { recursive: true });
 
-    // Repli sur store_prints.json local UNIQUEMENT si aucune base Notion n'a été interrogée (mode hors-ligne)
-    if (!featuredPrintsDbProcessed && (!servicesData.featuredPrints || servicesData.featuredPrints.length === 0)) {
-        const localStorePath = path.join(servicesDir, 'store_prints.json');
-        if (fs.existsSync(localStorePath)) {
-            try {
-                const localData = JSON.parse(fs.readFileSync(localStorePath, 'utf8'));
-                if (Array.isArray(localData) && localData.length > 0) {
-                    servicesData.featuredPrints = localData;
-                    console.log(`\x1b[33mℹ️ Base Notion non accessible : utilisation du secours local store_prints.json (${localData.length} modèles)\x1b[0m`);
+    // Repli de sécurité : si l'une des listes est vide ou absente (ex: erreur Notion ou rate limit),
+    // on restaure les données existantes pour ne jamais écraser la production avec des listes vides.
+    const fallbackConfigs = [
+        { key: 'clientProjects', file: 'projets_clients.json', name: 'Projets Clients' },
+        { key: 'filaments', file: 'filaments.json', name: 'Filaments' },
+        { key: 'featuredPrints', file: 'store_prints.json', name: 'Impressions Vedettes' }
+    ];
+
+    for (const conf of fallbackConfigs) {
+        if (!servicesData[conf.key] || servicesData[conf.key].length === 0) {
+            const filePath = path.join(servicesDir, conf.file);
+            if (fs.existsSync(filePath)) {
+                try {
+                    const localData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+                    if (Array.isArray(localData) && localData.length > 0) {
+                        servicesData[conf.key] = localData;
+                        console.log(`\x1b[33m🛡️ Protection active : ${conf.name} restaurés depuis ${conf.file} (${localData.length} éléments préservés).\x1b[0m`);
+                    }
+                } catch (e) {
+                    console.error(`Erreur lecture cache local ${conf.file}:`, e.message);
                 }
-            } catch {}
+            }
         }
     }
 
