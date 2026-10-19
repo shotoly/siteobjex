@@ -449,6 +449,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (podQuantity) podQuantity.value = "1";
         if (podStatusMsg) podStatusMsg.innerHTML = "";
 
+        // Réinitialiser la vue formulaire et masquer l'écran de confirmation
+        const podModalGrid = podModal ? podModal.querySelector(".pod-modal-grid") : null;
+        const podConfView = document.getElementById("pod-confirmation-view");
+        if (podModalGrid) podModalGrid.style.display = "";
+        if (podConfView) {
+            podConfView.style.display = "none";
+            podConfView.innerHTML = "";
+        }
+
         // Réinitialisation carrousel
         currentMediaIndex = 0;
         setupThumbnails();
@@ -827,6 +836,187 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    // -------------------------------------------------------------
+    // Affichage grand format de l'écran de confirmation (POD)
+    // -------------------------------------------------------------
+    function showPodConfirmationScreen(orderPayload, ticketRef) {
+        const podModalGrid = podModal ? podModal.querySelector(".pod-modal-grid") : null;
+        const confView = document.getElementById("pod-confirmation-view");
+        if (!confView) return;
+
+        if (podModalGrid) podModalGrid.style.display = "none";
+        confView.style.display = "block";
+
+        const ref = ticketRef || ("OBJ-" + Date.now().toString().slice(-6));
+        const clientEmail = orderPayload.client.email;
+        const modelTitle = orderPayload.modele.titre;
+        const qty = orderPayload.configuration.quantite;
+        const totalPrice = Number(orderPayload.configuration.prixTotal).toFixed(2);
+        const filName = orderPayload.configuration.filamentNom;
+
+        confView.innerHTML = `
+            <div class="conf-icon-glow">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="conf-main-title">${isEn ? 'Order Confirmed!' : 'Commande validée avec succès !'}</h2>
+            <div class="conf-ref-pill">
+                <i class="fa-solid fa-receipt"></i>
+                <span>${isEn ? 'Order Reference' : 'Référence commande'} : <strong>${ref}</strong></span>
+            </div>
+
+            <div class="conf-highlight-box">
+                <div class="conf-email-alert">
+                    <i class="fa-solid fa-envelope-circle-check"></i>
+                    <span>${isEn ? 'Automatic confirmation email sent to' : 'Email automatique de confirmation envoyé à'} : <u>${clientEmail}</u></span>
+                </div>
+                <p class="conf-wait-notice">
+                    ${isEn
+                        ? `⚠️ <strong>Please wait for your order to be processed directly by me (<strong class="conf-highlight-name">Robin Jallade • Objex3D</strong>).</strong> I personally review 3D model geometry, slicing and filament calibration before starting production.`
+                        : `⚠️ <strong>Merci d'attendre la prise en charge de votre commande par mes soins (<strong class="conf-highlight-name">Robin Jallade • Objex3D</strong>).</strong> Je vérifie personnellement la géométrie de votre pièce 3D, le tranchage et la disponibilité du filament à l'atelier avant de lancer la fabrication.`
+                    }
+                </p>
+            </div>
+
+            <div class="conf-recap-card">
+                <h4><i class="fa-solid fa-clipboard-list"></i> ${isEn ? 'Order Summary' : 'Récapitulatif de votre commande'}</h4>
+                <div class="conf-recap-row">
+                    <span>${isEn ? '3D Model' : 'Pièce 3D'}</span>
+                    <strong>${modelTitle}</strong>
+                </div>
+                <div class="conf-recap-row">
+                    <span>${isEn ? 'Filament / Color' : 'Matériau & Couleur'}</span>
+                    <strong>${filName}</strong>
+                </div>
+                <div class="conf-recap-row">
+                    <span>${isEn ? 'Quantity' : 'Quantité'}</span>
+                    <strong>${qty} ${qty > 1 ? (isEn ? 'units' : 'exemplaires') : (isEn ? 'unit' : 'exemplaire')}</strong>
+                </div>
+                <div class="conf-recap-row conf-total">
+                    <span>${isEn ? 'Total price' : 'Total estimé (TTC)'}</span>
+                    <strong>${totalPrice} €</strong>
+                </div>
+            </div>
+
+            <div class="conf-timeline">
+                <div class="conf-timeline-step completed">
+                    <div class="conf-step-icon"><i class="fa-solid fa-check"></i></div>
+                    <span class="conf-step-title">${isEn ? '1. Order sent' : '1. Commande reçue'}</span>
+                    <span class="conf-step-desc">${isEn ? 'Instant receipt' : 'Enregistrement direct'}</span>
+                </div>
+                <div class="conf-timeline-step current">
+                    <div class="conf-step-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <span class="conf-step-title">${isEn ? '2. Review' : '2. Prise en charge'}</span>
+                    <span class="conf-step-desc">${isEn ? 'By Robin Jallade' : 'Par Robin Jallade'}</span>
+                </div>
+                <div class="conf-timeline-step">
+                    <div class="conf-step-icon"><i class="fa-solid fa-cube"></i></div>
+                    <span class="conf-step-title">${isEn ? '3. 3D Print' : '3. Impression 3D'}</span>
+                    <span class="conf-step-desc">${isEn ? 'Production & Dispatch' : 'Lancement & Expédition'}</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn-brutal btn-conf-close" id="btn-pod-conf-close">
+                <i class="fa-solid fa-check"></i> ${isEn ? 'Got it, close' : 'C\'est compris, fermer'}
+            </button>
+        `;
+
+        const closeBtn = confView.querySelector("#btn-pod-conf-close");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", closePodModal);
+        }
+
+        if (podModal) {
+            podModal.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    // -------------------------------------------------------------
+    // Affichage grand format de l'écran de confirmation (Projet Sur-Mesure)
+    // -------------------------------------------------------------
+    function showCustomConfirmationScreen(customPayload, ticketRef) {
+        const customContent = customModal ? customModal.querySelector(".custom-modal-content") : null;
+        const confView = document.getElementById("custom-confirmation-view");
+        if (!confView) return;
+
+        if (customContent) customContent.style.display = "none";
+        confView.style.display = "block";
+
+        const ref = ticketRef || ("DEV-" + Date.now().toString().slice(-6));
+        const clientName = `${customPayload.client.prenom} ${customPayload.client.nom}`.trim();
+        const clientEmail = customPayload.client.email;
+
+        confView.innerHTML = `
+            <div class="conf-icon-glow">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="conf-main-title">${isEn ? 'Custom Request Submitted!' : 'Demande sur-mesure enregistrée !'}</h2>
+            <div class="conf-ref-pill">
+                <i class="fa-solid fa-receipt"></i>
+                <span>${isEn ? 'Ticket Reference' : 'Numéro de ticket'} : <strong>${ref}</strong></span>
+            </div>
+
+            <div class="conf-highlight-box">
+                <div class="conf-email-alert">
+                    <i class="fa-solid fa-envelope-circle-check"></i>
+                    <span>${isEn ? 'Confirmation email sent to' : 'Email automatique de confirmation envoyé à'} : <u>${clientEmail}</u></span>
+                </div>
+                <p class="conf-wait-notice">
+                    ${isEn
+                        ? `⚠️ <strong>Please wait for your request to be reviewed by me (<strong class="conf-highlight-name">Robin Jallade • Objex3D</strong>).</strong> I will analyze your specifications and get back to you with a CAD study or quote within 24 hours.`
+                        : `⚠️ <strong>Merci d'attendre la prise en charge de votre projet par mes soins (<strong class="conf-highlight-name">Robin Jallade • Objex3D</strong>).</strong> J'étudie votre cahier des charges et vos fichiers 3D pour vous proposer une solution technique optimale et un devis sous 24h.`
+                    }
+                </p>
+            </div>
+
+            <div class="conf-recap-card">
+                <h4><i class="fa-solid fa-compass-drafting"></i> ${isEn ? 'Project Summary' : 'Détails de votre demande'}</h4>
+                <div class="conf-recap-row">
+                    <span>${isEn ? 'Service Type' : 'Type de prestation'}</span>
+                    <strong>${customPayload.projetType}</strong>
+                </div>
+                <div class="conf-recap-row">
+                    <span>${isEn ? 'Client' : 'Demandeur'}</span>
+                    <strong>${clientName}</strong>
+                </div>
+                <div class="conf-recap-row">
+                    <span>Email</span>
+                    <strong>${clientEmail}</strong>
+                </div>
+            </div>
+
+            <div class="conf-timeline">
+                <div class="conf-timeline-step completed">
+                    <div class="conf-step-icon"><i class="fa-solid fa-check"></i></div>
+                    <span class="conf-step-title">${isEn ? '1. Ticket logged' : '1. Demande enregistrée'}</span>
+                    <span class="conf-step-desc">${isEn ? 'Instant receipt' : 'Enregistrement direct'}</span>
+                </div>
+                <div class="conf-timeline-step current">
+                    <div class="conf-step-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <span class="conf-step-title">${isEn ? '2. Study' : '2. Étude technique'}</span>
+                    <span class="conf-step-desc">${isEn ? 'By Robin Jallade' : 'Par Robin Jallade'}</span>
+                </div>
+                <div class="conf-timeline-step">
+                    <div class="conf-step-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <span class="conf-step-title">${isEn ? '3. Quote & CAD' : '3. Devis & Fichiers'}</span>
+                    <span class="conf-step-desc">${isEn ? 'Within 24h' : 'Sous 24h'}</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn-brutal btn-conf-close" id="btn-custom-conf-close">
+                <i class="fa-solid fa-check"></i> ${isEn ? 'Got it, close' : 'C\'est compris, fermer'}
+            </button>
+        `;
+
+        const closeBtn = confView.querySelector("#btn-custom-conf-close");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", closeCustomModal);
+        }
+
+        if (customModal) {
+            customModal.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
     // 9. Gestion de la soumission de commande POD (n8n Webhook -> Repli mailto:)
     if (podOrderForm) {
         podOrderForm.addEventListener("submit", async (e) => {
@@ -901,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             let success = false;
             try {
-                // Tentative silencieuse d'envoi vers le Webhook n8n avec timeout
+                // Tentative d'envoi vers le Webhook n8n avec timeout
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -923,11 +1113,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         resData = await response.json();
                     } catch (e) {}
                     const ticketRef = resData && (resData.order_reference || resData.ticket_id);
-                    const toastMsg = ticketRef
-                        ? (isEn ? `Order confirmed! Reference: ${ticketRef}` : `Commande transmise à l'atelier ! Réf: ${ticketRef}`)
-                        : (isEn ? "Your order has been transmitted to our workshop!" : "Votre commande a été transmise avec succès à l'atelier !");
-                    showToast(toastMsg, "success");
-                    setTimeout(closePodModal, 2200);
+                    // Remplacer l'affichage par le grand écran de confirmation
+                    showPodConfirmationScreen(orderPayload, ticketRef);
                 } else {
                     throw new Error(`HTTP ${response.status}`);
                 }
@@ -988,6 +1175,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 10. Gestion du Modal Projet Personnalisé / Modélisation CAO
     function openCustomModal() {
+        const customContent = customModal ? customModal.querySelector(".custom-modal-content") : null;
+        const customConfView = document.getElementById("custom-confirmation-view");
+        if (customContent) customContent.style.display = "";
+        if (customConfView) {
+            customConfView.style.display = "none";
+            customConfView.innerHTML = "";
+        }
         if (customModal) {
             customModal.classList.add("active");
             document.body.style.overflow = "hidden";
@@ -1062,11 +1256,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         resData = await response.json();
                     } catch (e) {}
                     const ticketRef = resData && (resData.order_reference || resData.ticket_id);
-                    const toastMsg = ticketRef
-                        ? (isEn ? `Request received! Ticket: ${ticketRef}` : `Demande sur-mesure enregistrée ! Ticket: ${ticketRef}`)
-                        : (isEn ? "Your custom project request has been submitted!" : "Votre demande de projet sur-mesure a été envoyée !");
-                    showToast(toastMsg, "success");
-                    setTimeout(closeCustomModal, 2200);
+                    // Affichage grand format de l'écran de confirmation
+                    showCustomConfirmationScreen(customPayload, ticketRef);
                 } else {
                     throw new Error(`HTTP ${response.status}`);
                 }

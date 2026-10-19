@@ -3202,6 +3202,401 @@ code {
 }
 
 /* ============================================================ */
+/* ÉCRAN DE CONFIRMATION COMMANDE EN GRAND FORMAT               */
+/* ============================================================ */
+.pod-confirmation-view {
+    padding: 32px 28px 24px 28px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+    animation: podFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes podFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.conf-icon-glow {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 12px auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.25) 100%);
+    border: 3px solid #10B981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: #10B981;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+    animation: confPulse 2s infinite ease-in-out;
+}
+
+@keyframes confPulse {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 12px 35px rgba(16, 185, 129, 0.55);
+        transform: scale(1.04);
+    }
+}
+
+.conf-main-title {
+    font-family: var(--police-titre);
+    font-size: 1.95rem;
+    font-weight: 800;
+    color: var(--couleur-texte);
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.conf-ref-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--provence-violet);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+[data-theme="dark"] .conf-ref-pill {
+    background: rgba(167, 139, 250, 0.15);
+    border-color: rgba(167, 139, 250, 0.4);
+    color: #C4B5FD;
+}
+
+/* Encadré d'alerte / Prise en charge (Le message EN GROS) */
+.conf-highlight-box {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+    border: 2px solid var(--provence-violet);
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: left;
+    margin-bottom: 14px;
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="dark"] .conf-highlight-box {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(16, 185, 129, 0.12) 100%);
+    border-color: #A78BFA;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.conf-email-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--couleur-texte);
+    margin-bottom: 8px;
+}
+
+.conf-email-alert i {
+    font-size: 1.35rem;
+    color: #10B981;
+}
+
+.conf-wait-notice {
+    font-size: 0.96rem;
+    line-height: 1.5;
+    color: var(--couleur-texte);
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(124, 58, 237, 0.25);
+}
+
+.conf-wait-notice strong.conf-highlight-name {
+    color: var(--provence-violet);
+    font-size: 1.04rem;
+    font-weight: 800;
+}
+
+[data-theme="dark"] .conf-wait-notice strong.conf-highlight-name {
+    color: #C4B5FD;
+}
+
+/* Récapitulatif de la commande */
+.conf-recap-card {
+    background: var(--couleur-carte, #F9FAFB);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-align: left;
+    margin-bottom: 14px;
+}
+
+[data-theme="dark"] .conf-recap-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.conf-recap-card h4 {
+    font-family: var(--police-titre);
+    font-size: 0.96rem;
+    color: var(--couleur-texte);
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.conf-recap-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+    gap: 12px;
+}
+
+[data-theme="dark"] .conf-recap-row {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.conf-recap-row:last-child {
+    border-bottom: none;
+}
+
+.conf-recap-row span {
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.92rem;
+}
+
+.conf-recap-row strong {
+    color: var(--couleur-texte);
+    text-align: right;
+    word-break: break-word;
+}
+
+.conf-recap-row.conf-total {
+    border-top: 2px solid var(--provence-violet);
+    margin-top: 6px;
+    padding-top: 12px;
+}
+
+.conf-recap-row.conf-total span {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--couleur-texte);
+}
+
+.conf-recap-row.conf-total strong {
+    font-size: 1.4rem;
+    color: var(--provence-violet);
+    font-weight: 900;
+}
+
+[data-theme="dark"] .conf-recap-row.conf-total strong {
+    color: #A78BFA;
+}
+
+/* Timeline des étapes */
+.conf-timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.conf-timeline-step {
+    background: var(--couleur-carte, #F9FAFB);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 12px 10px;
+    text-align: center;
+    position: relative;
+}
+
+[data-theme="dark"] .conf-timeline-step {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.conf-timeline-step.completed {
+    border-color: #10B981;
+    background: rgba(16, 185, 129, 0.06);
+}
+
+.conf-timeline-step.current {
+    border-color: var(--provence-violet);
+    background: rgba(124, 58, 237, 0.08);
+}
+
+.conf-step-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin: 0 auto 6px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--couleur-texte);
+}
+
+.conf-timeline-step.completed .conf-step-icon {
+    background: #10B981;
+    color: white;
+}
+
+.conf-timeline-step.current .conf-step-icon {
+    background: var(--provence-violet);
+    color: white;
+}
+
+.conf-step-title {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--couleur-texte);
+    margin-bottom: 2px;
+}
+
+.conf-step-desc {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.25;
+}
+
+/* Bouton fermer */
+.btn-conf-close {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 14px 26px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .btn-conf-close {
+    background: var(--provence-violet);
+    border-color: var(--provence-violet);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(124, 58, 237, 0.4);
+}
+
+.btn-conf-close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+    .pod-confirmation-view {
+        padding: 16px 12px 14px 12px;
+    }
+    .conf-icon-glow {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+        margin: 0 auto 8px auto;
+    }
+    .conf-main-title {
+        font-size: 1.35rem;
+        margin-bottom: 6px;
+    }
+    .conf-ref-pill {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+        margin-bottom: 10px;
+    }
+    .conf-highlight-box {
+        padding: 12px 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+    }
+    .conf-email-alert {
+        font-size: 0.88rem;
+        margin-bottom: 6px;
+        gap: 6px;
+    }
+    .conf-email-alert i {
+        font-size: 1.1rem;
+    }
+    .conf-wait-notice {
+        font-size: 0.84rem;
+        line-height: 1.4;
+        padding-top: 6px;
+    }
+    .conf-wait-notice strong.conf-highlight-name {
+        font-size: 0.9rem;
+    }
+    .conf-recap-card {
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+    }
+    .conf-recap-card h4 {
+        font-size: 0.88rem;
+        margin-bottom: 6px;
+    }
+    .conf-recap-row {
+        font-size: 0.82rem;
+        padding: 4px 0;
+    }
+    .conf-recap-row.conf-total strong {
+        font-size: 1.1rem;
+    }
+    .conf-timeline {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    .conf-timeline-step {
+        padding: 6px 4px;
+        border-radius: 8px;
+    }
+    .conf-step-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 0.68rem;
+        margin: 0 auto 3px auto;
+    }
+    .conf-step-title {
+        font-size: 0.7rem;
+        line-height: 1.2;
+    }
+    .conf-step-desc {
+        display: none;
+    }
+    .btn-conf-close {
+        padding: 11px 18px;
+        font-size: 0.92rem;
+    }
+}
+
+/* ============================================================ */
 /* PAGES LÉGALES & CONFORMITÉ (MENTIONS, CGV, RGPD, FOOTER)     */
 /* ============================================================ */
 .legal-container {
